@@ -10,7 +10,7 @@ namespace Biblioteka
         private OpisStanu opisStanu; // ksiazka
         private DateTime dataWypozyczenia;
         private DateTime dataZwrotu;
-        Zdarzenie(int nID, int nwykaz, int nopisStanu, DateTime ndataWypozyczenia, DateTime ndataZwrotu)
+        Zdarzenie(int nID, Wykaz nwykaz, OpisStanu nopisStanu, DateTime ndataWypozyczenia, DateTime ndataZwrotu)
         {
             ID = nID;
             wykaz = nwykaz;

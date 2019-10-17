@@ -8,5 +8,9 @@ namespace Biblioteka
 {
     class Wykaz
     {
+        //Imie i nazwisko czytelnika
+        private String imie { get; }
+        private String nazwisko { get; }
+        
     }
 }
