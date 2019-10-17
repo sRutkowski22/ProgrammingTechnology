@@ -8,11 +8,13 @@ namespace Biblioteka
         private int ID { get; }
         private Katalog katalog;
         private DateTime dataKupieniaKsiazki { get; }
-        OpisStanu(int nID, Katalog nkatalog, DateTime ndataKupieniaKsiazki)
+        private uint cena { get; }
+        OpisStanu(int nID, Katalog nkatalog, DateTime ndataKupieniaKsiazki, uint cena)
         {
             ID = nID;
             katalog = nkatalog;
             dataKupieniaKsiazki = ndataKupieniaKsiazki;
+            this.cena = cena;
         }
 
     }

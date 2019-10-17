@@ -13,4 +13,4 @@ namespace Biblioteka
         private String nazwisko { get; }
         
     }
-}
+}   
