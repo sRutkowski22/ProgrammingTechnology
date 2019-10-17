@@ -6,13 +6,13 @@ namespace Biblioteka
     public class OpisStanu
     {
         private int ID { get; }
-        private Katalog katalog;
+        private int katalogID { get; }
         private DateTime dataKupieniaKsiazki { get; }
         private uint cena { get; }
-        OpisStanu(int nID, Katalog nkatalog, DateTime ndataKupieniaKsiazki, uint cena)
+        OpisStanu(int nID, int nkatalogID, DateTime ndataKupieniaKsiazki, uint cena)
         {
             ID = nID;
-            katalog = nkatalog;
+            this.katalogID = katalogID;
             dataKupieniaKsiazki = ndataKupieniaKsiazki;
             this.cena = cena;
         }

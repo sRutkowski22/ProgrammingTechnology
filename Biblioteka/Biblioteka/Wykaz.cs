@@ -9,6 +9,7 @@ namespace Biblioteka
     class Wykaz
     {
         //Imie i nazwisko czytelnika
+        private int ID { get; }
         private String imie { get; }
         private String nazwisko { get; }
         

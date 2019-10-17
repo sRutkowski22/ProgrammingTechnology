@@ -5,7 +5,7 @@ namespace Biblioteka
 {
     public class Katalog
     {
-        private int ID;
+        private int ID { get; }
         private String opisKsiazki { get; }
         private AutorKsiazki autorKsiazki { get; }
         

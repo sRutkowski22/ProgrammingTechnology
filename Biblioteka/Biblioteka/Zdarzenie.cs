@@ -5,16 +5,16 @@ namespace Biblioteka
 {
     public class Zdarzenie
     {
-        private int ID;
-        private Wykaz wykaz; //wypozyczajacy
-        private OpisStanu opisStanu; // ksiazka
-        private DateTime dataWypozyczenia;
-        private DateTime dataZwrotu;
-        Zdarzenie(int nID, Wykaz nwykaz, OpisStanu nopisStanu, DateTime ndataWypozyczenia, DateTime ndataZwrotu)
+        private int ID { get; }
+        private int wykazID { get; } //id wypozyczajacego
+        private int opisStanuID { get; } // id stanu ksiazki (konkretna ksiazka)
+        private DateTime dataWypozyczenia { get; }
+        private DateTime dataZwrotu { get; }
+        Zdarzenie(int nID, int wykazID, int opisStanuID, DateTime ndataWypozyczenia, DateTime ndataZwrotu)
         {
             ID = nID;
-            wykaz = nwykaz;
-            opisStanu = nopisStanu;
+            this.wykazID = wykazID;
+            this.opisStanuID = opisStanuID;
             dataWypozyczenia = ndataWypozyczenia;
             dataZwrotu = ndataZwrotu;
         }
