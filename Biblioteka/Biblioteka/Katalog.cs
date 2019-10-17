@@ -8,13 +8,13 @@ namespace Biblioteka
         private int ID { get; }
         private String opisKsiazki { get; }
         private AutorKsiazki autorKsiazki { get; }
-        
-        Katalog(int nID, String nopisKsiazki, AutorKsiazki nautorKsiazki)
+        private String tytulKsiazki { get; }
+        Katalog(int nID, String nopisKsiazki, AutorKsiazki nautorKsiazki, String tytulKsiazki)
         {
             ID = nID;
             opisKsiazki = nopisKsiazki;
             autorKsiazki = nautorKsiazki;
-            
+            this.tytulKsiazki = tytulKsiazki;
         }
            
     } 
