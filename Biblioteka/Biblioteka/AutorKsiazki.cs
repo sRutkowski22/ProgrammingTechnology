@@ -6,7 +6,7 @@ namespace Biblioteka
     public class AutorKsiazki
     {
         //dane osobowe autora
-        private int ID;
+        private int ID { get; }
         private String imie;
         private String nazwisko;
 
