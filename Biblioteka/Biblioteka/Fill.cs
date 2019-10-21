@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    interface Interface1
+    public interface Fill
     {
+        void fillIn(DataContext data);
     }
 }

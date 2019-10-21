@@ -9,7 +9,7 @@ namespace Biblioteka
         private String opisKsiazki { get; }
         private AutorKsiazki autorKsiazki { get; }
         private String tytulKsiazki { get; }
-        Katalog(int nID, String nopisKsiazki, AutorKsiazki nautorKsiazki, String tytulKsiazki)
+        public Katalog(int nID,  String tytulKsiazki, AutorKsiazki nautorKsiazki, String nopisKsiazki)
         {
             ID = nID;
             opisKsiazki = nopisKsiazki;

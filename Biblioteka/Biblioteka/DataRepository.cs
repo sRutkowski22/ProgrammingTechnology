@@ -5,10 +5,14 @@ namespace Biblioteka
 {
     public class DataRepository
     {
+        WypelnianieStalymi wypelnienie;
         private DataContext dataContext { get; }
-        DataRepository(DataContext ndataContext)
+        private Fill fill;
+        DataRepository(DataContext ndataContext, Fill fill)
         {
-            dataContext = ndataContext;
+            this.fill = fill;
+            wypelnienie.fillIn(dataContext);
         }
+      
     }
 }

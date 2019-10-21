@@ -10,9 +10,8 @@ namespace Biblioteka
         private String imie;
         private String nazwisko;
 
-        AutorKsiazki(int ID, String imie, String nazwisko)
-        {
-            this.ID = ID;
+        public AutorKsiazki( String imie, String nazwisko)
+        {  
             this.imie = imie;
             this.nazwisko = nazwisko;
         }
