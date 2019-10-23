@@ -8,6 +8,7 @@ namespace Biblioteka
 {
     class WypelnianieStalymi : Fill
     {
+        public WypelnianieStalymi() { }
         public void fillIn(DataContext data)
         {
             //Wykazy klientow

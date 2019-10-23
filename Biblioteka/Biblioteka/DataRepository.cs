@@ -3,16 +3,19 @@
 
 namespace Biblioteka
 {
-    public class DataRepository //TODO: tutaj doda ten interfejs ': IDataRepository'
+    public class DataRepository//TODO: tutaj doda ten interfejs ': IDataRepository'
     {
         WypelnianieStalymi wypelnienie;
         private DataContext dataContext { get; }
         private Fill fill;
-        DataRepository(DataContext ndataContext, Fill fill)
+        DataRepository(DataContext dataContext, Fill fill)
         {
             this.fill = fill;
-            wypelnienie.fillIn(dataContext);
+            this.dataContext = dataContext;
+            //fill.fillIn(dataContext);
+            //wypelnienie.fillIn(dataContext);
         }
+        public void FillStatic() => fill.fillIn(dataContext);
       //C.R.U.D ADD GET ALL GET UPDATE DELETE
       void AddKatalog(Katalog k, DataContext data)
         {
