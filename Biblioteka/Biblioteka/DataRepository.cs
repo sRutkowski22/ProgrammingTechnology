@@ -36,9 +36,13 @@ namespace Biblioteka
                 Console.WriteLine(data.dictionaryKatalog.ToString());
             }
         }
-        void UpdateKatalog(DataContext data, Katalog k)
+        void UpdateKatalog(int ID, Katalog k)
         {
-            
+            if (dataContext.dictionaryKatalog.ContainsKey(ID))
+            {
+                dataContext.dictionaryKatalog[ID] = k;
+            }
+                      
         }
         void DeleteKatalog(DataContext data, int key)
         {
@@ -55,7 +59,8 @@ namespace Biblioteka
                 w.ToString();
             }
         }
-        Wykaz GetWykaz(DataContext data, Wykaz w)
+
+        private Wykaz GetWykaz(DataContext data, Wykaz w)
         {
             for(int i=0; i < data.WykazList.Count;i++)
             {
@@ -63,7 +68,9 @@ namespace Biblioteka
                 {
                     return data.WykazList[i];
                 }
+                
             }
+            return null;
         }
     }
 }

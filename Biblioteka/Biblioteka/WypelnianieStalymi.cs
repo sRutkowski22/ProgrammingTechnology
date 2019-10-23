@@ -20,8 +20,8 @@ namespace Biblioteka
             data.zdarzenieObservableCollection.Add(new Zdarzenie(3, 3, 3, DateTime.Today, new DateTime(2020, 2, 2, 0, 0, 0)));
             //Katalog
             data.dictionaryKatalog.Add(1, new Katalog(1, "Romeo i Julia", new AutorKsiazki("William", "Shakespear"),"dramat"));
-            data.dictionaryKatalog.Add(1, new Katalog(2, "Gra Endera", new AutorKsiazki("Orson Scott", "Card"), "sci-fi"));
-            data.dictionaryKatalog.Add(1, new Katalog(3, "Antygona", new AutorKsiazki("", "Sofokles"), "tragedia"));
+            data.dictionaryKatalog.Add(2, new Katalog(2, "Gra Endera", new AutorKsiazki("Orson Scott", "Card"), "sci-fi"));
+            data.dictionaryKatalog.Add(3, new Katalog(3, "Antygona", new AutorKsiazki("", "Sofokles"), "tragedia"));
             //opisStanu
             data.opisStanuList.Add(new OpisStanu(1, 1, 4, 50));
             data.opisStanuList.Add(new OpisStanu(2, 2, 5, 50));
