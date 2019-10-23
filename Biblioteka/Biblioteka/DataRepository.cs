@@ -3,7 +3,7 @@
 
 namespace Biblioteka
 {
-    public class DataRepository
+    public class DataRepository //TODO: tutaj doda ten interfejs ': IDataRepository'
     {
         WypelnianieStalymi wypelnienie;
         private DataContext dataContext { get; }
@@ -48,19 +48,19 @@ namespace Biblioteka
         {
             data.dictionaryKatalog.Remove(key);
         }
-        void AddWykaz(DataContext data, Wykaz w)
+        void AddWykaz(DataContext data, Client w)
         {
             data.WykazList.Add(w);
         }
         void GetAll(DataContext data)
         {
-            foreach(Wykaz w in data.WykazList)
+            foreach(Client w in data.WykazList)
             {
                 w.ToString();
             }
         }
 
-        private Wykaz GetWykaz(DataContext data, Wykaz w)
+        private Client GetWykaz(DataContext data, Client w)
         {
             for(int i=0; i < data.WykazList.Count;i++)
             {

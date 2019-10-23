@@ -5,15 +5,14 @@ namespace Biblioteka
 {
     public class OpisStanu
     {
-        private int iloscEgzemplarzy { get; }
-        private int IDOpisuStanu { get; }
-        private int katalogID { get; }
-        private DateTime dataKupieniaKsiazki { get; }
-        private uint cena { get; }
-        public OpisStanu(int nID, int nkatalogID, int iloscEgzemplarzy, uint cena)
+        internal int opisuStanuId { get; }
+        internal int katalogId { get; }
+        internal int iloscEgzemplarzy { get; }
+        internal uint cena { get; }
+        public OpisStanu(int opisuStanuId, int katalogId, int iloscEgzemplarzy, uint cena)
         {
-            IDOpisuStanu = nID;
-            this.katalogID = katalogID;
+            this.opisuStanuId = opisuStanuId;
+            this.katalogId = katalogId;
             this.iloscEgzemplarzy = iloscEgzemplarzy;
             this.cena = cena;
         }

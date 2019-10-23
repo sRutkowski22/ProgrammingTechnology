@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    public class Wykaz
+    public class Client
     {
         //Imie i nazwisko czytelnika
-        private int ID { get; }
-        private String imie { get; }
-        private String nazwisko { get; }
-        public Wykaz(int ID, String imie, String nazwisko)
+        internal int clientId { get; }
+        internal String imie { get; }
+        internal String nazwisko { get; }
+        public Client(int clientId, String imie, String nazwisko)
         {
-            this.ID = ID;
+            this.clientId = clientId;
             this.imie = imie;
             this.nazwisko = nazwisko;
         }
