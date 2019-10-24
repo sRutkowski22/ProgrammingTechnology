@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    class Sprzedaz
+    class Sprzedaz : Zdarzenie
     {
+        Client client;
+        internal DateTime dataSprzedazy;
+        public Sprzedaz(int zdarzeniaId, OpisStanu opisStanu, int ilosc,Client client, DateTime dataSprzedazy) : base(zdarzeniaId, opisStanu, ilosc)
+        {
+            this.client = client;
+            this.dataSprzedazy = dataSprzedazy;
+        }
     }
 }
