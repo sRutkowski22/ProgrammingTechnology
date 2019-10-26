@@ -15,5 +15,20 @@ namespace Biblioteka
             this.client = client;
             this.dataSprzedazy = dataSprzedazy;
         }
+
+        public override Client GetClient()
+        {
+            return this.client;
+        }
+
+        public override DateTime GetDateZdarzenia()
+        {
+            return dataSprzedazy;
+        }
+
+        public override int GetIlosc()
+        {
+            return -ilosc;
+        }
     }
 }

@@ -3,13 +3,12 @@
 
 namespace Biblioteka
 {
-    public class Zdarzenie
+    public abstract class Zdarzenie
     {
         internal int zdarzeniaId { get; }
-       // Client client { get; }//id wypozyczajacego
-        OpisStanu opisStanu { get; } // id stanu ksiazki (konkretna ksiazka)
+        internal OpisStanu opisStanu { get; } // id stanu ksiazki (konkretna ksiazka)
         internal int ilosc { get; }
-       // internal DateTime dataKupienia { get; }
+      
 
         
 
@@ -22,5 +21,9 @@ namespace Biblioteka
            
             
         }
+
+        public abstract Client GetClient();
+        public abstract DateTime GetDateZdarzenia(); 
+        public abstract int GetIlosc();
     }
 }

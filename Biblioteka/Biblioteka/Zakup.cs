@@ -13,5 +13,19 @@ namespace Biblioteka
         {
             this.dataZakupu = dataZakupu;
         }
+        public override Client GetClient()
+        {
+            return null;
+        }
+
+        public override DateTime GetDateZdarzenia()
+        {
+            return dataZakupu;
+        }
+
+        public override int GetIlosc()
+        {
+            return ilosc;
+        }
     }
 }

@@ -50,7 +50,9 @@
     <Compile Include="IDataRepository.cs" />
     <Compile Include="Katalog.cs" />
     <Compile Include="OpisStanu.cs" />
+    <Compile Include="Sprzedaz.cs" />
     <Compile Include="WypelnianieStalymi.cs" />
+    <Compile Include="Zakup.cs" />
     <Compile Include="Zdarzenie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

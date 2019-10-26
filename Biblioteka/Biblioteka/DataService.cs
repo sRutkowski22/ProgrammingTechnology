@@ -36,7 +36,7 @@ namespace Biblioteka
             ObservableCollection<Zdarzenie> resultZdarzenies = new ObservableCollection<Zdarzenie>();
             foreach (Zdarzenie zdarzenie in zdarzenies)
             {
-                if(zdarzenie.clientId== clientID)
+                if(zdarzenie.GetClient().clientId !=null && zdarzenie.GetClient().clientId == clientID)
                 {
                     resultZdarzenies.Add(zdarzenie);
                 }
@@ -50,7 +50,7 @@ namespace Biblioteka
             ObservableCollection<Zdarzenie> resultZdarzenies = new ObservableCollection<Zdarzenie>();
             foreach (Zdarzenie zdarzenie in zdarzenies)
             {
-                if (zdarzenie.dataKupienia.Day.Equals(dateTime.Day))
+                if (zdarzenie.GetDateZdarzenia().Day.Equals(dateTime.Day))
                 {
                     resultZdarzenies.Add(zdarzenie);
                 }
@@ -95,25 +95,24 @@ namespace Biblioteka
         {
             dataRepository.AddClient(client);
         }
-        public void AddKatalog(Katalog katalog)
+        public void AddKatalog(Katalog katalog,uint cenaKatalogu)
         {
             dataRepository.AddKatalog(katalog);
+            dataRepository.AddOpisStanu(new OpisStanu(katalog.katalogId,katalog,0, cenaKatalogu));
         }
-        public void AddOpisStanu(OpisStanu opisStanu)
-        {
-            dataRepository.AddOpisStanu(opisStanu);
-        }
-
+      
         public void AddZdarzenie(Zdarzenie zdarzenie)
         {
             dataRepository.AddZdarzenie(zdarzenie);
+            OpisStanu updatedOpisStanu = new OpisStanu(zdarzenie.opisStanu.opisuStanuId, zdarzenie.opisStanu.katalog, zdarzenie.opisStanu.iloscEgzemplarzy + zdarzenie.GetIlosc(), zdarzenie.opisStanu.cena);
+            dataRepository.UpdateOpisStanu(zdarzenie.opisStanu.opisuStanuId, updatedOpisStanu);
+           
         }
 
 
         private Katalog findKatalogByZdarzenie(Zdarzenie zdarzenie)
         {
-            int katalogId = dataRepository.GetOpisStanuById(zdarzenie.opisStanuId).katalogId;
-            return dataRepository.GetKatalogById(katalogId);
+            return zdarzenie.opisStanu.katalog;
         }
 
     }
