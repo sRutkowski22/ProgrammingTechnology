@@ -1,0 +1,6 @@
+1;Jan;Kowalski
+2;Adam;Maly
+3;Tomasz;Sredni
+4;Mikolaj;Duzy
+5;Piotr;Nowak
+6;Anna;Wisniewska
