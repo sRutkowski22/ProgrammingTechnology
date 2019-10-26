@@ -5,12 +5,21 @@ namespace Biblioteka
 {
     public class DataContext
     {
-        private List<Client> wykazList = new List<Client>();
+
+        public List<Client> wykazList;
         public Dictionary<int, Katalog> dictionaryKatalog;
         public ObservableCollection<Zdarzenie> zdarzenieObservableCollection;
         public List<OpisStanu> opisStanuList;
-    
-        internal List<Client> WykazList { get => wykazList; set => wykazList = value; }
+       
+        public DataContext()
+        {
+            this.wykazList = new List<Client>();
+            this.dictionaryKatalog = new Dictionary<int, Katalog>();
+            this.zdarzenieObservableCollection = new ObservableCollection<Zdarzenie>();
+            this.opisStanuList = new List<OpisStanu>();
+    }
+
+        //  internal List<Client> WykazList { get => wykazList; set => wykazList = value; }
 
         DataContext(List<Client> wykazList, Dictionary<int, Katalog> dictionaryKatalog, ObservableCollection<Zdarzenie> zdarzenieObservableCollection, List<OpisStanu> opisStanuList)
         {

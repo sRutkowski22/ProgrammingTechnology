@@ -29,6 +29,26 @@ namespace Biblioteka
             return dataRepository.GetAllOpisStanu();
         }
 
+        public void AddClient(Client client)
+        {
+            dataRepository.AddClient(client);
+        }
+
+        // utworzenie katalogu tworzy tez opis stanu
+        public void AddKatalog(Katalog katalog, uint cenaKatalogu)
+        {
+            dataRepository.AddKatalog(katalog);
+            dataRepository.AddOpisStanu(new OpisStanu(katalog.katalogId, katalog, 0, cenaKatalogu));
+        }
+
+        // zdarzenie zmienia tez opis stanu ( dodaje ilosc egzemplarzy jesli kupujemy, zmiejsza ilosc egzemplarzy jesli sprzedajemy)
+        public void AddZdarzenie(Zdarzenie zdarzenie)
+        {
+            dataRepository.AddZdarzenie(zdarzenie);
+            OpisStanu updatedOpisStanu = new OpisStanu(zdarzenie.opisStanu.opisuStanuId, zdarzenie.opisStanu.katalog, zdarzenie.opisStanu.iloscEgzemplarzy + zdarzenie.GetIlosc(), zdarzenie.opisStanu.cena);
+            dataRepository.UpdateOpisStanu(zdarzenie.opisStanu.opisuStanuId, updatedOpisStanu);
+        }
+
         public ObservableCollection<Zdarzenie> GetAllZdarzeniaThisClient(int clientID)
         {
 
@@ -91,24 +111,7 @@ namespace Biblioteka
             return resultKatalog;
         }
 
-        public void AddClient(Client client)
-        {
-            dataRepository.AddClient(client);
-        }
-        public void AddKatalog(Katalog katalog,uint cenaKatalogu)
-        {
-            dataRepository.AddKatalog(katalog);
-            dataRepository.AddOpisStanu(new OpisStanu(katalog.katalogId,katalog,0, cenaKatalogu));
-        }
       
-        public void AddZdarzenie(Zdarzenie zdarzenie)
-        {
-            dataRepository.AddZdarzenie(zdarzenie);
-            OpisStanu updatedOpisStanu = new OpisStanu(zdarzenie.opisStanu.opisuStanuId, zdarzenie.opisStanu.katalog, zdarzenie.opisStanu.iloscEgzemplarzy + zdarzenie.GetIlosc(), zdarzenie.opisStanu.cena);
-            dataRepository.UpdateOpisStanu(zdarzenie.opisStanu.opisuStanuId, updatedOpisStanu);
-           
-        }
-
 
         private Katalog findKatalogByZdarzenie(Zdarzenie zdarzenie)
         {

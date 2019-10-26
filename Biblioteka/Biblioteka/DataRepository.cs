@@ -7,11 +7,13 @@ namespace Biblioteka
     public class DataRepository : IDataRepository
     {
         private DataContext data { get; }
-        private Fill fill;
-        DataRepository(DataContext dataContext, Fill fill)
+
+        public DataRepository(DataContext dataContext, Fill fill)
         {
-            this.fill = fill;
-            this.data = dataContext;            
+           
+            this.data = dataContext;
+            fill.fillIn(dataContext);
+
         }       
       //C.R.U.D ADD GET ALL GET UPDATE DELETE
       void AddKatalog(Katalog k)
@@ -50,11 +52,11 @@ namespace Biblioteka
         }
         void AddWykaz( Client w)
         {
-            data.WykazList.Add(w);
+            data.wykazList.Add(w);
         }
         void GetAll()
         {
-            foreach(Client w in data.WykazList)
+            foreach(Client w in data.wykazList)
             {
                 w.ToString();
             }
@@ -62,11 +64,11 @@ namespace Biblioteka
 
         private Client GetWykaz(Client w)
         {
-            for(int i=0; i < data.WykazList.Count;i++)
+            for(int i=0; i < data.wykazList.Count;i++)
             {
-                if (data.WykazList.Contains(w))
+                if (data.wykazList.Contains(w))
                 {
-                    return data.WykazList[i];
+                    return data.wykazList[i];
                 }
                 
             }
