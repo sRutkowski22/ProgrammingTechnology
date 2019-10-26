@@ -6,14 +6,14 @@ namespace Biblioteka
     public class DataContext
     {
 
-        public List<Client> wykazList;
+        public List<Client> clientList;
         public Dictionary<int, Katalog> dictionaryKatalog;
         public ObservableCollection<Zdarzenie> zdarzenieObservableCollection;
         public List<OpisStanu> opisStanuList;
        
         public DataContext()
         {
-            this.wykazList = new List<Client>();
+            this.clientList = new List<Client>();
             this.dictionaryKatalog = new Dictionary<int, Katalog>();
             this.zdarzenieObservableCollection = new ObservableCollection<Zdarzenie>();
             this.opisStanuList = new List<OpisStanu>();
@@ -23,7 +23,7 @@ namespace Biblioteka
 
         DataContext(List<Client> wykazList, Dictionary<int, Katalog> dictionaryKatalog, ObservableCollection<Zdarzenie> zdarzenieObservableCollection, List<OpisStanu> opisStanuList)
         {
-            this.wykazList = wykazList;
+            this.clientList = wykazList;
             this.dictionaryKatalog = dictionaryKatalog;
             this.zdarzenieObservableCollection = zdarzenieObservableCollection;
             this.opisStanuList = opisStanuList;

@@ -15,7 +15,7 @@ namespace Biblioteka
             foreach (string line in lines)
             {
                 string[] words = line.Split(';');
-                data.wykazList.Add(new Client(Int32.Parse(words[0]), words[1], words[2]));
+                data.clientList.Add(new Client(Int32.Parse(words[0]), words[1], words[2]));
 
             }
             lines = System.IO.File.ReadAllLines(@"Katalog.txt");
@@ -23,7 +23,7 @@ namespace Biblioteka
             foreach (string line in lines)
             {
                 string[] words = line.Split(';');
-                data.dictionaryKatalog.Add(i, new Katalog(Int32.Parse(words[0]), words[1], new AutorKsiazki(words[2], words[3]), words[4]));
+             //   data.dictionaryKatalog.Add(i, new Katalog(Int32.Parse(words[0]), words[1], new AutorKsiazki(words[2], words[3]), words[4]));
                 i++;
             }
 
@@ -34,7 +34,7 @@ namespace Biblioteka
 
                 foreach (Katalog k in data.dictionaryKatalog.Values)
                 {
-                    if (k.katalogId == Int32.Parse(words[0])) data.opisStanuList.Add(new OpisStanu(k.katalogId, k, Int32.Parse(words[1]), UInt32.Parse(words[2])));
+      //              if (k.katalogId == Int32.Parse(words[0])) data.opisStanuList.Add(new OpisStanu(k.katalogId, k, Int32.Parse(words[1]), UInt32.Parse(words[2])));
                 }
             }
 
@@ -46,7 +46,7 @@ namespace Biblioteka
 
                 Client W = new Client(-1, "", "");
                 OpisStanu O = new OpisStanu(1, null, 0, 1);
-                foreach (Client ww in data.wykazList)
+                foreach (Client ww in data.clientList)
                 {
                     if (ww.clientId == Int32.Parse(words[0]))
                     {

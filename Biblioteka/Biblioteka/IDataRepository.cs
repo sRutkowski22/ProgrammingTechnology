@@ -22,15 +22,15 @@ namespace Biblioteka
         OpisStanu GetOpisStanuById(int opisStanuId);
         Katalog GetKatalogById(int katalogId);
         // UPDATE
-        void UpdateClient(int Id,Client client);
-        void UpdateKatalog(int Id, Katalog katalog);
-        void UpdateOpisStanu(int Id, OpisStanu opisStanu);
-        void UpdateZdarzenie(int Id, Zdarzenie zdarzenie);
+        void UpdateClient(int id,Client client);
+        void UpdateKatalog(int id, Katalog katalog);
+        void UpdateOpisStanu(int id, OpisStanu opisStanu);
+        void UpdateZdarzenie(int id, Zdarzenie zdarzenie);
         // DELETE
-        void DeleteClient(int Id);
-        void DeleteKatalog(int Id);
-        void DeleteOpisStanu(int Id);
-        void DeleteZdarzenie(int Id);
+        void DeleteClient(int id);
+        void DeleteKatalog(int id);
+        void DeleteOpisStanu(int id);
+        void DeleteZdarzenie(int id);
 
     }
 }

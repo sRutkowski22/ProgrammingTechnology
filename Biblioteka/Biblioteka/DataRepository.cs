@@ -14,7 +14,11 @@ namespace Biblioteka
             this.data = dataContext;
             fill.fillIn(dataContext);
 
-        }       
+        }   
+        public DataRepository(DataContext data)
+        {
+            this.data = data;
+        }
       //C.R.U.D ADD GET ALL GET UPDATE DELETE
       void AddKatalog(Katalog k)
         {
@@ -52,11 +56,11 @@ namespace Biblioteka
         }
         void AddWykaz( Client w)
         {
-            data.wykazList.Add(w);
+            data.clientList.Add(w);
         }
         void GetAll()
         {
-            foreach(Client w in data.wykazList)
+            foreach(Client w in data.clientList)
             {
                 w.ToString();
             }
@@ -64,11 +68,11 @@ namespace Biblioteka
 
         private Client GetWykaz(Client w)
         {
-            for(int i=0; i < data.wykazList.Count;i++)
+            for(int i=0; i < data.clientList.Count;i++)
             {
-                if (data.wykazList.Contains(w))
+                if (data.clientList.Contains(w))
                 {
-                    return data.wykazList[i];
+                    return data.clientList[i];
                 }
                 
             }
@@ -77,102 +81,161 @@ namespace Biblioteka
 
         public void AddClient(Client client)
         {
-            throw new NotImplementedException();
+            data.clientList.Add(client);
         }
 
         void IDataRepository.AddKatalog(Katalog katalog)
         {
-            throw new NotImplementedException();
+            int length = data.dictionaryKatalog.Count;
+            data.dictionaryKatalog.Add(length + 1, katalog);
         }
 
         public void AddOpisStanu(OpisStanu opisStanu)
         {
-            throw new NotImplementedException();
+            data.opisStanuList.Add(opisStanu);
         }
 
         public void AddZdarzenie(Zdarzenie zdarzenie)
         {
-            throw new NotImplementedException();
+            data.zdarzenieObservableCollection.Add(zdarzenie);
         }
 
         Dictionary<int, Katalog> IDataRepository.GetAllKatalog()
         {
-            throw new NotImplementedException();
+            return data.dictionaryKatalog;
         }
 
         public List<Client> GetAllClient()
         {
-            throw new NotImplementedException();
+            return data.clientList;
         }
 
         public ObservableCollection<Zdarzenie> GetAllZdarzenia()
         {
-            throw new NotImplementedException();
+            return data.zdarzenieObservableCollection;
         }
 
         public List<OpisStanu> GetAllOpisStanu()
         {
-            throw new NotImplementedException();
+            return data.opisStanuList;
         }
 
-        public Zdarzenie GetZdarzenieById(int zdarzenieId)
+        public Zdarzenie GetZdarzenieById(int zdarzeniaID)
         {
-            throw new NotImplementedException();
+            foreach(Zdarzenie zd in data.zdarzenieObservableCollection)
+            {
+                if (zd.zdarzeniaId == zdarzeniaID)
+                {
+                    return zd;
+                }
+            }
+            return null;
         }
 
-        public Client GetClientById(int clientId)
+        public Client GetClientById(int clientID)
         {
-            throw new NotImplementedException();
+            foreach (Client cl in data.clientList)
+            {
+                if (cl.clientId == clientID)
+                {
+                    return cl;
+                }
+            }
+            return null;
         }
 
         public OpisStanu GetOpisStanuById(int opisStanuId)
         {
-            throw new NotImplementedException();
+            foreach(OpisStanu opis in data.opisStanuList)
+            {
+                if (opis.opisuStanuId == opisStanuId)
+                {
+                    return opis;
+                }
+            }
+            return null;
         }
 
         public Katalog GetKatalogById(int katalogId)
         {
-            throw new NotImplementedException();
+            return data.dictionaryKatalog[katalogId];
         }
 
-        public void UpdateClient(int Id, Client client)
+        public void UpdateClient(int id, Client client)
         {
-            throw new NotImplementedException();
+            for(int i=0; i<data.clientList.Count; i++)
+            {
+                if (data.clientList[i].clientId==id)
+                {
+                    data.clientList[i] = client;
+                }
+            }
         }
 
-        void IDataRepository.UpdateKatalog(int Id, Katalog katalog)
+        void IDataRepository.UpdateKatalog(int id, Katalog katalog)
         {
-            throw new NotImplementedException();
+            data.dictionaryKatalog[id] = katalog;
         }
 
-        public void UpdateOpisStanu(int Id, OpisStanu opisStanu)
+        public void UpdateOpisStanu(int id, OpisStanu opisStanu)
         {
-            throw new NotImplementedException();
+           for(int i=0; i<data.opisStanuList.Count; i++)
+            {
+                if (data.opisStanuList[i].opisuStanuId == id)
+                {
+                    data.opisStanuList[i] = opisStanu;
+                }
+            }
         }
 
-        public void UpdateZdarzenie(int Id, Zdarzenie zdarzenie)
+        public void UpdateZdarzenie(int id, Zdarzenie zdarzenie)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < data.zdarzenieObservableCollection.Count; i++)
+            {
+                if (data.zdarzenieObservableCollection[i].zdarzeniaId == id)
+                {
+                    data.zdarzenieObservableCollection[i] = zdarzenie;
+                }
+            }
         }
 
-        public void DeleteClient(int Id)
+        public void DeleteClient(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < data.clientList.Count; i++)
+            {
+                if (data.clientList[i].clientId == id)
+                {
+                    data.clientList.Remove(data.clientList[i]);
+                }
+            }
+
         }
 
-        void IDataRepository.DeleteKatalog(int Id)
+        void IDataRepository.DeleteKatalog(int id)
         {
-            throw new NotImplementedException();
+            data.dictionaryKatalog.Remove(id);
         }
 
-        public void DeleteOpisStanu(int Id)
+        public void DeleteOpisStanu(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < data.opisStanuList.Count; i++)
+            {
+                if (data.opisStanuList[i].opisuStanuId == id)
+                {
+                    data.opisStanuList.Remove(data.opisStanuList[i]);
+                }
+            }
         }
 
-        public void DeleteZdarzenie(int Id)
+        public void DeleteZdarzenie(int id)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < data.zdarzenieObservableCollection.Count; i++)
+            {
+                if (data.zdarzenieObservableCollection[i].zdarzeniaId == id)
+                {
+                    data.zdarzenieObservableCollection.Remove(data.zdarzenieObservableCollection[i]);
+                }
+            }
         }
     }
 }

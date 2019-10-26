@@ -11,15 +11,15 @@ namespace Biblioteka
         public WypelnianieStalymi() { }
         public void fillIn(DataContext data)
         {
-            Katalog k1 = new Katalog(1, "Romeo i Julia", new AutorKsiazki("William", "Shakespear"), "dramat");
-            Katalog k2 = new Katalog(2, "Gra Endera", new AutorKsiazki("Orson Scott", "Card"), "sci-fi");
-            Katalog k3 = new Katalog(3, "Antygona", new AutorKsiazki("", "Sofokles"), "tragedia");
+            Katalog k1 = new Katalog( "Romeo i Julia", new AutorKsiazki("William", "Shakespear"), "dramat");
+            Katalog k2 = new Katalog( "Gra Endera", new AutorKsiazki("Orson Scott", "Card"), "sci-fi");
+            Katalog k3 = new Katalog( "Antygona", new AutorKsiazki("", "Sofokles"), "tragedia");
             OpisStanu opis1 = new OpisStanu(1, k1, 4, 50);
             Client c1 = new Client(1, "Szymon", "Rutkowski");
             //Wykazy klientow
-            data.wykazList.Add(c1);
-            data.wykazList.Add(new Client(2, "Przemek", "Lapinski"));
-            data.wykazList.Add(new Client(3, "Jan", "Kowalski"));
+            data.clientList.Add(c1);
+            data.clientList.Add(new Client(2, "Przemek", "Lapinski"));
+            data.clientList.Add(new Client(3, "Jan", "Kowalski"));
             //Zdarzenia
            /* data.zdarzenieObservableCollection.Add(new Sprzedaz(1, opis1,1,c1,DateTime.Today));
             data.zdarzenieObservableCollection.Add(new Sprzedaz(2, opis1, 1, c1, DateTime.Today));
