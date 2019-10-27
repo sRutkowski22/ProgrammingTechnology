@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Biblioteka;
 namespace ConsoleApp1
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello world");
+            DataContext data = new DataContext();
+            DataRepository repo = new DataRepository(data);
+            Katalog kat1 = new Katalog("Potop", new AutorKsiazki("Henryk", "Sienkiewicz"), "PolskavsSzwecja");
+            repo.AddKatalog(kat1);
+            Console.WriteLine(repo.GetAllKatalog().Count);
             Console.Read();
         }
     }

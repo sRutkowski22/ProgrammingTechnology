@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    class Sprzedaz : Zdarzenie
+    public class Sprzedaz : Zdarzenie
     {
         Client client;
         internal DateTime dataSprzedazy;

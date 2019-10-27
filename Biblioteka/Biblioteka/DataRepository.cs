@@ -19,75 +19,17 @@ namespace Biblioteka
         {
             this.data = data;
         }
-      //C.R.U.D ADD GET ALL GET UPDATE DELETE
-      void AddKatalog(Katalog k)
-        {
-            data.dictionaryKatalog.Add((data.dictionaryKatalog.Count + 1),k);
-        }
-      void GetKatalog(Katalog k)
-        {
-            for(int i=0; i<data.dictionaryKatalog.Count; i++)
-            {
-                if (data.dictionaryKatalog.ContainsValue(k))
-                {
-                    //TODO: do zrobienia wypisywanie
-                    Console.WriteLine(data.dictionaryKatalog);
-                }
-            }
-        }
-        void GetAllKatalog()
-        {
-            for (int i = 0; i < data.dictionaryKatalog.Count; i++)
-            {
-                Console.WriteLine(data.dictionaryKatalog.ToString());
-            }
-        }
-        void UpdateKatalog(int ID, Katalog k)
-        {
-            if (data.dictionaryKatalog.ContainsKey(ID))
-            {
-                data.dictionaryKatalog[ID] = k;
-            }
-                      
-        }
-        void DeleteKatalog( int key)
-        {
-            data.dictionaryKatalog.Remove(key);
-        }
-        void AddWykaz( Client w)
-        {
-            data.clientList.Add(w);
-        }
-        void GetAll()
-        {
-            foreach(Client w in data.clientList)
-            {
-                w.ToString();
-            }
-        }
-
-        private Client GetWykaz(Client w)
-        {
-            for(int i=0; i < data.clientList.Count;i++)
-            {
-                if (data.clientList.Contains(w))
-                {
-                    return data.clientList[i];
-                }
-                
-            }
-            return null;
-        }
+        //C.R.U.D ADD GET ALL GET UPDATE DELETE
 
         public void AddClient(Client client)
         {
             data.clientList.Add(client);
         }
 
-        void IDataRepository.AddKatalog(Katalog katalog)
+        public void AddKatalog(Katalog katalog)
         {
             int length = data.dictionaryKatalog.Count;
-            data.dictionaryKatalog.Add(length + 1, katalog);
+            data.dictionaryKatalog[length+1]=katalog;
         }
 
         public void AddOpisStanu(OpisStanu opisStanu)
@@ -100,7 +42,7 @@ namespace Biblioteka
             data.zdarzenieObservableCollection.Add(zdarzenie);
         }
 
-        Dictionary<int, Katalog> IDataRepository.GetAllKatalog()
+        public Dictionary<int, Katalog> GetAllKatalog()
         {
             return data.dictionaryKatalog;
         }
@@ -122,7 +64,7 @@ namespace Biblioteka
 
         public Zdarzenie GetZdarzenieById(int zdarzeniaID)
         {
-            foreach(Zdarzenie zd in data.zdarzenieObservableCollection)
+            foreach (Zdarzenie zd in data.zdarzenieObservableCollection)
             {
                 if (zd.zdarzeniaId == zdarzeniaID)
                 {
@@ -146,7 +88,7 @@ namespace Biblioteka
 
         public OpisStanu GetOpisStanuById(int opisStanuId)
         {
-            foreach(OpisStanu opis in data.opisStanuList)
+            foreach (OpisStanu opis in data.opisStanuList)
             {
                 if (opis.opisuStanuId == opisStanuId)
                 {
@@ -163,23 +105,23 @@ namespace Biblioteka
 
         public void UpdateClient(int id, Client client)
         {
-            for(int i=0; i<data.clientList.Count; i++)
+            for (int i = 0; i < data.clientList.Count; i++)
             {
-                if (data.clientList[i].clientId==id)
+                if (data.clientList[i].clientId == id)
                 {
                     data.clientList[i] = client;
                 }
             }
         }
 
-        void IDataRepository.UpdateKatalog(int id, Katalog katalog)
+        public void UpdateKatalog(int id, Katalog katalog)
         {
             data.dictionaryKatalog[id] = katalog;
         }
 
         public void UpdateOpisStanu(int id, OpisStanu opisStanu)
         {
-           for(int i=0; i<data.opisStanuList.Count; i++)
+            for (int i = 0; i < data.opisStanuList.Count; i++)
             {
                 if (data.opisStanuList[i].opisuStanuId == id)
                 {
@@ -199,7 +141,7 @@ namespace Biblioteka
             }
         }
 
-        public void DeleteClient(int id)
+        public void DeleteClientByID(int id)
         {
             for (int i = 0; i < data.clientList.Count; i++)
             {
@@ -211,12 +153,12 @@ namespace Biblioteka
 
         }
 
-        void IDataRepository.DeleteKatalog(int id)
+        public void DeleteKatalogByID(int id)
         {
             data.dictionaryKatalog.Remove(id);
         }
 
-        public void DeleteOpisStanu(int id)
+        public void DeleteOpisStanuByID(int id)
         {
             for (int i = 0; i < data.opisStanuList.Count; i++)
             {
@@ -227,7 +169,7 @@ namespace Biblioteka
             }
         }
 
-        public void DeleteZdarzenie(int id)
+        public void DeleteZdarzenieByID(int id)
         {
             for (int i = 0; i < data.zdarzenieObservableCollection.Count; i++)
             {
@@ -237,5 +179,8 @@ namespace Biblioteka
                 }
             }
         }
+
+
+
     }
 }

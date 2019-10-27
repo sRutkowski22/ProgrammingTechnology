@@ -27,10 +27,10 @@ namespace Biblioteka
         void UpdateOpisStanu(int id, OpisStanu opisStanu);
         void UpdateZdarzenie(int id, Zdarzenie zdarzenie);
         // DELETE
-        void DeleteClient(int id);
-        void DeleteKatalog(int id);
-        void DeleteOpisStanu(int id);
-        void DeleteZdarzenie(int id);
+        void DeleteClientByID(int id);
+        void DeleteKatalogByID(int id);
+        void DeleteOpisStanuByID(int id);
+        void DeleteZdarzenieByID(int id);
 
     }
 }

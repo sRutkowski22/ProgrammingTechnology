@@ -19,22 +19,28 @@ namespace Biblioteka
 
             }
             lines = System.IO.File.ReadAllLines(@"Katalog.txt");
+           
+            foreach (string line in lines)
+            {
+                string[] words = line.Split(';');
+                int id = data.dictionaryKatalog.Count+1;
+                data.dictionaryKatalog.Add(id, new Katalog( words[1], new AutorKsiazki(words[2], words[3]), words[4]));
+              
+            }
+
+            lines = System.IO.File.ReadAllLines(@"OpisStanu.txt");
             int i = 0;
             foreach (string line in lines)
             {
                 string[] words = line.Split(';');
-             //   data.dictionaryKatalog.Add(i, new Katalog(Int32.Parse(words[0]), words[1], new AutorKsiazki(words[2], words[3]), words[4]));
-                i++;
-            }
-
-            lines = System.IO.File.ReadAllLines(@"OpisStanu.txt");
-            foreach (string line in lines)
-            {
-                string[] words = line.Split(';');
-
+                
                 foreach (Katalog k in data.dictionaryKatalog.Values)
                 {
-      //              if (k.katalogId == Int32.Parse(words[0])) data.opisStanuList.Add(new OpisStanu(k.katalogId, k, Int32.Parse(words[1]), UInt32.Parse(words[2])));
+                    if (data.dictionaryKatalog.ContainsKey(Int32.Parse(words[0])))
+                    {
+                        data.opisStanuList.Add(new OpisStanu(i, k, Int32.Parse(words[1]), UInt32.Parse(words[2])));
+                        i++;
+                    }
                 }
             }
 
