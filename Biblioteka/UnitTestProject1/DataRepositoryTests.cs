@@ -55,7 +55,7 @@ namespace UnitTestProject1
             Client c1 = new Client(1, "Adam", "Nowak");
             Katalog kat1 = new Katalog("Potop", new AutorKsiazki("Henryk", "Sienkiewicz"), "PolskavsSzwecja");
             OpisStanu opis1 = new OpisStanu(1, kat1, 2, 100);
-            Zdarzenie zd1 = new Sprzedaz(1, opis1, 2, c1, DateTime.Now);
+            Zdarzenie zd1 = new Sprzedaz(1, opis1, 2, 40,c1, DateTime.Now);
             repo.AddZdarzenie(zd1);
             Assert.AreEqual(repo.GetZdarzenieById(1), zd1);
             repo.DeleteZdarzenieByID(1);

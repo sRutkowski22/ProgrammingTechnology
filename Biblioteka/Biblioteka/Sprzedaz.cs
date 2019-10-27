@@ -10,7 +10,7 @@ namespace Biblioteka
     {
         Client client;
         internal DateTime dataSprzedazy;
-        public Sprzedaz(int zdarzeniaId, OpisStanu opisStanu, int ilosc,Client client, DateTime dataSprzedazy) : base(zdarzeniaId, opisStanu, ilosc)
+        public Sprzedaz(int zdarzeniaId, OpisStanu opisStanu, int ilosc, uint cena,Client client, DateTime dataSprzedazy) : base(zdarzeniaId, opisStanu, ilosc, cena)
         {
             this.client = client;
             this.dataSprzedazy = dataSprzedazy;

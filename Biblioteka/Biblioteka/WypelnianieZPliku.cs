@@ -69,7 +69,7 @@ namespace Biblioteka
                     }
                 }
                 if (W.clientId == -1)
-                    data.zdarzenieObservableCollection.Add(new Zakup(Int32.Parse(words[2]), O, Int32.Parse(words[3]), DateTime.Parse(words[4])));
+                    data.zdarzenieObservableCollection.Add(new Zakup(Int32.Parse(words[2]), O, Int32.Parse(words[3]),uint.Parse(words[3]), DateTime.Parse(words[4])));
             }
         }
     }

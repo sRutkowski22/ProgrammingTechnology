@@ -9,7 +9,7 @@ namespace Biblioteka
     class Zakup : Zdarzenie
     {
         internal DateTime dataZakupu;
-        public Zakup(int zdarzeniaId, OpisStanu opisStanu, int ilosc, DateTime dataZakupu) : base(zdarzeniaId, opisStanu, ilosc)
+        public Zakup(int zdarzeniaId, OpisStanu opisStanu, int ilosc,uint cena, DateTime dataZakupu) : base(zdarzeniaId, opisStanu, ilosc,cena)
         {
             this.dataZakupu = dataZakupu;
         }
