@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace Biblioteka
 {
@@ -15,6 +15,23 @@ namespace Biblioteka
             autorKsiazki = nautorKsiazki;
             this.tytulKsiazki = tytulKsiazki;
         }
-           
+
+        public override bool Equals(object obj)
+        {
+            var katalog = obj as Katalog;
+            return katalog != null &&
+                   opisKsiazki == katalog.opisKsiazki &&
+                   autorKsiazki.Equals(katalog.autorKsiazki) &&
+                   tytulKsiazki == katalog.tytulKsiazki;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 461424465;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(opisKsiazki);
+            hashCode = hashCode * -1521134295 + EqualityComparer<AutorKsiazki>.Default.GetHashCode(autorKsiazki);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(tytulKsiazki);
+            return hashCode;
+        }
     } 
 }

@@ -18,5 +18,14 @@ namespace Biblioteka
             this.imie = imie;
             this.nazwisko = nazwisko;
         }
+
+        public override bool Equals(object obj)
+        {
+            var client = obj as Client;
+            return client != null &&
+                   clientId == client.clientId &&
+                   imie == client.imie &&
+                   nazwisko == client.nazwisko;
+        }
     }
 }   

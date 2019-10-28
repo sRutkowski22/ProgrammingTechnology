@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace Biblioteka
 {
@@ -23,8 +23,19 @@ namespace Biblioteka
             
         }
 
+
         public abstract Client GetClient();
         public abstract DateTime GetDateZdarzenia(); 
         public abstract int GetIlosc();
+
+        public override bool Equals(object obj)
+        {
+            var zdarzenie = obj as Zdarzenie;
+            return zdarzenie != null &&
+                   zdarzeniaId == zdarzenie.zdarzeniaId &&
+                   opisStanu.Equals(zdarzenie.opisStanu) &&
+                   ilosc == zdarzenie.ilosc &&
+                   cena == zdarzenie.cena;
+        }
     }
 }

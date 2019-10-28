@@ -4,10 +4,15 @@ using System.Collections.ObjectModel;
 
 namespace Biblioteka
 {
-    class DataService
+    public class DataService
     {
-        private IDataRepository dataRepository;
-        DataService(IDataRepository dataRepository)
+       // private DataRepository dataRepository1;
+
+        internal IDataRepository dataRepository { get; set; }
+
+     //   internal DataService(IDataRepository dataRepository) => this.dataRepository = dataRepository;
+
+        public DataService(DataRepository dataRepository)
         {
             this.dataRepository = dataRepository;
         }
@@ -56,7 +61,7 @@ namespace Biblioteka
             ObservableCollection<Zdarzenie> resultZdarzenies = new ObservableCollection<Zdarzenie>();
             foreach (Zdarzenie zdarzenie in zdarzenies)
             {
-                if(zdarzenie.GetClient().clientId !=null && zdarzenie.GetClient().clientId == clientID)
+                if(zdarzenie.GetClient().clientId == clientID)
                 {
                     resultZdarzenies.Add(zdarzenie);
                 }

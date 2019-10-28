@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace Biblioteka
 {
@@ -17,5 +17,14 @@ namespace Biblioteka
             this.cena = cena;
         }
 
+        public override bool Equals(object obj)
+        {
+            var stanu = obj as OpisStanu;
+            return stanu != null &&
+                   opisuStanuId == stanu.opisuStanuId &&
+                   katalog.Equals(stanu.katalog) &&
+                   iloscEgzemplarzy == stanu.iloscEgzemplarzy &&
+                   cena == stanu.cena;
+        }
     }
 }

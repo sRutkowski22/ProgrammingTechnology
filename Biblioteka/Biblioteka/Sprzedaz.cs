@@ -16,6 +16,7 @@ namespace Biblioteka
             this.dataSprzedazy = dataSprzedazy;
         }
 
+
         public override Client GetClient()
         {
             return this.client;
@@ -29,6 +30,22 @@ namespace Biblioteka
         public override int GetIlosc()
         {
             return -ilosc;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var sprzedaz = obj as Sprzedaz;
+            return sprzedaz != null &&
+                   client.Equals(sprzedaz.client) &&
+                   dataSprzedazy == sprzedaz.dataSprzedazy;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 328395893;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Client>.Default.GetHashCode(client);
+            hashCode = hashCode * -1521134295 + dataSprzedazy.GetHashCode();
+            return hashCode;
         }
     }
 }
