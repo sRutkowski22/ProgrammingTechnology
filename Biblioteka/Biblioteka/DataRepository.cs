@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace Biblioteka
 {
@@ -13,11 +14,15 @@ namespace Biblioteka
            
             this.data = dataContext;
             fill.fillIn(dataContext);
+            data.zdarzenieObservableCollection.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler
+(CollectionChangedMethod);
 
         }   
         public DataRepository(DataContext data)
         {
             this.data = data;
+            data.zdarzenieObservableCollection.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler
+(CollectionChangedMethod);
         }
         //C.R.U.D ADD GET ALL GET UPDATE DELETE
 
@@ -177,6 +182,28 @@ namespace Biblioteka
                 {
                     data.zdarzenieObservableCollection.Remove(data.zdarzenieObservableCollection[i]);
                 }
+            }
+        }
+
+        private void CollectionChangedMethod(object sender, NotifyCollectionChangedEventArgs e)
+        {
+           
+            //different kind of changes that may have occurred in collection
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                Console.Write("Dodaje cos");
+            }
+            if (e.Action == NotifyCollectionChangedAction.Replace)
+            {
+                //your code
+            }
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                //your code
+            }
+            if (e.Action == NotifyCollectionChangedAction.Move)
+            {
+                //your code
             }
         }
 

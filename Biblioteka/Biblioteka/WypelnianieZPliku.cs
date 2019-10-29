@@ -11,14 +11,14 @@ namespace Biblioteka
         public WypelnianieZPliku() { }
         public void fillIn(DataContext data)
         {
-            string[] lines = System.IO.File.ReadAllLines(@"Client.txt");
+            string[] lines = System.IO.File.ReadAllLines(@"../../Client.txt");
             foreach (string line in lines)
             {
                 string[] words = line.Split(';');
                 data.clientList.Add(new Client(Int32.Parse(words[0]), words[1], words[2]));
 
             }
-            lines = System.IO.File.ReadAllLines(@"Katalog.txt");
+            lines = System.IO.File.ReadAllLines(@"../../Katalog.txt");
            
             foreach (string line in lines)
             {
@@ -28,7 +28,7 @@ namespace Biblioteka
               
             }
 
-            lines = System.IO.File.ReadAllLines(@"OpisStanu.txt");
+            lines = System.IO.File.ReadAllLines(@"../../OpisStanu.txt");
             int i = 0;
             foreach (string line in lines)
             {
@@ -45,7 +45,7 @@ namespace Biblioteka
             }
 
 
-            lines = System.IO.File.ReadAllLines(@"Zdarzenie.txt");
+            lines = System.IO.File.ReadAllLines(@"../../Zdarzenie.txt");
             foreach (string line in lines)
             {
                 string[] words = line.Split(';');

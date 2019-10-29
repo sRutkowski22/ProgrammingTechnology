@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    class Zakup : Zdarzenie
+    public class Zakup : Zdarzenie
     {
-        internal DateTime dataZakupu;
+       
+
+        internal DateTime dataZakupu { get; }
         public Zakup(int zdarzeniaId, OpisStanu opisStanu, int ilosc,uint cena, DateTime dataZakupu) : base(zdarzeniaId, opisStanu, ilosc,cena)
         {
             this.dataZakupu = dataZakupu;
         }
+
+      
 
         public override bool Equals(object obj)
         {

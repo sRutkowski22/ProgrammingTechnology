@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+
 namespace Biblioteka
 {
     public class DataContext
     {
+        
 
         public List<Client> clientList;
         public Dictionary<int, Katalog> dictionaryKatalog;
         public ObservableCollection<Zdarzenie> zdarzenieObservableCollection;
         public List<OpisStanu> opisStanuList;
-       
+
         public DataContext()
         {
             this.clientList = new List<Client>();
             this.dictionaryKatalog = new Dictionary<int, Katalog>();
             this.zdarzenieObservableCollection = new ObservableCollection<Zdarzenie>();
             this.opisStanuList = new List<OpisStanu>();
-    }
+
+          
+        }
 
         //  internal List<Client> WykazList { get => wykazList; set => wykazList = value; }
 
@@ -28,6 +33,8 @@ namespace Biblioteka
             this.zdarzenieObservableCollection = zdarzenieObservableCollection;
             this.opisStanuList = opisStanuList;
         }
+
+       
 
     }
 }
