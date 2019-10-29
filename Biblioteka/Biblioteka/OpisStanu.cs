@@ -26,5 +26,15 @@ namespace Biblioteka
                    iloscEgzemplarzy == stanu.iloscEgzemplarzy &&
                    cena == stanu.cena;
         }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 1663023772;
+            hashCode = hashCode * -1521134295 + opisuStanuId.GetHashCode();
+            hashCode = hashCode * -1521134295 + katalog.GetHashCode();
+            hashCode = hashCode * -1521134295 + iloscEgzemplarzy.GetHashCode();
+            hashCode = hashCode * -1521134295 + cena.GetHashCode();
+            return hashCode;
+        }
     }
 }

@@ -40,5 +40,11 @@ namespace Biblioteka
             return ilosc;
         }
 
+       
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

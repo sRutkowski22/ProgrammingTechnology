@@ -111,7 +111,8 @@ namespace UnitTestProject1
             ObservableCollection<Zdarzenie> actual = dataService.GetAllZdarzeniaThisClient(1);
 
 
-            Assert.AreEqual(expectedZdarzenia.SequenceEqual(actual), true);
+            Assert.AreEqual(expectedZdarzenia.SequenceEqual(actual),true);
+
 
         }
     }

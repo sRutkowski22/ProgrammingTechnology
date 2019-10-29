@@ -29,7 +29,7 @@ namespace Biblioteka
         {
             var hashCode = 461424465;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(opisKsiazki);
-            hashCode = hashCode * -1521134295 + EqualityComparer<AutorKsiazki>.Default.GetHashCode(autorKsiazki);
+            hashCode = hashCode * -1521134295 + autorKsiazki.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(tytulKsiazki);
             return hashCode;
         }

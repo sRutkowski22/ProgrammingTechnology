@@ -28,14 +28,17 @@ namespace Biblioteka
         public abstract DateTime GetDateZdarzenia(); 
         public abstract int GetIlosc();
 
-        public override bool Equals(object obj)
+        //public abstract bool Equals(object obj);
+       
+
+        public override int GetHashCode()
         {
-            var zdarzenie = obj as Zdarzenie;
-            return zdarzenie != null &&
-                   zdarzeniaId == zdarzenie.zdarzeniaId &&
-                   opisStanu.Equals(zdarzenie.opisStanu) &&
-                   ilosc == zdarzenie.ilosc &&
-                   cena == zdarzenie.cena;
+            var hashCode = -937264338;
+            hashCode = hashCode * -1521134295 + zdarzeniaId.GetHashCode();
+            hashCode = hashCode * -1521134295 + opisStanu.GetHashCode();
+            hashCode = hashCode * -1521134295 + ilosc.GetHashCode();
+            hashCode = hashCode * -1521134295 + cena.GetHashCode();
+            return hashCode;
         }
     }
 }
