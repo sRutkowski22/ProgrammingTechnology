@@ -43,7 +43,17 @@ namespace Biblioteka
         public void AddKatalog(Katalog katalog, uint cenaKatalogu)
         {
             dataRepository.AddKatalog(katalog);
-            //dataRepository.AddOpisStanu(new OpisStanu(katalog.katalogId, katalog, 0, cenaKatalogu));
+            int myKey = 0;
+            foreach(KeyValuePair<int,Katalog> kat in dataRepository.GetAllKatalog())
+            {
+                if (kat.Value.Equals(katalog))
+                {
+                    myKey = kat.Key;
+                }
+            }
+            
+            
+            dataRepository.AddOpisStanu(new OpisStanu(myKey, katalog, 0, cenaKatalogu));
         }
 
         // zdarzenie zmienia tez opis stanu ( dodaje ilosc egzemplarzy jesli kupujemy, zmiejsza ilosc egzemplarzy jesli sprzedajemy)
