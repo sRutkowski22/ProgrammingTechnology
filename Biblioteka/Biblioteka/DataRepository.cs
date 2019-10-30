@@ -184,26 +184,30 @@ namespace Biblioteka
                 }
             }
         }
+        public List<string> GetEventChangeList()
+        {
+            return data.eventChangeList;
+        }
 
         private void CollectionChangedMethod(object sender, NotifyCollectionChangedEventArgs e)
         {
            
             //different kind of changes that may have occurred in collection
             if (e.Action == NotifyCollectionChangedAction.Add)
-            {
-                Console.Write("Dodaje cos");
+            {               
+                data.eventChangeList.Add("Dodano nowe wydarzenie");
             }
             if (e.Action == NotifyCollectionChangedAction.Replace)
             {
-                //your code
+                data.eventChangeList.Add("Nadpisano wydarzenie");
             }
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                //your code
+                data.eventChangeList.Add("Usunieto wydarzenie");
             }
             if (e.Action == NotifyCollectionChangedAction.Move)
             {
-                //your code
+                data.eventChangeList.Add("Przeniesiono wydarzenie");
             }
         }
 

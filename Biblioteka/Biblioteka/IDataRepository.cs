@@ -16,6 +16,7 @@ namespace Biblioteka
         List<Client> GetAllClient();
         ObservableCollection<Zdarzenie> GetAllZdarzenia();
         List<OpisStanu> GetAllOpisStanu();
+        List<string> GetEventChangeList();
         // GET 
         Zdarzenie GetZdarzenieById(int zdarzenieId);
         Client GetClientById(int clientId);

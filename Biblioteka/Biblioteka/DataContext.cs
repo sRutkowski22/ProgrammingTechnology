@@ -7,8 +7,8 @@ namespace Biblioteka
 {
     public class DataContext
     {
-        
 
+        public List<String> eventChangeList;
         public List<Client> clientList;
         public Dictionary<int, Katalog> dictionaryKatalog;
         public ObservableCollection<Zdarzenie> zdarzenieObservableCollection;
@@ -20,6 +20,7 @@ namespace Biblioteka
             this.dictionaryKatalog = new Dictionary<int, Katalog>();
             this.zdarzenieObservableCollection = new ObservableCollection<Zdarzenie>();
             this.opisStanuList = new List<OpisStanu>();
+            this.eventChangeList = new List<string>();
 
           
         }
@@ -32,6 +33,7 @@ namespace Biblioteka
             this.dictionaryKatalog = dictionaryKatalog;
             this.zdarzenieObservableCollection = zdarzenieObservableCollection;
             this.opisStanuList = opisStanuList;
+            this.eventChangeList = new List<string>();
         }
 
        

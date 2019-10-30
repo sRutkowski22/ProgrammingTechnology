@@ -126,12 +126,16 @@ namespace Biblioteka
             return resultKatalog;
         }
 
-      
+        public List<String> GetEventChange()
+        {
+            return dataRepository.GetEventChangeList();
+        }
 
         private Katalog findKatalogByZdarzenie(Zdarzenie zdarzenie)
         {
             return zdarzenie.opisStanu.katalog;
         }
+      
 
     }
 }
