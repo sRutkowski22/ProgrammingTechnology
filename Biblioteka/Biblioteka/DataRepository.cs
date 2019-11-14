@@ -83,7 +83,7 @@ namespace Biblioteka
         {
             foreach (Client cl in data.clientList)
             {
-                if (cl.clientId == clientID)
+                if (cl.ClientId == clientID)
                 {
                     return cl;
                 }
@@ -95,7 +95,7 @@ namespace Biblioteka
         {
             foreach (OpisStanu opis in data.opisStanuList)
             {
-                if (opis.opisuStanuId == opisStanuId)
+                if (opis.OpisuStanuId == opisStanuId)
                 {
                     return opis;
                 }
@@ -112,7 +112,7 @@ namespace Biblioteka
         {
             for (int i = 0; i < data.clientList.Count; i++)
             {
-                if (data.clientList[i].clientId == id)
+                if (data.clientList[i].ClientId == id)
                 {
                     data.clientList[i] = client;
                 }
@@ -128,7 +128,7 @@ namespace Biblioteka
         {
             for (int i = 0; i < data.opisStanuList.Count; i++)
             {
-                if (data.opisStanuList[i].opisuStanuId == id)
+                if (data.opisStanuList[i].OpisuStanuId == id)
                 {
                     data.opisStanuList[i] = opisStanu;
                 }
@@ -150,7 +150,7 @@ namespace Biblioteka
         {
             for (int i = 0; i < data.clientList.Count; i++)
             {
-                if (data.clientList[i].clientId == id)
+                if (data.clientList[i].ClientId == id)
                 {
                     data.clientList.Remove(data.clientList[i]);
                 }
@@ -167,7 +167,7 @@ namespace Biblioteka
         {
             for (int i = 0; i < data.opisStanuList.Count; i++)
             {
-                if (data.opisStanuList[i].opisuStanuId == id)
+                if (data.opisStanuList[i].OpisuStanuId == id)
                 {
                     data.opisStanuList.Remove(data.opisStanuList[i]);
                 }

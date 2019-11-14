@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace Biblioteka
+using Biblioteka;
+namespace UnitTestProject1
 {
     public class WypelnianieZPliku : Fill
     {
@@ -54,7 +54,7 @@ namespace Biblioteka
                 OpisStanu O = new OpisStanu(1, null, 0, 1);
                 foreach (Client ww in data.clientList)
                 {
-                    if (ww.clientId == Int32.Parse(words[0]))
+                    if (ww.ClientId == Int32.Parse(words[0]))
                     {
                         W = ww;
                         break;
@@ -62,13 +62,13 @@ namespace Biblioteka
                 }
                 foreach (OpisStanu oo in data.opisStanuList)
                 {
-                    if (oo.opisuStanuId == Int32.Parse(words[1]))
+                    if (oo.OpisuStanuId == Int32.Parse(words[1]))
                     {
                         O = oo;
                         break;
                     }
                 }
-                if (W.clientId == -1)
+                if (W.ClientId == -1)
                     data.zdarzenieObservableCollection.Add(new Zakup(Int32.Parse(words[2]), O, Int32.Parse(words[3]), uint.Parse(words[4]), DateTime.Parse(words[5])));
                 else
                     data.zdarzenieObservableCollection.Add(new Sprzedaz(Int32.Parse(words[2]), O,Int32.Parse(words[3]), uint.Parse(words[4]), W, DateTime.Parse(words[5])));

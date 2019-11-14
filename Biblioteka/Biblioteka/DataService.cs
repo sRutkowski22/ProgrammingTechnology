@@ -60,8 +60,8 @@ namespace Biblioteka
         public void AddZdarzenie(Zdarzenie zdarzenie)
         {
             dataRepository.AddZdarzenie(zdarzenie);
-            OpisStanu updatedOpisStanu = new OpisStanu(zdarzenie.opisStanu.opisuStanuId, zdarzenie.opisStanu.katalog, zdarzenie.opisStanu.iloscEgzemplarzy + zdarzenie.GetIlosc(), zdarzenie.opisStanu.cena);
-            dataRepository.UpdateOpisStanu(zdarzenie.opisStanu.opisuStanuId, updatedOpisStanu);
+            OpisStanu updatedOpisStanu = new OpisStanu(zdarzenie.opisStanu.OpisuStanuId, zdarzenie.opisStanu.katalog, zdarzenie.opisStanu.iloscEgzemplarzy + zdarzenie.GetIlosc(), zdarzenie.opisStanu.cena);
+            dataRepository.UpdateOpisStanu(zdarzenie.opisStanu.OpisuStanuId, updatedOpisStanu);
         }
 
         public ObservableCollection<Zdarzenie> GetAllZdarzeniaThisClient(int clientID)
@@ -71,7 +71,7 @@ namespace Biblioteka
             ObservableCollection<Zdarzenie> resultZdarzenies = new ObservableCollection<Zdarzenie>();
             foreach (Zdarzenie zdarzenie in zdarzenies)
             {
-                if(zdarzenie.GetClient().clientId == clientID)
+                if(zdarzenie.GetClient().ClientId == clientID)
                 {
                     resultZdarzenies.Add(zdarzenie);
                 }
