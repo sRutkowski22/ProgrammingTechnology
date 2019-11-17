@@ -12,7 +12,7 @@ namespace Biblioteka
         private int clientId;
         internal String imie { get; }
         internal String nazwisko { get; }
-        public int ClientId { get => ClientId; set => ClientId = value; }
+        public int ClientId { get => clientId; set => clientId = value; }
 
         public Client(int clientId, String imie, String nazwisko)
         {

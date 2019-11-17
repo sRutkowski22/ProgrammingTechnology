@@ -10,11 +10,11 @@ namespace Biblioteka
         internal int iloscEgzemplarzy { get; }
         internal uint cena { get; }
        
-        public int OpisuStanuId { get => this.OpisuStanuId; set => this.OpisuStanuId = value; }
+        public int OpisuStanuId { get => this.opisuStanuId; set => this.opisuStanuId = value; }
 
         public OpisStanu(int opisuStanuId, Katalog katalog, int iloscEgzemplarzy, uint cena)
         {
-            this.OpisuStanuId = opisuStanuId;
+            this.opisuStanuId = opisuStanuId;
             this.katalog = katalog;
             this.iloscEgzemplarzy = iloscEgzemplarzy;
             this.cena = cena;

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using Biblioteka;
 namespace UnitTestProject1
 {
@@ -69,9 +66,9 @@ namespace UnitTestProject1
                     }
                 }
                 if (W.ClientId == -1)
-                    data.zdarzenieObservableCollection.Add(new Zakup(Int32.Parse(words[2]), O, Int32.Parse(words[3]), uint.Parse(words[4]), DateTime.Parse(words[5])));
+                    data.zdarzenieObservableCollection.Add(new Zakup(Int32.Parse(words[2]), O, Int32.Parse(words[3]), uint.Parse(words[4]), DateTime.ParseExact(words[5],"dd.MM.yyyy", CultureInfo.CurrentCulture)));
                 else
-                    data.zdarzenieObservableCollection.Add(new Sprzedaz(Int32.Parse(words[2]), O,Int32.Parse(words[3]), uint.Parse(words[4]), W, DateTime.Parse(words[5])));
+                    data.zdarzenieObservableCollection.Add(new Sprzedaz(Int32.Parse(words[2]), O,Int32.Parse(words[3]), uint.Parse(words[4]), W, DateTime.ParseExact(words[5], "dd.MM.yyyy", CultureInfo.CurrentCulture)));
             }
         }
     }
