@@ -5,12 +5,13 @@ using System.Xml.Serialization;
 using System.Web;
 using System.Text;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace Biblioteka
 {
     public class FileOperations
     {
-        public void saveKatalogToJson(IEnumerable<Katalog> kat, string path)
+        public void saveKatalogToJson(Dictionary<int,Katalog> kat, string path)
         {
             var json = JsonConvert.SerializeObject(kat,Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
             File.WriteAllText(@path,json);
@@ -38,73 +39,46 @@ namespace Biblioteka
         public void AllToJson(DataRepository repo, string clientPath,string katalogPath, string opisStanuPath, string zdarzeniePath)
         {
             saveClientToJson(repo.GetAllClient(), clientPath);
-            saveKatalogToJson(repo.GetAllKatalog().Values, katalogPath);
+            saveKatalogToJson(repo.GetAllKatalog(), katalogPath);
             saveOpisStanuToJson(repo.GetAllOpisStanu(), opisStanuPath);
             saveZdarzeniaToJson(repo.GetAllZdarzenia(), zdarzeniePath);
         }
-        public void loadFromJson(DataContext data)
+
+        public List<Client> loadClientFromJson(string path)
         {
-            using (StreamReader r = new StreamReader("Biblioteka.json"))
+            using (StreamReader r = new StreamReader(@path))
             {
                 var json = r.ReadToEnd();
-                data = JsonConvert.DeserializeObject<DataContext>(json);
+                List<Client> clients = JsonConvert.DeserializeObject<List<Client>>(json,  new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+                return clients;
             }
-                
         }
-    
-        public XElement xmlKatalog(DataRepository repo)
+        public Dictionary<int,Katalog> loadKatalogFromJson(string path)
         {
-            XElement rootKat = new XElement("Katalogi");
-            Dictionary<int, Katalog>.KeyCollection keys = repo.GetAllKatalog().Keys;
-            XElement kat = new XElement("Katalog");
-            
-                foreach(int key in keys)
+            using (StreamReader r = new StreamReader(@path))
             {
-               
-                kat.Add(new XAttribute("value", repo.GetAllKatalog()[key].autorKsiazki.imie + " "+ repo.GetAllKatalog()[key].autorKsiazki.nazwisko));
+                var json = r.ReadToEnd();
+                Dictionary<int,Katalog> kat = JsonConvert.DeserializeObject<Dictionary<int,Katalog>>(json, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+                return kat;
             }
-            rootKat.Add(kat);
-
-            return rootKat;
-
         }
-        public void saveClientToXML(DataRepository repo)
+        public List<OpisStanu> loadOpisStanuFromJson(string path)
         {
-           
-            XmlRootAttribute theRoot = new XmlRootAttribute();
-            
-            theRoot.ElementName = "Biblioteka";
-            theRoot.IsNullable = true;
-            
-            XmlRootAttribute clientRoot = new XmlRootAttribute();
-            clientRoot.ElementName = "Clients";
-            clientRoot.IsNullable = true;
-            XmlSerializer oSerializerClient = new XmlSerializer(typeof(List<Client>),clientRoot);
-            XmlSerializer oSerializerOpisStanu = new XmlSerializer(typeof(List<OpisStanu>), clientRoot );
-            StreamWriter oStreamWriter = new StreamWriter("Clients.xml");
-            oSerializerClient.Serialize(oStreamWriter, repo.GetAllClient());
-            //oSerializerOpisStanu.Serialize(oStreamWriter, repo.GetAllOpisStanu());
-
-
-        }       
-       
-        public void loadClientFromXML(DataRepository repo)
-        {
-            List<Client> lista;
-            using (var reader = new StreamReader("Clients.xml"))
+            using (StreamReader r = new StreamReader(@path))
             {
-               
-                XmlRootAttribute clientRoot = new XmlRootAttribute();
-                clientRoot.ElementName = "Clients";
-                clientRoot.IsNullable = true;
-                XmlSerializer deserializer = new XmlSerializer(typeof(List<Client>),clientRoot);
-                lista = (List<Client>)deserializer.Deserialize(reader);
+                var json = r.ReadToEnd();
+                List<OpisStanu> opisStanuList = JsonConvert.DeserializeObject<List<OpisStanu>>(json, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+                return opisStanuList;
             }
-            foreach (Client c in lista)
+        }
+        public ObservableCollection<Zdarzenie> loadZdarzeniaFromJson(string path)
+        {
+            using (StreamReader r = new StreamReader(@path))
             {
-                repo.AddClient(c);
-
-            }        
+                var json = r.ReadToEnd();
+                ObservableCollection<Zdarzenie> zdarzenia = JsonConvert.DeserializeObject<ObservableCollection<Zdarzenie>>(json, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+                return zdarzenia;
+            }
         }
 
     }

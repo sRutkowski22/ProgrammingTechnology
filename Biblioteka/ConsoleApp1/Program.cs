@@ -15,8 +15,8 @@ namespace ConsoleApp1
             DataContext data2 = new DataContext();
             DataRepository repo = new DataRepository(data);
             DataRepository repo2 = new DataRepository(data2);
-            Katalog kat1 = new Katalog("Potop", new AutorKsiazki("Henryk", "Sienkiewicz"), "PolskavsSzwecja");
-            Katalog kat2 = new Katalog("Potop2", new AutorKsiazki("Henryk", "Sienkiewicz"), "PolskavsSzwecja");
+            Katalog kat1 = new Katalog("Potop", new AutorKsiazki("Henryk", "Sienkiewicz"), "Potoppp");
+            Katalog kat2 = new Katalog("Potop2", new AutorKsiazki("Kante", "Sienkiewicz"), "PolskavsSzwecja");
             Client c1 = new Client(1, "Adam", "Małysz");
             Client c2 = new Client(1, "Szymon", "Maj");
             OpisStanu opis1 = new OpisStanu(1, kat1, 2, 20);
@@ -27,8 +27,9 @@ namespace ConsoleApp1
             repo.AddClient(c1);
             repo.AddClient(c2);
             repo.AddOpisStanu(opis1);
-            repo.AddZdarzenie(zakup);
+            
             repo.AddZdarzenie(sprzedaz);
+            repo.AddZdarzenie(zakup);
 
             FileOperations fileOp = new FileOperations();
             int n;
@@ -47,7 +48,7 @@ namespace ConsoleApp1
                     case 1:
                         Console.WriteLine("jestes w zapisie");
                         Console.WriteLine("Wybierz co chcesz zrobic?\n" +
-                    "1. Do Xmla\n" +
+                    "1. Do CSV\n" +
                     "2. Do Jsona");
                         str = Console.ReadLine();
                         m = int.Parse(str);
@@ -55,7 +56,7 @@ namespace ConsoleApp1
                         {
                             case 1:
                                 Console.WriteLine("Zapis do xmla");
-                                fileOp.saveClientToXML(repo);
+                                
                                 Console.Read();
                                 break;
                             case 2:
@@ -71,22 +72,40 @@ namespace ConsoleApp1
                     case 2:
                         Console.WriteLine("jestes w odczycie");
                         Console.WriteLine("Odczyt:\n" +
-                    "1. Z Xmla\n" +
+                    "1. Z CSV\n" +
                     "2. Z Jsona");
                         str = Console.ReadLine();
                         m = int.Parse(str);
                         switch (m) { 
                             case 1:
                                 Console.WriteLine("Odczyt z xmla");
-                            fileOp.loadClientFromXML(repo);
+                            
                                 Console.Read();
                             Console.Read();
                             break;
                             case 2:
                                 Console.WriteLine("Odczyt z jsona");
-                                fileOp.loadFromJson(repo2.GetDataContext());
-                                Console.Read();
-                                break;
+                            Console.WriteLine("liczba clientow przed wczytaniem" + repo2.GetAllClient().Count);
+                            repo2.setClientsList(fileOp.loadClientFromJson("Clients.json"));
+                            Console.WriteLine("liczba clientow po wczytaniem" + repo2.GetAllClient().Count);
+                            foreach (Client c in repo2.GetAllClient()){
+                                Console.Write(c.ClientId + c.clientId + c.imie + c.nazwisko);
+                            }
+                            repo2.setKatalogDict(fileOp.loadKatalogFromJson("Katalogi.json"));
+                            Console.WriteLine("dict values kat" +repo2.GetAllKatalog()[0].autorKsiazki.imie+ repo2.GetAllKatalog()[1].autorKsiazki.imie);
+                            
+                            repo2.setOpisStanuList(fileOp.loadOpisStanuFromJson("OpisStanu.json"));
+                            foreach (OpisStanu op in repo2.GetAllOpisStanu())
+                            {
+                                Console.WriteLine("OpisStanu:"+op.cena+ op.katalog.autorKsiazki.imie+op.katalog.opisKsiazki);
+                            }
+                            repo2.setZdarzeniaList(fileOp.loadZdarzeniaFromJson("Zdarzenia.json"));
+                            foreach (Zdarzenie op in repo2.GetAllZdarzenia())
+                            {
+                                Console.WriteLine("Zdarzenia: " + op.ilosc+ op.opisStanu.katalog.opisKsiazki+op.cena );
+                            }
+                            Console.Read();
+                            break;
                         }
                         Console.Read();
                         break;
