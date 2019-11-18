@@ -68,7 +68,7 @@ namespace UnitTestProject1
         
             DataRepository dataRepository = new DataRepository(context, plik);
             DataService dataService = new DataService(dataRepository);
-            HashSet<Katalog> actual = dataService.GetAllKatalogBuyByThisClientAndThisDay(1, DateTime.Parse("11.11.2018"));
+            HashSet<Katalog> actual = dataService.GetAllKatalogBuyByThisClientAndThisDay(1, DateTime.Parse("2018.11.11"));
 
 
             Assert.AreEqual(expectedHashSetKatalog.SetEquals(actual), true);
@@ -84,10 +84,10 @@ namespace UnitTestProject1
             DataRepository dataRepository = new DataRepository(context, plik);
             DataService dataService = new DataService(dataRepository);
 
-            Zdarzenie zd1 = new Sprzedaz(4, dataRepository.GetOpisStanuById(1), 1, 1, dataRepository.GetClientById(1), DateTime.Parse("11.11.2018"));
+            Zdarzenie zd1 = new Sprzedaz(4, dataRepository.GetOpisStanuById(1), 1, 1, dataRepository.GetClientById(1), DateTime.Parse("2018.11.11"));
             expectedZdarzenia.Add(zd1);
 
-            ObservableCollection<Zdarzenie> actual = dataService.GetAllZdarzeniaThisDay(DateTime.Parse("11.11.2018"));
+            ObservableCollection<Zdarzenie> actual = dataService.GetAllZdarzeniaThisDay(DateTime.Parse("2018.11.11"));
 
 
             Assert.AreEqual(expectedZdarzenia.SequenceEqual(actual), true);
@@ -103,8 +103,8 @@ namespace UnitTestProject1
             DataRepository dataRepository = new DataRepository(context, plik);
             DataService dataService = new DataService(dataRepository);
            
-            Zdarzenie zd1 = new Sprzedaz(4, dataRepository.GetOpisStanuById(1), 1, 1, dataRepository.GetClientById(1), DateTime.Parse("11.11.2018"));
-            Zdarzenie zd2 = new Sprzedaz(5, dataRepository.GetOpisStanuById(2), 1, 1, dataRepository.GetClientById(1), DateTime.Parse("12.12.2018"));
+            Zdarzenie zd1 = new Sprzedaz(4, dataRepository.GetOpisStanuById(1), 1, 1, dataRepository.GetClientById(1), DateTime.Parse("2018.11.11"));
+            Zdarzenie zd2 = new Sprzedaz(5, dataRepository.GetOpisStanuById(2), 1, 1, dataRepository.GetClientById(1), DateTime.Parse("2018.12.12"));
             expectedZdarzenia.Add(zd1);
             expectedZdarzenia.Add(zd2);
 

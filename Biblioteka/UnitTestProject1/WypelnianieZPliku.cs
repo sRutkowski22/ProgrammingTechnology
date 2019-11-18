@@ -66,9 +66,9 @@ namespace UnitTestProject1
                     }
                 }
                 if (W.ClientId == -1)
-                    data.zdarzenieObservableCollection.Add(new Zakup(Int32.Parse(words[2]), O, Int32.Parse(words[3]), uint.Parse(words[4]), DateTime.ParseExact(words[5],"dd.MM.yyyy", CultureInfo.CurrentCulture)));
+                    data.zdarzenieObservableCollection.Add(new Zakup(Int32.Parse(words[2]), O, Int32.Parse(words[3]), uint.Parse(words[4]), DateTime.ParseExact(words[5],"yyyy.MM.dd", CultureInfo.CurrentCulture)));
                 else
-                    data.zdarzenieObservableCollection.Add(new Sprzedaz(Int32.Parse(words[2]), O,Int32.Parse(words[3]), uint.Parse(words[4]), W, DateTime.ParseExact(words[5], "dd.MM.yyyy", CultureInfo.CurrentCulture)));
+                    data.zdarzenieObservableCollection.Add(new Sprzedaz(Int32.Parse(words[2]), O,Int32.Parse(words[3]), uint.Parse(words[4]), W, DateTime.ParseExact(words[5], "yyyy.MM.dd", CultureInfo.CurrentCulture)));
             }
         }
     }

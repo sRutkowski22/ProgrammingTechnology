@@ -9,8 +9,8 @@ namespace Biblioteka
         public Katalog katalog { get; set; }
         public int iloscEgzemplarzy { get; set; }
         public uint cena { get; set; }
-
         public OpisStanu() { }
+       // public int OpisStanuID { get => this.opisuStanuId; set => this.opisuStanuId; }
         public OpisStanu(int opisuStanuId, Katalog katalog, int iloscEgzemplarzy, uint cena)
         {
             this.opisuStanuId = opisuStanuId;
