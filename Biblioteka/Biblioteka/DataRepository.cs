@@ -34,7 +34,7 @@ namespace Biblioteka
         public void AddKatalog(Katalog katalog)
         {
             int length = data.dictionaryKatalog.Count;
-            data.dictionaryKatalog[length+1]=katalog;
+            data.dictionaryKatalog[length]=katalog;
         }
 
         public void AddOpisStanu(OpisStanu opisStanu)

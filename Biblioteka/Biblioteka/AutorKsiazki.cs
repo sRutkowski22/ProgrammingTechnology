@@ -6,10 +6,10 @@ namespace Biblioteka
     public class AutorKsiazki
     {
         //dane osobowe autora
-        private int ID { get; }
-        private String imie;
-        private String nazwisko;
-
+        public int ID { get; set; }
+        public String imie { get; set; }
+        public String nazwisko { get; set; }
+        public AutorKsiazki() { }
         public AutorKsiazki( String imie, String nazwisko)
         {  
             this.imie = imie;

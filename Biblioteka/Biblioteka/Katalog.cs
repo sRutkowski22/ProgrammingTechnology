@@ -5,10 +5,11 @@ namespace Biblioteka
 {
     public class Katalog
     {
-        
-        internal String opisKsiazki { get; }
-        internal AutorKsiazki autorKsiazki { get; }
-        internal String tytulKsiazki { get; }
+
+        public String opisKsiazki { get; set; }
+        public AutorKsiazki autorKsiazki { get; set; }
+        public String tytulKsiazki { get; set; }
+        public Katalog() { }
         public Katalog(  String tytulKsiazki, AutorKsiazki nautorKsiazki, String nopisKsiazki)
         {        
             opisKsiazki = nopisKsiazki;

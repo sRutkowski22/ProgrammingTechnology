@@ -5,13 +5,11 @@ namespace Biblioteka
 {
     public class OpisStanu
     {
-        private int opisuStanuId;
-        internal Katalog katalog { get; }
-        internal int iloscEgzemplarzy { get; }
-        internal uint cena { get; }
-       
-        public int OpisuStanuId { get => this.opisuStanuId; set => this.opisuStanuId = value; }
-
+        public int opisuStanuId { get; set; }
+        public Katalog katalog { get; set; }
+        public int iloscEgzemplarzy { get; set; }
+        public uint cena { get; set; }
+        public OpisStanu() { }
         public OpisStanu(int opisuStanuId, Katalog katalog, int iloscEgzemplarzy, uint cena)
         {
             this.opisuStanuId = opisuStanuId;

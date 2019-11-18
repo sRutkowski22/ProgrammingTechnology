@@ -9,11 +9,11 @@ namespace Biblioteka
     public class Client
     {
         //Imie i nazwisko czytelnika
-        private int clientId;
-        internal String imie { get; }
-        internal String nazwisko { get; }
         public int ClientId { get => clientId; set => clientId = value; }
-
+        public int clientId { get; set; }
+        public String imie { get; set; }
+        public String nazwisko { get; set; }
+        public Client() { }
         public Client(int clientId, String imie, String nazwisko)
         {
             this.ClientId = clientId;
