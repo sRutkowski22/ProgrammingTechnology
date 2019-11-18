@@ -60,8 +60,8 @@ namespace Biblioteka
         public void AddZdarzenie(Zdarzenie zdarzenie)
         {
             dataRepository.AddZdarzenie(zdarzenie);
-            OpisStanu updatedOpisStanu = new OpisStanu(zdarzenie.opisStanu.OpisuStanuId, zdarzenie.opisStanu.katalog, zdarzenie.opisStanu.iloscEgzemplarzy + zdarzenie.GetIlosc(), zdarzenie.opisStanu.cena);
-            dataRepository.UpdateOpisStanu(zdarzenie.opisStanu.OpisuStanuId, updatedOpisStanu);
+            OpisStanu updatedOpisStanu = new OpisStanu(zdarzenie.opisStanu.opisuStanuId, zdarzenie.opisStanu.katalog, zdarzenie.opisStanu.iloscEgzemplarzy + zdarzenie.GetIlosc(), zdarzenie.opisStanu.cena);
+            dataRepository.UpdateOpisStanu(zdarzenie.opisStanu.opisuStanuId, updatedOpisStanu);
         }
 
         public ObservableCollection<Zdarzenie> GetAllZdarzeniaThisClient(int clientID)

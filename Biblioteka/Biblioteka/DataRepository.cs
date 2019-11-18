@@ -95,7 +95,7 @@ namespace Biblioteka
         {
             foreach (OpisStanu opis in data.opisStanuList)
             {
-                if (opis.OpisuStanuId == opisStanuId)
+                if (opis.opisuStanuId == opisStanuId)
                 {
                     return opis;
                 }
@@ -128,7 +128,7 @@ namespace Biblioteka
         {
             for (int i = 0; i < data.opisStanuList.Count; i++)
             {
-                if (data.opisStanuList[i].OpisuStanuId == id)
+                if (data.opisStanuList[i].opisuStanuId == id)
                 {
                     data.opisStanuList[i] = opisStanu;
                 }
@@ -167,7 +167,7 @@ namespace Biblioteka
         {
             for (int i = 0; i < data.opisStanuList.Count; i++)
             {
-                if (data.opisStanuList[i].OpisuStanuId == id)
+                if (data.opisStanuList[i].opisuStanuId == id)
                 {
                     data.opisStanuList.Remove(data.opisStanuList[i]);
                 }

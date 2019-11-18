@@ -59,7 +59,7 @@ namespace UnitTestProject1
                 }
                 foreach (OpisStanu oo in data.opisStanuList)
                 {
-                    if (oo.OpisuStanuId == Int32.Parse(words[1]))
+                    if (oo.opisuStanuId == Int32.Parse(words[1]))
                     {
                         O = oo;
                         break;

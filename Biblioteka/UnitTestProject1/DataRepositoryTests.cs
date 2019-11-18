@@ -32,9 +32,9 @@ namespace UnitTestProject1
             DataRepository repo = new DataRepository(data);
             Katalog kat1 = new Katalog("Potop", new AutorKsiazki("Henryk", "Sienkiewicz"), "PolskavsSzwecja");
             repo.AddKatalog(kat1);
-            Assert.AreSame(repo.GetKatalogById(1), kat1);
-            repo.DeleteKatalogByID(1);
-            Assert.IsFalse(repo.GetAllKatalog().ContainsKey(1));
+            Assert.AreSame(repo.GetKatalogById(0), kat1);
+            repo.DeleteKatalogByID(0);
+            Assert.IsFalse(repo.GetAllKatalog().ContainsKey(0));
 
         }
         [TestMethod]
