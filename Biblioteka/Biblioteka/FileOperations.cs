@@ -4,11 +4,53 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Web;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Biblioteka
 {
     public class FileOperations
     {
+        public void saveKatalogToJson(IEnumerable<Katalog> kat, string path)
+        {
+            var json = JsonConvert.SerializeObject(kat,Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+            File.WriteAllText(@path,json);
+        }
+
+        public void saveClientToJson(List<Client> clients, string path)
+        {
+            var json = JsonConvert.SerializeObject(clients, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+            File.WriteAllText(@path, json);
+        }
+
+        public void saveZdarzeniaToJson(IEnumerable<Zdarzenie>zdarzenia, string path)
+        {
+            
+            var json = JsonConvert.SerializeObject(zdarzenia, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling=TypeNameHandling.Auto });
+            File.WriteAllText(@path, json);
+        }
+
+        public void saveOpisStanuToJson(IEnumerable<OpisStanu> opisStanu, string path)
+        {
+
+            var json = JsonConvert.SerializeObject(opisStanu, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+            File.WriteAllText(@path, json);
+        }
+        public void AllToJson(DataRepository repo, string clientPath,string katalogPath, string opisStanuPath, string zdarzeniePath)
+        {
+            saveClientToJson(repo.GetAllClient(), clientPath);
+            saveKatalogToJson(repo.GetAllKatalog().Values, katalogPath);
+            saveOpisStanuToJson(repo.GetAllOpisStanu(), opisStanuPath);
+            saveZdarzeniaToJson(repo.GetAllZdarzenia(), zdarzeniePath);
+        }
+        public void loadFromJson(DataContext data)
+        {
+            using (StreamReader r = new StreamReader("Biblioteka.json"))
+            {
+                var json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<DataContext>(json);
+            }
+                
+        }
     
         public XElement xmlKatalog(DataRepository repo)
         {
@@ -44,30 +86,7 @@ namespace Biblioteka
             //oSerializerOpisStanu.Serialize(oStreamWriter, repo.GetAllOpisStanu());
 
 
-        }
-        public void saveKatalogToJSON(DataRepository repo)
-        {
-           
-                   
-            List<Katalog> lista = new List<Katalog>();
-            using (StreamWriter sw = File.AppendText("Katalog.json"))
-            {
-                sw.Write("{\"Katalogi\":[");
-                StringBuilder json_result = new StringBuilder();
-               for (int i = 0; i < repo.GetAllKatalog().Count; i++)
-                {
-
-                    var obj = repo.GetAllKatalog()[i];
-                    var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
-                    json_result.Append(jsonString + ",");
-                }
-                json_result.Remove(json_result.Length - 1, 1);
-                sw.Write(json_result);
-                sw.Write("]}");
-               
-            }
-
-        }
+        }       
        
         public void loadClientFromXML(DataRepository repo)
         {

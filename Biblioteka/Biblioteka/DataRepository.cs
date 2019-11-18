@@ -188,6 +188,10 @@ namespace Biblioteka
         {
             return data.eventChangeList;
         }
+        public DataContext GetDataContext()
+        {
+            return this.data;
+        }
 
         private void CollectionChangedMethod(object sender, NotifyCollectionChangedEventArgs e)
         {
