@@ -25,6 +25,7 @@ namespace ConsoleApp1
             repo.AddClient(c2);
             repo.AddZdarzenie(zdarzenie);
             FileOperations fileOp = new FileOperations();
+            ZapisCSV zapisCSV = new ZapisCSV(data);
             int n;
             int m;
             String str;
@@ -41,15 +42,15 @@ namespace ConsoleApp1
                     case 1:
                         Console.WriteLine("jestes w zapisie");
                         Console.WriteLine("Wybierz co chcesz zrobic?\n" +
-                    "1. Do Xmla\n" +
+                    "1. Do CSV\n" +
                     "2. Do Jsona");
                         str = Console.ReadLine();
                         m = int.Parse(str);
                         switch (m)
                         {
                             case 1:
-                                Console.WriteLine("Zapis do xmla");
-                                fileOp.saveClientToXML(repo);
+                                Console.WriteLine("Zapis do csv");
+                                zapisCSV.Save();
                                 Console.Read();
                                 break;
                             case 2:
@@ -70,9 +71,10 @@ namespace ConsoleApp1
                         m = int.Parse(str);
                         switch (m) { 
                             case 1:
-                                Console.WriteLine("Odczyt z xmla");
-                            fileOp.loadClientFromXML(repo);
-                                Console.Read();
+                                Console.WriteLine("Odczyt z naszego s");
+                          
+                          
+                            Console.Read();
                             Console.Read();
                             break;
                             case 2:

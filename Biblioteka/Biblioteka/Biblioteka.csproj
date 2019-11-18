@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutorKsiazki.cs" />
+    <Compile Include="FromatterCSV.cs" />
+    <Compile Include="WypelnianieCSV.cs" />
+    <Compile Include="ZapisCSV.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="DataRepository.cs" />
