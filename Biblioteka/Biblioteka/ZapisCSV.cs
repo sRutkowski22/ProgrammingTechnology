@@ -10,17 +10,17 @@ namespace Biblioteka
 {
     public class ZapisCSV
     {
-        DataContext dataContext;
+        DataRepository dataRepository;
 
-        public ZapisCSV(DataContext dataContext)
+        public ZapisCSV(DataRepository dataRepository)
         {
-            this.dataContext = dataContext;
+            this.dataRepository = dataRepository;
           
         }
 
         public void Save()
         {
-            SaveKatalog(dataContext.dictionaryKatalog.Values, "Katalog.csv");
+            SaveKatalog(dataRepository.GetAllKatalog().Values, "Katalog.csv");
         }
 
         public void SaveKatalog(IEnumerable<Katalog> kontener, string filename)

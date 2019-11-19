@@ -41,7 +41,7 @@ namespace Biblioteka
             return opisKsiazki;
         }
 
-        private Katalog(SerializationInfo info, StreamingContext ctxt)
+        public Katalog(SerializationInfo info, StreamingContext ctxt)
         {
             this.opisKsiazki = info.GetString("opisKsiazki");
             this.autorKsiazki = new AutorKsiazki(info.GetString("imie"), info.GetString("nazwisko"));

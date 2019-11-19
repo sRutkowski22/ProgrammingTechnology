@@ -5,22 +5,40 @@ using System.Text;
 using System.Runtime.Serialization;
 using System.IO;
 using System.Collections;
+using System.Reflection;
 
 namespace Biblioteka
 {
-    class FromatterCSV<T> : IFormatter where T : class
+    class FormatterCSV<T> : IFormatter where T : class
     {
         public ISurrogateSelector SurrogateSelector { get; set; }
         public SerializationBinder Binder { get ; set; }
         public StreamingContext Context { get; set ; }
 
-       
+
 
         public object Deserialize(Stream serializationStream)
         {
-            throw new NotImplementedException();
-        }
+            
+            using (StreamReader stream = new StreamReader(serializationStream))
+            {
+                String line = stream.ReadLine();
+                String[] fieldData = line.Split(';');
+                T obj = (T) FormatterServices.GetUninitializedObject(typeof(T));
+                ISerializable type = (ISerializable)obj;
+                SerializationInfo _info = new SerializationInfo(obj.GetType(), new FormatterConverter());
+                string[] words = line.Split(';');
+                for (int i = 0; i < words.Length-1; ++i)
+                {
+                    string[] word = words[i].Split(':');
+                    _info.AddValue(word[0], word[1]);
+                }
+                type.
+              //  returnObject = FormatterServices.PopulateObjectMembers(obj, members, data))
 
+            }
+            return 1;
+        }
         public void Serialize(Stream serializationStream, object graph)
         {
             ISerializable _data = (ISerializable)graph;
@@ -31,36 +49,15 @@ namespace Biblioteka
             using (StreamWriter stream = new StreamWriter(serializationStream))
             {
                 foreach (SerializationEntry _item in _info)
-                { 
-            
+                {
+                    stream.Write(_item.Name);
+                    stream.Write(':');
                     stream.Write(_item.Value);
                     stream.Write(';');
                 }
                 stream.Write('\n');
                 stream.Flush();
             }
-
-
-
-             /*       this.WriteMember(_item.Name, _item.Value);
-            XmlWriter _writer = XmlWriter.Create(serializationStream);
-            XDocument m_xmlDocument = new XDocument(new XElement("SerializationTest", _values));
-            m_xmlDocument.Save(_writer);
-            _writer.Flush();
-
-            using (StreamWriter stream = new StreamWriter(serializationStream))
-            {
-              
-                var members = FormatterServices.GetSerializableMembers(typeof(T), Context);
-             //   foreach (var item in (IEnumerable)graph)
-              //  {
-                    var objs = FormatterServices.GetObjectData(graph, members);
-                    var valueList = objs.Select(e => e.ToString());
-                    var values = String.Join(new String(';', 1), valueList);
-                    stream.WriteLine(values);
-           //     }
-                stream.Flush();
-            }*/
 
         }
         private void SerializeKatalog()
