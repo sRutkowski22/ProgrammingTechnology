@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Biblioteka
 {
-    public abstract class Zdarzenie
+    [Serializable]
+    public abstract class Zdarzenie : ISerializable
     {
         public int zdarzeniaId { get; set; }
         public OpisStanu opisStanu { get; set; } // id stanu ksiazki (konkretna ksiazka)
         public int ilosc { get; set; }
         public uint cena { get; set; }
       
-        
-      
-
-        
 
         public Zdarzenie(int zdarzeniaId, OpisStanu opisStanu, int ilosc,uint cena)
         {
@@ -21,9 +18,30 @@ namespace Biblioteka
             this.cena = cena;
             this.opisStanu = opisStanu;
             this.ilosc = ilosc;
-            
-           
-            
+    
+        }
+
+       public Zdarzenie(SerializationInfo info, StreamingContext ctxt)
+        {
+            this.zdarzeniaId = Int32.Parse(info.GetString("zdarzeniaId"));
+            this.ilosc = Int32.Parse(info.GetString("ilosc"));
+            this.cena = UInt32.Parse(info.GetString("cenaZdarzenia"));
+            this.opisStanu = new OpisStanu(info, ctxt);
+        }
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("zdarzeniaId", this.zdarzeniaId);
+            info.AddValue("ilosc", this.ilosc);
+            info.AddValue("cenaZdarzenia", this.cena);
+
+            info.AddValue("opisuStanuId", this.opisStanu.opisuStanuId);
+            info.AddValue("iloscEgzemplarzy", this.opisStanu.iloscEgzemplarzy);
+            info.AddValue("cena", this.opisStanu.cena);
+            info.AddValue("opisKsiazki", this.opisStanu.katalog.opisKsiazki);
+            info.AddValue("imie", this.opisStanu.katalog.autorKsiazki.imie);
+            info.AddValue("nazwisko", this.opisStanu.katalog.autorKsiazki.nazwisko);
+            info.AddValue("tytulKsiazki", this.opisStanu.katalog.tytulKsiazki);
         }
 
 

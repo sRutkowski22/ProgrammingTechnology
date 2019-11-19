@@ -1,5 +1,6 @@
 ﻿using System;
 using Biblioteka;
+using System.Globalization;
 namespace ConsoleApp1
 {
     public class Program
@@ -20,14 +21,16 @@ namespace ConsoleApp1
             Client c1 = new Client(1, "Adam", "Małysz");
             Client c2 = new Client(1, "Szymon", "Maj");
             OpisStanu opis1 = new OpisStanu(1, kat1, 2, 20);
-            Zdarzenie zakup = new Zakup(1, opis1, 1, 20, DateTime.Parse("2018.12.12"));      
-            Zdarzenie sprzedaz = new Sprzedaz(2,opis1,2,30,c1, DateTime.Parse("2018.12.10"));
+            OpisStanu opis2 = new OpisStanu(2, kat2, 4, 40);
+            Zdarzenie zakup = new Zakup(1, opis1, 1, 20, DateTime.ParseExact("2018.12.12","yyyy.MM.dd", CultureInfo.CurrentCulture)); 
+            Zdarzenie sprzedaz = new Sprzedaz(2,opis1,2,30,c1, DateTime.ParseExact("2018.12.12", "yyyy.MM.dd", CultureInfo.CurrentCulture));
             repo.AddKatalog(kat1);
             repo.AddKatalog(kat2);
             repo.AddClient(c1);
             repo.AddClient(c2);
             repo.AddOpisStanu(opis1);
-            
+            repo.AddOpisStanu(opis2);
+
             repo.AddZdarzenie(sprzedaz);
             repo.AddZdarzenie(zakup);
 

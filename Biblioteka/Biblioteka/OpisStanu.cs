@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Runtime.Serialization;
 namespace Biblioteka
 {
-    public class OpisStanu
+    [Serializable]
+    public class OpisStanu : ISerializable
     {
         public int opisuStanuId { get; set; }
         public Katalog katalog { get; set; }
@@ -17,6 +18,28 @@ namespace Biblioteka
             this.katalog = katalog;
             this.iloscEgzemplarzy = iloscEgzemplarzy;
             this.cena = cena;
+        }
+
+        public OpisStanu(SerializationInfo info, StreamingContext ctxt)
+        {
+            this.opisuStanuId = Int32.Parse(info.GetString("opisuStanuId"));
+            this.iloscEgzemplarzy = Int32.Parse(info.GetString("iloscEgzemplarzy"));
+            this.cena = UInt32.Parse(info.GetString("cena"));
+            this.katalog = new Katalog(info.GetString("tytulKsiazki"), new AutorKsiazki(info.GetString("imie"), info.GetString("nazwisko")), info.GetString("tytulKsiazki"));
+          
+
+        }
+
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("opisuStanuId", this.opisuStanuId);
+            info.AddValue("iloscEgzemplarzy", this.iloscEgzemplarzy);
+            info.AddValue("cena", this.cena);
+            info.AddValue("opisKsiazki", this.katalog.opisKsiazki);
+            info.AddValue("imie", this.katalog.autorKsiazki.imie);
+            info.AddValue("nazwisko", this.katalog.autorKsiazki.nazwisko);
+            info.AddValue("tytulKsiazki", this.katalog.tytulKsiazki);
         }
 
         public override bool Equals(object obj)

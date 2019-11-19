@@ -19,7 +19,12 @@ namespace Biblioteka
 
         public void Read()
         {
+            dataRepository.clearData();
             ReadKatalog("Katalog.csv");
+            ReadOpisStanu("OpisStanu.csv");
+            ReadClient("Client.csv");
+            ReadZdarzeniaSprzedaz("ZdarzeniaSprzedaz.csv");
+            ReadZdarzeniaZakup("ZdarzeniaZakup.csv");
         }
 
         private void ReadKatalog(string filename)
@@ -30,18 +35,75 @@ namespace Biblioteka
             StreamReader file = new System.IO.StreamReader(filename);
             while ((line = file.ReadLine()) != null)
             {
-                Katalog katalog = (Katalog) formatterCSV.Deserialize(GenerateStreamFromString(line));
-                dataRepository.AddKatalog(katalog);
+                Katalog obj = (Katalog) formatterCSV.Deserialize(GenerateStreamFromString(line));
+                dataRepository.AddKatalog(obj);
             }
 
             file.Close();
 
+        }
 
+        private void ReadOpisStanu(string filename)
+        {
+            String line;
+            FormatterCSV<OpisStanu> formatterCSV = new FormatterCSV<OpisStanu>();
+            // Read the file and display it line by line.  
+            StreamReader file = new System.IO.StreamReader(filename);
+            while ((line = file.ReadLine()) != null)
+            {
+                OpisStanu obj = (OpisStanu)formatterCSV.Deserialize(GenerateStreamFromString(line));
+                dataRepository.AddOpisStanu(obj);
+            }
+
+            file.Close();
+        }
+        private void ReadClient(string filename)
+        {
+            String line;
+            FormatterCSV<Client> formatterCSV = new FormatterCSV<Client>();
+            // Read the file and display it line by line.  
+            StreamReader file = new System.IO.StreamReader(filename);
+            while ((line = file.ReadLine()) != null)
+            {
+                Client obj = (Client)formatterCSV.Deserialize(GenerateStreamFromString(line));
+                dataRepository.AddClient(obj);
+            }
+
+            file.Close();
+        }
+
+        private void ReadZdarzeniaSprzedaz(string filename)
+        {
+            String line;
+            FormatterCSV<Sprzedaz> formatterCSV = new FormatterCSV<Sprzedaz>();
+            // Read the file and display it line by line.  
+            StreamReader file = new System.IO.StreamReader(filename);
+            while ((line = file.ReadLine()) != null)
+            {
+                Sprzedaz obj = (Sprzedaz)formatterCSV.Deserialize(GenerateStreamFromString(line));
+                dataRepository.AddZdarzenie(obj);
+            }
+
+            file.Close();
+        }
+        private void ReadZdarzeniaZakup(string filename)
+        {
+            String line;
+            FormatterCSV<Zakup> formatterCSV = new FormatterCSV<Zakup>();
+            // Read the file and display it line by line.  
+            StreamReader file = new System.IO.StreamReader(filename);
+            while ((line = file.ReadLine()) != null)
+            {
+                Zakup obj = (Zakup)formatterCSV.Deserialize(GenerateStreamFromString(line));
+                dataRepository.AddZdarzenie(obj);
+            }
+
+            file.Close();
         }
 
 
 
-            private Stream GenerateStreamFromString(string s)
+        private Stream GenerateStreamFromString(string s)
             {
                 var stream = new MemoryStream();
                 var writer = new StreamWriter(stream);

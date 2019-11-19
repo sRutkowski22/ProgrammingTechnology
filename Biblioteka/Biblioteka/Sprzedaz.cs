@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Runtime.Serialization;
+using System.Globalization;
 namespace Biblioteka
 {
     public class Sprzedaz : Zdarzenie
@@ -30,6 +28,20 @@ namespace Biblioteka
         public override int GetIlosc()
         {
             return -ilosc;
+        }
+
+        public Sprzedaz(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
+        {
+            this.client = new Client(info, ctxt);
+            this.dataSprzedazy =  DateTime.ParseExact(info.GetString("dataSprzedazy"), "yyyy.MM.dd", CultureInfo.CurrentCulture);
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            base.GetObjectData(info, ctxt);
+            client.GetObjectData(info, ctxt);
+            info.AddValue("dataSprzedazy", this.dataSprzedazy.ToString("yyyy.MM.dd"));
+          
         }
 
         public override bool Equals(object obj)

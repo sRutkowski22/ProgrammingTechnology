@@ -7,7 +7,7 @@ namespace Biblioteka
 {
     public class DataRepository : IDataRepository
     {
-        private DataContext data { get; }
+        private DataContext data { get; set; }
 
         public DataRepository(DataContext dataContext, Fill fill)
         {
@@ -17,7 +17,13 @@ namespace Biblioteka
             data.zdarzenieObservableCollection.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler
 (CollectionChangedMethod);
 
-        }   
+        }
+
+        public void clearData()
+        {
+            data = new DataContext();
+        }
+
         public DataRepository(DataContext data)
         {
             this.data = data;

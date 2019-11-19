@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Biblioteka
 {
-    public class Client
+    [Serializable]
+    public class Client : ISerializable
     {
         //Imie i nazwisko czytelnika
         public int ClientId { get => clientId; set => clientId = value; }
@@ -19,6 +17,21 @@ namespace Biblioteka
             this.ClientId = clientId;
             this.imie = imie;
             this.nazwisko = nazwisko;
+        }
+
+        public Client(SerializationInfo info, StreamingContext ctxt)
+        {
+            this.clientId = Int32.Parse(info.GetString("clientId"));
+            this.imie = info.GetString("imieClienta");
+            this.nazwisko = info.GetString("nazwiskoClienta");
+
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("clientId", this.clientId);
+            info.AddValue("imieClienta", this.imie);
+            info.AddValue("nazwiskoClienta", this.nazwisko);
         }
 
         public override bool Equals(object obj)
