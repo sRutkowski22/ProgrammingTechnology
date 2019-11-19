@@ -19,13 +19,15 @@ namespace Biblioteka
 
         public object Deserialize(Stream serializationStream)
         {
-            
+            T returnObject = null;
             using (StreamReader stream = new StreamReader(serializationStream))
             {
                 String line = stream.ReadLine();
                 String[] fieldData = line.Split(';');
                 T obj = (T) FormatterServices.GetUninitializedObject(typeof(T));
-                ISerializable type = (ISerializable)obj;
+               // var members = FormatterServices.GetSerializableMembers(obj.GetType(), Context);
+               // object[] data = new object[members.Length];
+               // ISerializable type = (ISerializable)obj;
                 SerializationInfo _info = new SerializationInfo(obj.GetType(), new FormatterConverter());
                 string[] words = line.Split(';');
                 for (int i = 0; i < words.Length-1; ++i)
@@ -33,11 +35,15 @@ namespace Biblioteka
                     string[] word = words[i].Split(':');
                     _info.AddValue(word[0], word[1]);
                 }
-                type.
-              //  returnObject = FormatterServices.PopulateObjectMembers(obj, members, data))
+               
+               var constructor = obj.GetType().GetConstructor(BindingFlags.Instance | BindingFlags.Public , null, new[] { typeof(SerializationInfo), typeof(StreamingContext) }, null);
+                 constructor.Invoke(obj, new object[] { _info, Context });
+                returnObject = obj;
+
+                //  returnObject = FormatterServices.PopulateObjectMembers(obj, members, data))
 
             }
-            return 1;
+            return returnObject;
         }
         public void Serialize(Stream serializationStream, object graph)
         {
