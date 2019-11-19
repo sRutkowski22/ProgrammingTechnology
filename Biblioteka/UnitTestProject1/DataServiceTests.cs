@@ -18,9 +18,9 @@ namespace UnitTestProject1
         {
           Dictionary<int, Katalog> expectedKatalog = new Dictionary<int, Katalog>();
 
-            expectedKatalog.Add(1, new Katalog("Harry Potter", new AutorKsiazki("J.K", "Rowling"), "Fantasy"));
-            expectedKatalog.Add(2, new Katalog("Pan Tadeusz", new AutorKsiazki("Adam", "Mickiewicz"), "Epopeja"));
-            expectedKatalog.Add(3, new Katalog("Lalka", new AutorKsiazki("Boleslaw", "Prus"), "Dramat"));
+            expectedKatalog.Add(1, new Katalog("Harry Potter", new AutorKsiazki("J.K", "Rowling")));
+            expectedKatalog.Add(2, new Katalog("Pan Tadeusz", new AutorKsiazki("Adam", "Mickiewicz")));
+            expectedKatalog.Add(3, new Katalog("Lalka", new AutorKsiazki("Boleslaw", "Prus")));
 
           
 
@@ -40,8 +40,8 @@ namespace UnitTestProject1
         {
 
      
-            Katalog k1 = new Katalog("Lalka", new AutorKsiazki("Boleslaw", "Prus"), "Dramat");
-            Katalog k2 = new Katalog("Pan Tadeusz", new AutorKsiazki("Adam", "Mickiewicz"), "Epopeja");
+            Katalog k1 = new Katalog("Lalka", new AutorKsiazki("Boleslaw", "Prus"));
+            Katalog k2 = new Katalog("Pan Tadeusz", new AutorKsiazki("Adam", "Mickiewicz"));
             HashSet<Katalog> expectedHashSetKatalog = new HashSet<Katalog>();
             expectedHashSetKatalog.Add(k1);
             expectedHashSetKatalog.Add(k2);
@@ -62,7 +62,7 @@ namespace UnitTestProject1
         public void TestGetAllKatalogByThisClientAndThisDay()
         {
 
-            Katalog k2 = new Katalog("Pan Tadeusz", new AutorKsiazki("Adam", "Mickiewicz"), "Epopeja");
+            Katalog k2 = new Katalog("Pan Tadeusz", new AutorKsiazki("Adam", "Mickiewicz"));
             HashSet<Katalog> expectedHashSetKatalog = new HashSet<Katalog>();
             expectedHashSetKatalog.Add(k2);
         

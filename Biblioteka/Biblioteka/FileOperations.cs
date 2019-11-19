@@ -6,11 +6,15 @@ using System.Web;
 using System.Text;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 
 namespace Biblioteka
 {
     public class FileOperations
     {
+        ObjectIDGenerator generate = new ObjectIDGenerator();
+        bool ifFirstTime;
+        List<long> idList = new List<long>();
         public void saveKatalogToJson(Dictionary<int,Katalog> kat, string path)
         {
             var json = JsonConvert.SerializeObject(kat,Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
@@ -30,7 +34,7 @@ namespace Biblioteka
             File.WriteAllText(@path, json);
         }
 
-        public void saveOpisStanuToJson(IEnumerable<OpisStanu> opisStanu, string path)
+        public void saveOpisStanuToJson(List<OpisStanu> opisStanu, string path)
         {
 
             var json = JsonConvert.SerializeObject(opisStanu, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
@@ -50,6 +54,11 @@ namespace Biblioteka
             {
                 var json = r.ReadToEnd();
                 List<Client> clients = JsonConvert.DeserializeObject<List<Client>>(json,  new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+                foreach(Client iterator in clients)
+                {
+                    idList.Add(generate.GetId(iterator, out ifFirstTime));
+                }
+
                 return clients;
             }
         }
@@ -59,6 +68,10 @@ namespace Biblioteka
             {
                 var json = r.ReadToEnd();
                 Dictionary<int,Katalog> kat = JsonConvert.DeserializeObject<Dictionary<int,Katalog>>(json, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+                foreach (Katalog iterator in kat.Values)
+                {
+                    idList.Add(generate.GetId(iterator, out ifFirstTime));
+                }
                 return kat;
             }
         }
@@ -68,10 +81,32 @@ namespace Biblioteka
             {
                 var json = r.ReadToEnd();
                 List<OpisStanu> opisStanuList = JsonConvert.DeserializeObject<List<OpisStanu>>(json, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, TypeNameHandling = TypeNameHandling.Auto });
+                
                 return opisStanuList;
             }
         }
-        public ObservableCollection<Zdarzenie> loadZdarzeniaFromJson(string path)
+        public void setIdOpisStanuFromJson(DataRepository repo)
+        {
+            
+
+                foreach (OpisStanu iterator in repo.GetAllOpisStanu())
+                {
+                    ifFirstTime = true;
+                    idList.Add(generate.GetId(iterator, out ifFirstTime));
+                    ifFirstTime = true;
+                    idList.Add(generate.GetId(iterator.katalog, out ifFirstTime));
+                  //  if (!ifFirstTime)
+                 //   {
+                        foreach (Katalog kat in repo.GetAllKatalog().Values)
+                        {
+                            if (iterator.katalog.Equals(kat))
+                                iterator.katalog = kat;
+                        }
+                    //   }     return opisStanuList;
+                }
+            
+        }
+public ObservableCollection<Zdarzenie> loadZdarzeniaFromJson(string path)
         {
             using (StreamReader r = new StreamReader(@path))
             {

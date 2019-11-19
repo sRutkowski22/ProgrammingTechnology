@@ -16,8 +16,8 @@ namespace ConsoleApp1
             DataContext data2 = new DataContext();
             DataRepository repo = new DataRepository(data);
             DataRepository repo2 = new DataRepository(data2);
-            Katalog kat1 = new Katalog("Potop", new AutorKsiazki("Henryk", "Sienkiewicz"), "Potoppp");
-            Katalog kat2 = new Katalog("Potop2", new AutorKsiazki("Kante", "Sienkiewicz"), "PolskavsSzwecja");
+            Katalog kat1 = new Katalog("MyszkaMiki", new AutorKsiazki("Henryk", "Sienkiewicz"));
+            Katalog kat2 = new Katalog("Przemoniewkurwiajsie", new AutorKsiazki("Kante", "Sienkiewicz"));
             Client c1 = new Client(1, "Adam", "Małysz");
             Client c2 = new Client(1, "Szymon", "Maj");
             OpisStanu opis1 = new OpisStanu(1, kat1, 2, 20);
@@ -92,24 +92,64 @@ namespace ConsoleApp1
                             break;
                             case 2:
                                 Console.WriteLine("Odczyt z jsona");
+                            Console.WriteLine("dictionary size: " + repo2.GetAllKatalog().Count);
                             Console.WriteLine("liczba clientow przed wczytaniem" + repo2.GetAllClient().Count);
                             repo2.setClientsList(fileOp.loadClientFromJson("Clients.json"));
                             Console.WriteLine("liczba clientow po wczytaniem" + repo2.GetAllClient().Count);
+                            foreach (Client c in repo.GetAllClient())
+                            {
+                                Console.WriteLine(c.ClientId + c.clientId + c.imie + c.nazwisko);
+                            }
                             foreach (Client c in repo2.GetAllClient()){
-                                Console.Write(c.ClientId + c.clientId + c.imie + c.nazwisko);
+                                Console.WriteLine(c.ClientId + c.clientId + c.imie + c.nazwisko);
                             }
                             repo2.setKatalogDict(fileOp.loadKatalogFromJson("Katalogi.json"));
                             Console.WriteLine("dict values kat" +repo2.GetAllKatalog()[0].autorKsiazki.imie+ repo2.GetAllKatalog()[1].autorKsiazki.imie);
-                            
+                           
                             repo2.setOpisStanuList(fileOp.loadOpisStanuFromJson("OpisStanu.json"));
+                            fileOp.setIdOpisStanuFromJson(repo2);
                             foreach (OpisStanu op in repo2.GetAllOpisStanu())
                             {
-                                Console.WriteLine("OpisStanu:"+op.cena+ op.katalog.autorKsiazki.imie+op.katalog.opisKsiazki);
+                                Console.WriteLine("OpisStanu:" + op.cena);
                             }
+                            Console.WriteLine("\n\n");
+                            foreach (OpisStanu op in repo2.GetAllOpisStanu())
+                            {
+                                Console.WriteLine("OpisStanu:" + op.katalog.tytulKsiazki);
+                            }
+                            Console.WriteLine("\n\n");
+                            foreach (Katalog kat in repo2.GetAllKatalog().Values)
+                            {
+
+
+                                Console.WriteLine("katalogi: " +kat.tytulKsiazki+kat.autorKsiazki.imie);
+
+                            }
+                            for (int i= 0; i < repo2.GetAllKatalog().Count; i++)
+                            {
+
+
+                                repo2.GetAllKatalog()[i].tytulKsiazki = "bla bla    ";
+                            }
+                            Console.WriteLine("\n\n");
+                            
+                            foreach (OpisStanu op in repo2.GetAllOpisStanu())
+                            {
+                                Console.WriteLine("OpisStanu:" + op.katalog.tytulKsiazki);
+                            }
+                            Console.WriteLine("\n\n");
+                            foreach (Katalog kat in repo2.GetAllKatalog().Values)
+                            {
+
+
+                                Console.WriteLine("katalogi: " + kat.tytulKsiazki + kat.autorKsiazki.imie);
+
+                            }
+
                             repo2.setZdarzeniaList(fileOp.loadZdarzeniaFromJson("Zdarzenia.json"));
                             foreach (Zdarzenie op in repo2.GetAllZdarzenia())
                             {
-                                Console.WriteLine("Zdarzenia: " + op.ilosc+ op.opisStanu.katalog.opisKsiazki+op.cena );
+                                Console.WriteLine("Zdarzenia: " + op.ilosc + op.opisStanu.katalog.tytulKsiazki+ op.cena);
                             }
                             Console.Read();
                             break;

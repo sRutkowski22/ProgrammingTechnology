@@ -11,7 +11,7 @@ namespace Biblioteka
         public int ilosc { get; set; }
         public uint cena { get; set; }
       
-
+        public Zdarzenie() { }
         public Zdarzenie(int zdarzeniaId, OpisStanu opisStanu, int ilosc,uint cena)
         {
             this.zdarzeniaId = zdarzeniaId;
@@ -38,7 +38,7 @@ namespace Biblioteka
             info.AddValue("opisuStanuId", this.opisStanu.opisuStanuId);
             info.AddValue("iloscEgzemplarzy", this.opisStanu.iloscEgzemplarzy);
             info.AddValue("cena", this.opisStanu.cena);
-            info.AddValue("opisKsiazki", this.opisStanu.katalog.opisKsiazki);
+            
             info.AddValue("imie", this.opisStanu.katalog.autorKsiazki.imie);
             info.AddValue("nazwisko", this.opisStanu.katalog.autorKsiazki.nazwisko);
             info.AddValue("tytulKsiazki", this.opisStanu.katalog.tytulKsiazki);

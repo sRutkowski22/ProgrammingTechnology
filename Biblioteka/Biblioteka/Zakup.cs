@@ -9,6 +9,7 @@ namespace Biblioteka
        
 
         public DateTime dataZakupu { get; }
+        public Zakup() { }
         public Zakup(int zdarzeniaId, OpisStanu opisStanu, int ilosc,uint cena, DateTime dataZakupu) : base(zdarzeniaId, opisStanu, ilosc,cena)
         {
             this.dataZakupu = dataZakupu;

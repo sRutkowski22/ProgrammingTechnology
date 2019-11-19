@@ -21,7 +21,7 @@ namespace UnitTestProject1
             {
                 string[] words = line.Split(';');
                 int id = data.dictionaryKatalog.Count+1;
-                data.dictionaryKatalog.Add(id, new Katalog( words[1], new AutorKsiazki(words[2], words[3]), words[4]));
+                data.dictionaryKatalog.Add(id, new Katalog( words[1], new AutorKsiazki(words[2], words[3])));
               
             }
 

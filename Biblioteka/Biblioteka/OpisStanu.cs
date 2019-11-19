@@ -25,7 +25,7 @@ namespace Biblioteka
             this.opisuStanuId = Int32.Parse(info.GetString("opisuStanuId"));
             this.iloscEgzemplarzy = Int32.Parse(info.GetString("iloscEgzemplarzy"));
             this.cena = UInt32.Parse(info.GetString("cena"));
-            this.katalog = new Katalog(info.GetString("tytulKsiazki"), new AutorKsiazki(info.GetString("imie"), info.GetString("nazwisko")), info.GetString("tytulKsiazki"));
+            this.katalog = new Katalog(info.GetString("tytulKsiazki"), new AutorKsiazki(info.GetString("imie"), info.GetString("nazwisko")));
           
 
         }
@@ -36,7 +36,7 @@ namespace Biblioteka
             info.AddValue("opisuStanuId", this.opisuStanuId);
             info.AddValue("iloscEgzemplarzy", this.iloscEgzemplarzy);
             info.AddValue("cena", this.cena);
-            info.AddValue("opisKsiazki", this.katalog.opisKsiazki);
+            
             info.AddValue("imie", this.katalog.autorKsiazki.imie);
             info.AddValue("nazwisko", this.katalog.autorKsiazki.nazwisko);
             info.AddValue("tytulKsiazki", this.katalog.tytulKsiazki);

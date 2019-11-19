@@ -8,6 +8,7 @@ namespace Biblioteka
     {
         public Client client { get; set; }
         public DateTime dataSprzedazy { get; set; }
+        public Sprzedaz() { }
         public Sprzedaz(int zdarzeniaId, OpisStanu opisStanu, int ilosc, uint cena,Client client, DateTime dataSprzedazy) : base(zdarzeniaId, opisStanu, ilosc, cena)
         {
             this.client = client;
