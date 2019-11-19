@@ -188,6 +188,26 @@ namespace Biblioteka
         {
             return data.eventChangeList;
         }
+        public DataContext GetDataContext()
+        {
+            return this.data;
+        }
+        public void setClientsList(List<Client> clients)
+        {
+            data.clientList = clients;
+        }
+        public void setKatalogDict(Dictionary<int,Katalog> kat)
+        {
+            data.dictionaryKatalog = kat;
+        }
+        public void setZdarzeniaList(ObservableCollection<Zdarzenie> zdarzenia)
+        {
+            data.zdarzenieObservableCollection = zdarzenia;
+        }
+        public void setOpisStanuList(List<OpisStanu> opisStanuList)
+        {
+            data.opisStanuList = opisStanuList;
+        }
 
         private void CollectionChangedMethod(object sender, NotifyCollectionChangedEventArgs e)
         {

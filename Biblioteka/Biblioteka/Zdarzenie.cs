@@ -5,10 +5,12 @@ namespace Biblioteka
 {
     public abstract class Zdarzenie
     {
-        internal int zdarzeniaId { get; }
-        internal OpisStanu opisStanu { get; } // id stanu ksiazki (konkretna ksiazka)
-        internal int ilosc { get; }
-        internal uint cena { get; }
+        public int zdarzeniaId { get; set; }
+        public OpisStanu opisStanu { get; set; } // id stanu ksiazki (konkretna ksiazka)
+        public int ilosc { get; set; }
+        public uint cena { get; set; }
+      
+        
       
 
         
@@ -19,6 +21,7 @@ namespace Biblioteka
             this.cena = cena;
             this.opisStanu = opisStanu;
             this.ilosc = ilosc;
+            
            
             
         }
