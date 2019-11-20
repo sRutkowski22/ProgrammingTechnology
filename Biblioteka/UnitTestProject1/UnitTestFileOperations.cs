@@ -37,8 +37,8 @@ namespace UnitTestFileOperations
             fileOp.AllToJson(repo, "Clients.json", "Katalogi.json", "OpisStanu.json", "Zdarzenia.json");
             repo2.setKatalogDict(fileOp.loadKatalogFromJson("Katalogi.json"));
             Assert.AreEqual(repo.GetAllKatalog().Count, repo2.GetAllKatalog().Count);
+            Assert.AreEqual(repo.GetAllKatalog()[0], repo2.GetAllKatalog()[0]);
             Assert.AreEqual(repo.GetAllKatalog()[1], repo2.GetAllKatalog()[1]);
-            Assert.AreEqual(repo.GetAllKatalog()[2], repo2.GetAllKatalog()[2]);
 
         }
 
@@ -65,6 +65,7 @@ namespace UnitTestFileOperations
             repo2.setZdarzeniaList(fileOp.loadZdarzeniaFromJson("Zdarzenia.json"));
             Assert.AreEqual(repo.GetAllZdarzenia().Count, repo2.GetAllZdarzenia().Count);
             Assert.AreEqual(repo.GetAllZdarzenia()[0], repo2.GetAllZdarzenia()[0]);
+           
 
         }
     }

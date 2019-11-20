@@ -21,8 +21,8 @@ namespace UnitTestProject1
             OpisStanu opis2 = new OpisStanu(2, kat2, 4, 40);
             Zdarzenie zakup = new Zakup(1, opis1, 1, 20, DateTime.Parse("2018.12.12"));
             Zdarzenie sprzedaz = new Sprzedaz(2, opis1, 2, 30, c1, DateTime.Parse("2018.12.12"));
-            data.dictionaryKatalog.Add(1,kat1);
-            data.dictionaryKatalog.Add(2, kat2);
+            data.dictionaryKatalog.Add(0,kat1);
+            data.dictionaryKatalog.Add(1, kat2);
             data.clientList.Add(c1);
             data.clientList.Add(c2);
             data.opisStanuList.Add(opis1);

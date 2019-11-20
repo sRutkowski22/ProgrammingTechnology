@@ -27,7 +27,7 @@ namespace Biblioteka
             ReadZdarzeniaZakup("ZdarzeniaZakup.csv");
         }
 
-        private void ReadKatalog(string filename)
+        public void ReadKatalog(string filename)
         {
             String line;
             FormatterCSV<Katalog> formatterCSV = new FormatterCSV<Katalog>();
@@ -43,7 +43,7 @@ namespace Biblioteka
 
         }
 
-        private void ReadOpisStanu(string filename)
+        public void ReadOpisStanu(string filename)
         {
             String line;
             FormatterCSV<OpisStanu> formatterCSV = new FormatterCSV<OpisStanu>();
@@ -57,7 +57,7 @@ namespace Biblioteka
 
             file.Close();
         }
-        private void ReadClient(string filename)
+        public void ReadClient(string filename)
         {
             String line;
             FormatterCSV<Client> formatterCSV = new FormatterCSV<Client>();
@@ -72,7 +72,7 @@ namespace Biblioteka
             file.Close();
         }
 
-        private void ReadZdarzeniaSprzedaz(string filename)
+        public void ReadZdarzeniaSprzedaz(string filename)
         {
             String line;
             FormatterCSV<Sprzedaz> formatterCSV = new FormatterCSV<Sprzedaz>();
@@ -86,7 +86,7 @@ namespace Biblioteka
 
             file.Close();
         }
-        private void ReadZdarzeniaZakup(string filename)
+        public void ReadZdarzeniaZakup(string filename)
         {
             String line;
             FormatterCSV<Zakup> formatterCSV = new FormatterCSV<Zakup>();
