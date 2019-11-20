@@ -92,12 +92,14 @@ namespace ConsoleApp1
 
                             Console.Read();
                             break;
-                            case 2:                      
+                            case 2:
+                            Console.WriteLine("Odczytano z jsona");
                             repo2.setClientsList(fileOp.loadClientFromJson("Clients.json"));                
                             repo2.setKatalogDict(fileOp.loadKatalogFromJson("Katalogi.json"));                   
                             repo2.setOpisStanuList(fileOp.loadOpisStanuFromJson("OpisStanu.json"));
                             repo2.setZdarzeniaList(fileOp.loadZdarzeniaFromJson("Zdarzenia.json"));
-                            Console.WriteLine("Odczytano z jsona");
+                            DuplicateExecutor.duplicateDelete(repo2.GetDataContext());
+                           
                             Console.Read();
                             break;
                         }
@@ -119,6 +121,7 @@ namespace ConsoleApp1
 
         public static void wypiszWszystko(DataRepository repository)
         {
+          //  repository.GetKatalogById(0).tytulKsiazki = "  hahaha podmienilem tytul  ";
             Console.WriteLine("\nKatalogi");
             foreach (Katalog kat in repository.GetAllKatalog().Values)
             { 

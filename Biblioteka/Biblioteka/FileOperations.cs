@@ -106,7 +106,7 @@ namespace Biblioteka
                 }
             
         }
-public ObservableCollection<Zdarzenie> loadZdarzeniaFromJson(string path)
+        public ObservableCollection<Zdarzenie> loadZdarzeniaFromJson(string path)
         {
             using (StreamReader r = new StreamReader(@path))
             {

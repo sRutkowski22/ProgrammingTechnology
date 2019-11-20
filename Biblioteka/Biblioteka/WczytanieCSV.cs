@@ -25,6 +25,7 @@ namespace Biblioteka
             ReadClient("Client.csv");
             ReadZdarzeniaSprzedaz("ZdarzeniaSprzedaz.csv");
             ReadZdarzeniaZakup("ZdarzeniaZakup.csv");
+            DuplicateExecutor.duplicateDelete(dataRepository.GetDataContext());
         }
 
         public void ReadKatalog(string filename)

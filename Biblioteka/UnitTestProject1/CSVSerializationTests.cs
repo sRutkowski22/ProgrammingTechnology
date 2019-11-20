@@ -32,6 +32,7 @@ namespace UnitTestCSVSerializationTests
             zapisCSV.SaveClient(repo.GetAllClient(), "ClientTest.csv");
 
             wczytanieCSV.ReadClient("ClientTest.csv");
+           
 
             Assert.AreEqual(repo.GetAllClient().Count, repo2.GetAllClient().Count);
             Assert.AreEqual(data.clientList[0], data2.clientList[0]);
@@ -54,6 +55,7 @@ namespace UnitTestCSVSerializationTests
             zapisCSV.SaveKatalog(repo.GetAllKatalog().Values, "KatalogTest.csv");
 
             wczytanieCSV.ReadKatalog("KatalogTest.csv");
+           
 
             Assert.AreEqual(repo.GetAllKatalog().Count, repo2.GetAllKatalog().Count);
             Assert.AreEqual(repo.GetAllKatalog()[0], repo2.GetAllKatalog()[0]);

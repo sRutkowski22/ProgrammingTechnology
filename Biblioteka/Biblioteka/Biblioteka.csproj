@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutorKsiazki.cs" />
+    <Compile Include="DuplicateExecutor.cs" />
     <Compile Include="FormatterCSV.cs" />
     <Compile Include="WczytanieCSV.cs" />
     <Compile Include="ZapisCSV.cs" />
