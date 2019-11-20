@@ -65,7 +65,8 @@ namespace UnitTestFileOperations
             repo2.setZdarzeniaList(fileOp.loadZdarzeniaFromJson("Zdarzenia.json"));
             Assert.AreEqual(repo.GetAllZdarzenia().Count, repo2.GetAllZdarzenia().Count);
             Assert.AreEqual(repo.GetAllZdarzenia()[0], repo2.GetAllZdarzenia()[0]);
-           
+          
+
 
         }
     }

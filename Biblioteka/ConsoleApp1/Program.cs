@@ -45,6 +45,7 @@ namespace ConsoleApp1
             Console.WriteLine("Wybierz co chcesz zrobic?\n" +
                 "1. Zapis\n" +
                 "2. Odczyt\n" +
+                "3. Wypisz wszystko\n"+
                 "0. Exit");
             str = Console.ReadLine();
             n = int.Parse(str);        
@@ -156,7 +157,8 @@ namespace ConsoleApp1
                         }
                         Console.Read();
                         break;
-                    case 0:
+                case 3:
+                case 0:
                         Environment.Exit(0);
                     break;
                     default:
@@ -166,6 +168,11 @@ namespace ConsoleApp1
                 }
                 goto Start;
             }
+
+        public void wypiszWszystko()
+        {
+
+        }
 
             
         }
