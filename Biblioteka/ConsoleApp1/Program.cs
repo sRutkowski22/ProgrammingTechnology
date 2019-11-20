@@ -1,6 +1,7 @@
 ﻿using System;
 using Biblioteka;
 using System.Globalization;
+using System.Linq;
 namespace ConsoleApp1
 {
     public class Program
@@ -36,7 +37,7 @@ namespace ConsoleApp1
 
             FileOperations fileOp = new FileOperations();
             ZapisCSV zapisCSV = new ZapisCSV(repo);
-            WczytanieCSV wczytanieCSV = new WczytanieCSV(repo);
+            WczytanieCSV wczytanieCSV = new WczytanieCSV(repo2);
             int n;
             int m;
             String str;
@@ -45,7 +46,7 @@ namespace ConsoleApp1
             Console.WriteLine("Wybierz co chcesz zrobic?\n" +
                 "1. Zapis\n" +
                 "2. Odczyt\n" +
-                "3. Wypisz wszystko\n"+
+                "3. Wypisz wszystko z wczytanego repozytorium\n"+
                 "0. Exit");
             str = Console.ReadLine();
             n = int.Parse(str);        
@@ -88,76 +89,25 @@ namespace ConsoleApp1
                             wczytanieCSV.Read();
 
 
-                            Console.Read();
+                            
                             Console.Read();
                             break;
                             case 2:
                                 Console.WriteLine("Odczyt z jsona");
-                            Console.WriteLine("dictionary size: " + repo2.GetAllKatalog().Count);
-                            Console.WriteLine("liczba clientow przed wczytaniem" + repo2.GetAllClient().Count);
+                         
                             repo2.setClientsList(fileOp.loadClientFromJson("Clients.json"));
-                            Console.WriteLine("liczba clientow po wczytaniem" + repo2.GetAllClient().Count);
-                            foreach (Client c in repo.GetAllClient())
-                            {
-                                Console.WriteLine(c.ClientId + c.clientId + c.imie + c.nazwisko);
-                            }
-                            foreach (Client c in repo2.GetAllClient()){
-                                Console.WriteLine(c.ClientId + c.clientId + c.imie + c.nazwisko);
-                            }
                             repo2.setKatalogDict(fileOp.loadKatalogFromJson("Katalogi.json"));
-                            Console.WriteLine("dict values kat" +repo2.GetAllKatalog()[0].autorKsiazki.imie+ repo2.GetAllKatalog()[1].autorKsiazki.imie);
-                           
                             repo2.setOpisStanuList(fileOp.loadOpisStanuFromJson("OpisStanu.json"));
-                            fileOp.setIdOpisStanuFromJson(repo2);
-                            foreach (OpisStanu op in repo2.GetAllOpisStanu())
-                            {
-                                Console.WriteLine("OpisStanu:" + op.cena);
-                            }
-                            Console.WriteLine("\n\n");
-                            foreach (OpisStanu op in repo2.GetAllOpisStanu())
-                            {
-                                Console.WriteLine("OpisStanu:" + op.katalog.tytulKsiazki);
-                            }
-                            Console.WriteLine("\n\n");
-                            foreach (Katalog kat in repo2.GetAllKatalog().Values)
-                            {
-
-
-                                Console.WriteLine("katalogi: " +kat.tytulKsiazki+kat.autorKsiazki.imie);
-
-                            }
-                            for (int i= 0; i < repo2.GetAllKatalog().Count; i++)
-                            {
-
-
-                                repo2.GetAllKatalog()[i].tytulKsiazki = "bla bla    ";
-                            }
-                            Console.WriteLine("\n\n");
-                            
-                            foreach (OpisStanu op in repo2.GetAllOpisStanu())
-                            {
-                                Console.WriteLine("OpisStanu:" + op.katalog.tytulKsiazki);
-                            }
-                            Console.WriteLine("\n\n");
-                            foreach (Katalog kat in repo2.GetAllKatalog().Values)
-                            {
-
-
-                                Console.WriteLine("katalogi: " + kat.tytulKsiazki + kat.autorKsiazki.imie);
-
-                            }
-
                             repo2.setZdarzeniaList(fileOp.loadZdarzeniaFromJson("Zdarzenia.json"));
-                            foreach (Zdarzenie op in repo2.GetAllZdarzenia())
-                            {
-                                Console.WriteLine("Zdarzenia: " + op.ilosc + op.opisStanu.katalog.tytulKsiazki+ op.cena);
-                            }
+                          
                             Console.Read();
                             break;
                         }
                         Console.Read();
                         break;
                 case 3:
+                    wypiszWszystko(repo2);
+                    break;
                 case 0:
                         Environment.Exit(0);
                     break;
@@ -169,8 +119,44 @@ namespace ConsoleApp1
                 goto Start;
             }
 
-        public void wypiszWszystko()
+        public static void wypiszWszystko(DataRepository repository)
         {
+            Console.WriteLine("\nKatalogi");
+            foreach (Katalog kat in repository.GetAllKatalog().Values)
+            { 
+                Console.WriteLine("Katalog: tytuł " + kat.tytulKsiazki +" Autor: "+ kat.autorKsiazki.imie + "  " + kat.autorKsiazki.nazwisko);
+
+            }
+            Console.WriteLine("\nKlienci");
+            foreach (Client c in repository.GetAllClient())
+            {
+                Console.WriteLine("Klient:  " + c.imie + "  " + c.nazwisko);
+              
+            }
+            Console.WriteLine("\nOpisy Stanu");
+            foreach (OpisStanu op in repository.GetAllOpisStanu())
+            {
+                Console.WriteLine("OpisStanu: Cena: " + op.cena + " Ilosc egzemplarzy: "+ op.cena +
+                    "\nKatalog: tytuł " + op.katalog.tytulKsiazki + " Autor: " + op.katalog.autorKsiazki.imie + "  " + op.katalog.autorKsiazki.nazwisko);
+            }
+            Console.WriteLine("\nZdarzenia sprzedazy");
+            foreach (Sprzedaz op in repository.GetAllZdarzenia().Where(a => a.GetType() == typeof(Sprzedaz)))
+                            {
+                                Console.WriteLine("\nSprzedarz: ile: " + op.ilosc + " cena: " + op.cena +
+                                    "\nKlient:  " + op.client.imie + "  " + op.client.nazwisko +
+                                    "\nOpisStanu: Cena: " + op.opisStanu.cena + " Ilosc egzemplarzy: " + op.opisStanu.cena +
+                    "\nKatalog: tytuł " + op.opisStanu.katalog.tytulKsiazki + " Autor: " + op.opisStanu.katalog.autorKsiazki.imie + "  " + op.opisStanu.katalog.autorKsiazki.nazwisko);
+                            }
+            Console.WriteLine("\nZdarzenia kupna ");
+            foreach (Zdarzenie op in repository.GetAllZdarzenia().Where(a => a.GetType() == typeof(Zakup)))
+            {
+                Console.WriteLine("\nSprzedarz: ile: " + op.ilosc + " cena: " + op.cena +
+                                   
+                                    "\nOpisStanu: Cena: " + op.opisStanu.cena + " Ilosc egzemplarzy: " + op.opisStanu.cena +
+                    "\nKatalog: tytuł " + op.opisStanu.katalog.tytulKsiazki + " Autor: " + op.opisStanu.katalog.autorKsiazki.imie + "  " + op.opisStanu.katalog.autorKsiazki.nazwisko);
+
+            }
+
 
         }
 
