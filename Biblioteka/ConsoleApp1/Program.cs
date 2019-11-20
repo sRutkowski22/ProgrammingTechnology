@@ -151,7 +151,7 @@ namespace ConsoleApp1
             Console.WriteLine("\nZdarzenia kupna ");
             foreach (Zdarzenie op in repository.GetAllZdarzenia().Where(a => a.GetType() == typeof(Zakup)))
             {
-                Console.WriteLine("\nSprzedarz: ile: " + op.ilosc + " cena: " + op.cena +
+                Console.WriteLine("\nKupno: ile: " + op.ilosc + " cena: " + op.cena +
                                    
                                     "\nOpisStanu: Cena: " + op.opisStanu.cena + " Ilosc egzemplarzy: " + op.opisStanu.cena +
                     "\nKatalog: tytuł " + op.opisStanu.katalog.tytulKsiazki + " Autor: " + op.opisStanu.katalog.autorKsiazki.imie + "  " + op.opisStanu.katalog.autorKsiazki.nazwisko);
