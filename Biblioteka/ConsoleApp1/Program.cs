@@ -17,14 +17,14 @@ namespace ConsoleApp1
             DataContext data2 = new DataContext();
             DataRepository repo = new DataRepository(data);
             DataRepository repo2 = new DataRepository(data2);
-            Katalog kat1 = new Katalog("MyszkaMiki", new AutorKsiazki("Henryk", "Sienkiewicz"));
-            Katalog kat2 = new Katalog("Przemoniewkurwiajsie", new AutorKsiazki("Kante", "Sienkiewicz"));
+            Katalog kat1 = new Katalog("Antygona", new AutorKsiazki("Sofokles", ""));
+            Katalog kat2 = new Katalog("Potop", new AutorKsiazki("Henryk", "Sienkiewicz"));
             Client c1 = new Client(1, "Adam", "Małysz");
-            Client c2 = new Client(1, "Szymon", "Maj");
+            Client c2 = new Client(2, "Szymon", "Maj");
             OpisStanu opis1 = new OpisStanu(1, kat1, 2, 20);
             OpisStanu opis2 = new OpisStanu(2, kat2, 4, 40);
             Zdarzenie zakup = new Zakup(1, opis1, 1, 20, DateTime.ParseExact("2018.12.12","yyyy.MM.dd", CultureInfo.CurrentCulture)); 
-            Zdarzenie sprzedaz = new Sprzedaz(2,opis1,2,30,c1, DateTime.ParseExact("2018.12.12", "yyyy.MM.dd", CultureInfo.CurrentCulture));
+            Zdarzenie sprzedaz = new Sprzedaz(2,opis1,2,30,c1, DateTime.ParseExact("2018.11.07", "yyyy.MM.dd", CultureInfo.CurrentCulture));
             repo.AddKatalog(kat1);
             repo.AddKatalog(kat2);
             repo.AddClient(c1);
@@ -62,16 +62,17 @@ namespace ConsoleApp1
                         switch (m)
                         {
                             case 1:
-                                Console.WriteLine("Zapis do csv");
+                               
                                 zapisCSV.Save();
-                                Console.Read();
+                            Console.WriteLine("Zapisano do csv");
+                            Console.Read();
                                 break;
                             case 2:
-                                Console.WriteLine("zapis do Jsona");
-                            //fileOp.saveKatalogToJSON(repo);
+                               
+                            
                             fileOp.AllToJson(repo, "Clients.json", "Katalogi.json", "OpisStanu.json", "Zdarzenia.json");
-
-                                Console.Read();
+                            Console.WriteLine("Zapisano do jsona");
+                            Console.Read();
                                 break;
                         }
                         Console.Read();
@@ -85,21 +86,18 @@ namespace ConsoleApp1
                         m = int.Parse(str);
                         switch (m) { 
                             case 1:
-                                Console.WriteLine("Odczyt z csv");
+                                
                             wczytanieCSV.Read();
+                            Console.WriteLine("Odczytano z csv");
 
-
-                            
                             Console.Read();
                             break;
-                            case 2:
-                                Console.WriteLine("Odczyt z jsona");
-                         
-                            repo2.setClientsList(fileOp.loadClientFromJson("Clients.json"));
-                            repo2.setKatalogDict(fileOp.loadKatalogFromJson("Katalogi.json"));
+                            case 2:                      
+                            repo2.setClientsList(fileOp.loadClientFromJson("Clients.json"));                
+                            repo2.setKatalogDict(fileOp.loadKatalogFromJson("Katalogi.json"));                   
                             repo2.setOpisStanuList(fileOp.loadOpisStanuFromJson("OpisStanu.json"));
                             repo2.setZdarzeniaList(fileOp.loadZdarzeniaFromJson("Zdarzenia.json"));
-                          
+                            Console.WriteLine("Odczytano z jsona");
                             Console.Read();
                             break;
                         }
