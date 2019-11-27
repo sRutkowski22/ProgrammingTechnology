@@ -12,12 +12,14 @@ namespace zad2Extended
         public String name { get; set; }
         public int a { get; set; }
         public bool iftrue { get; set; }
+        public DateTime data { get; set; }
         public ClassB classB { get; set; }
-        public ClassA(String name, int a, bool iftrue,ClassB classB)
+        public ClassA(String name, int a, bool iftrue, DateTime data, ClassB classB)
         {
             this.a = a;
             this.name = name;
             this.iftrue = iftrue;
+            this.data = data;
             this.classB = classB;
         }
 
@@ -42,8 +44,9 @@ namespace zad2Extended
             info.AddValue("iftrue", this.iftrue);
             info.AddValue("nazwa", this.name);
             info.AddValue("wartosc", this.a);
+            info.AddValue("data", this.data);
             info.AddValue("KlasaB", this.classB);
-           
+            
         }
 
         public override string ToString()
