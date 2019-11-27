@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Runtime.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using zad2Extended;
 
@@ -10,30 +14,35 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestClassA()
         {
-         /*   DataContext data = new DataContext();
-            ClassA ca1 = new ClassA("klasaanazwa", 5, true, DateTime.Parse("2019.12.12"), null);
-            ClassB cb1 = new ClassB("klasabnazwa", 6, true, DateTime.Parse("2019.12.12"), null);
-            ClassC cc1 = new ClassC("klasacnazwa", 7, false, DateTime.Parse("2019.12.12"), ca1);
+            DataContext data = new DataContext();
+            DataContext data2 = new DataContext();
+
+            ClassA ca1 = new ClassA("klasaAnazwa", 5.2F, true, DateTime.ParseExact("2019.12.12", "yyyy.MM.dd", CultureInfo.CurrentCulture), null);
+            ClassB cb1 = new ClassB("klasaBnazwa", 6.5F, true, DateTime.ParseExact("2019.12.11", "yyyy.MM.dd", CultureInfo.CurrentCulture), null);
+            ClassC cc1 = new ClassC("klasaCnazwa", 7.35F, false, DateTime.ParseExact("2019.12.10", "yyyy.MM.dd", CultureInfo.CurrentCulture), ca1);
             ca1.classB = cb1;
             cb1.classC = cc1;
-            data.classAList.Add(ca1);
-            data.classBList.Add(cb1);
-            data.classCList.Add(cc1);
-            
-            ZapisCSV zapisCSV = new ZapisCSV(data);
 
-            DataContext data2 = new DataContext();
+            //serializacja
+            String filename = "serialize.csv";
+            File.WriteAllText(filename, string.Empty);
+
+            FormatterCSV fromatterCSV = new FormatterCSV();
+            fromatterCSV.Binder = new KnownTypesBinder();
+            fromatterCSV.objectIDGenerator = new ObjectIDGenerator();
+
+            fromatterCSV.Serialize(ca1);
            
-            WczytanieCSV wczytanieCSV = new WczytanieCSV(data2);
+            //deserializacja
+            fromatterCSV.Binder = new KnownTypesBinder();
+            fromatterCSV.objectIDGenerator = new ObjectIDGenerator();
 
-            zapisCSV.SaveClassA(data.classAList,"ClassA.csv");
+            Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            Dictionary<long, object> list = (Dictionary<long, object>)fromatterCSV.Deserialize(stream);
 
-         //   wczytanieCSV.ReadClassA("ClassA.csv");
-
-
-            Assert.AreEqual(data.classAList, data2.classAList);
-            Assert.AreEqual(data.classAList[0], data2.classAList[0]);
-            Assert.AreEqual(data.classAList[1], data2.classAList[1]);*/
+            Assert.AreEqual(ca1.ToString(), list[1].ToString());
+            Assert.AreEqual(cb1.ToString(), list[2].ToString());
+            Assert.AreEqual(cc1.ToString(), list[3].ToString());
         }
         
     }

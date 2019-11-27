@@ -32,8 +32,7 @@ namespace zad2Extended
             this.name = info.GetString("nazwa");
             this.iftrue = Boolean.Parse(info.GetString("iftrue"));
             this.a = Single.Parse(info.GetString("wartosc"));
-            this.classA = null;
-          
+            this.data = DateTime.Parse(info.GetString("data"));
 
         }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -41,14 +40,14 @@ namespace zad2Extended
             info.AddValue("iftrue", this.iftrue);
             info.AddValue("nazwa", this.name);
             info.AddValue("wartosc", this.a);
-            info.AddValue("data", this.data);
+            info.AddValue("data", this.data.ToString("yyyy.MM.dd"));
             info.AddValue("KlasaA", this.classA);
             
            
         }
         public override string ToString()
         {
-            return "Klasa C";
+            return "C: " + this.a + " data: " + this.data.ToString() + " bool: " + this.iftrue + " nazwa: " + this.name;
         }
     }
 }

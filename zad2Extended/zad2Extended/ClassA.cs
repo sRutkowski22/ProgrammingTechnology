@@ -34,8 +34,7 @@ namespace zad2Extended
             this.name = info.GetString("nazwa");
             this.iftrue = Boolean.Parse(info.GetString("iftrue"));
             this.a = Single.Parse(info.GetString("wartosc"));
-            this.classB = null;
-            
+            this.data = DateTime.Parse(info.GetString("data"));
 
         }
 
@@ -45,14 +44,14 @@ namespace zad2Extended
             info.AddValue("iftrue", this.iftrue);
             info.AddValue("nazwa", this.name);
             info.AddValue("wartosc", this.a);
-            info.AddValue("data", this.data);
+            info.AddValue("data", this.data.ToString("yyyy.MM.dd"));
             info.AddValue("KlasaB", this.classB);
             
         }
 
         public override string ToString()
         {
-            return "Klasa A";
+            return "A: " + this.a + " data: " + this.data.ToString() + " bool: " + this.iftrue + " nazwa: " + this.name;
         }
     }
 }

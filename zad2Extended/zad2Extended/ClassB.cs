@@ -32,23 +32,26 @@ namespace zad2Extended
             this.name = info.GetString("nazwa");
             this.iftrue = Boolean.Parse(info.GetString("iftrue"));
             this.a = Single.Parse(info.GetString("wartosc"));
-            this.classC = null;
+            this.data = DateTime.Parse(info.GetString("data"));
             
 
         }
+
+       
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("iftrue", this.iftrue);
             info.AddValue("nazwa", this.name);
             info.AddValue("wartosc", this.a);
-            info.AddValue("data", this.data);
+            info.AddValue("data", this.data.ToString("yyyy.MM.dd"));
             info.AddValue("KlasaC", this.classC);
             
 
         }
         public override string ToString()
         {
-            return "Klasa B";
+            return "B: " + this.a + " data: " + this.data.ToString() + " bool: " + this.iftrue + " nazwa: " + this.name;
         }
     }
 }
