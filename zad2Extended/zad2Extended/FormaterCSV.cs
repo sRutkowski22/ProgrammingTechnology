@@ -20,47 +20,63 @@ namespace zad2Extended
 
         public object Deserialize(Stream serializationStream)
         {
-            
-            object returnObject = null;
+
+            Dictionary<long, object> keyValuePairs = new Dictionary<long, object>();
             using (StreamReader stream = new StreamReader(serializationStream))
             {
-                String line = stream.ReadLine();
+                String line;
+                while (( line = stream.ReadLine()) != null)
+                {
+                    if (!(line.Equals("{") || line.Equals("}") || line.Contains("IDREF")))  
+                    {
+                        object objectReturned = this.Deserialize(line);
+                        bool isFirstTime = true;
+                        long objectID = objectIDGenerator.GetId(objectReturned, out isFirstTime);
+                        if (isFirstTime)
+                        {
+                            keyValuePairs.Add(objectID, objectReturned);
+                        }
+                        
+                    }
+                }
+            }
+         //   List<object> list = new List<object>(keyValuePairs.Values);
+            return keyValuePairs;
+        }
+        public object Deserialize(String line)
+        {
+            string assemblyName = null;
+          
+           
+              
                 String[] fieldData = line.Split(';');
-                T obj = (T)FormatterServices.GetUninitializedObject(typeof(T));
-                // var members = FormatterServices.GetSerializableMembers(obj.GetType(), Context);
-                // object[] data = new object[members.Length];
-                // ISerializable type = (ISerializable)obj;
-                SerializationInfo _info = new SerializationInfo(obj.GetType(), new FormatterConverter());
+                string[] stringType = fieldData[1].Split(':');
+                Type type = Binder.BindToType(assemblyName, stringType[1]);
+               
+                SerializationInfo _info = new SerializationInfo(type, new FormatterConverter());
                 string[] words = line.Split(';');
-                for (int i = 0; i < words.Length - 1; ++i)
+                for (int i = 2; i < words.Length - 1; ++i)
                 {
                     string[] word = words[i].Split(':');
                     _info.AddValue(word[0], word[1]);
                 }
+            
 
-                var constructor = obj.GetType().GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new[] { typeof(SerializationInfo), typeof(StreamingContext) }, null);
-                constructor.Invoke(obj, new object[] { _info, Context });
-                returnObject = obj;
-
-                //  returnObject = FormatterServices.PopulateObjectMembers(obj, members, data))
-
-            }
-            return returnObject;
+            ConstructorInfo ctor = type.GetConstructor(new[] { typeof(SerializationInfo), typeof(StreamingContext) });
+            object obj =  ctor.Invoke( new object[] { _info, Context });
+         
+            return obj;
         }
+
+
         public void Serialize(Stream serializationStream, object graph)
         {
-
-           
+ 
             using (StreamWriter stream = new StreamWriter(serializationStream))
-            {
-             
-            
-                stream.Write(SerializeToString(stream, graph));
-              
+            {    
+                stream.Write(SerializeToString(stream, graph));           
                 stream.Flush();
-
             }
-
 
         }
         public StreamWriter SerializeToString(StreamWriter stream, object graph)
@@ -81,6 +97,11 @@ namespace zad2Extended
                 stream.Write(':');
                 stream.Write(objectID);
                 stream.Write(';');
+                Binder.BindToName(graph.GetType(), out assembly, out typeName);
+                stream.Write("TypeName");
+                stream.Write(':');
+                stream.Write(typeName);
+                stream.Write(';');
             }
             else
             {
@@ -95,18 +116,12 @@ namespace zad2Extended
                 stream.Write(typeName);
                 stream.Write(';');
 
-
-
-                //   Type type = Binder.BindToType(assembly, typeName);
-
                 foreach (SerializationEntry _item in _info)
                 {
-                   /* string typeName2;
-                    Type type = _item.Value.GetType();
-                    Binder.BindToName(type, out assembly, out typeName2);
-                    Binder.checkObjectType(_item.Value.GetType())*/
+               
                     if (checkObjectType(_item.Value.GetType()))
                     {
+                        objectID = objectIDGenerator.GetId(graph, out firstTime);
                         stream.Write('\n');
                         stream.Write('{');
                         stream.Write('\n');
@@ -128,6 +143,8 @@ namespace zad2Extended
             return stream;
         }
 
+
+
         public void Serialize(object graph)
         {
             String filename = "serialize.csv";
@@ -137,6 +154,7 @@ namespace zad2Extended
             stream.Close();
             FormatterCSV.DeleteLastLine(filename);
         }
+
 
         private bool checkObjectType(Type typeT)
         {

@@ -24,14 +24,26 @@ namespace zad2Extended
         {
 
         }
+        public ClassB(SerializationInfo info, StreamingContext ctxt)
+        {
 
+            this.name = info.GetString("nazwa");
+            this.iftrue = Boolean.Parse(info.GetString("iftrue"));
+            this.a = Int32.Parse(info.GetString("wartosc"));
+            this.classC = null;
+
+        }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("iftrue", this.iftrue);
             info.AddValue("nazwa", this.name);
-            info.AddValue("wartosc a", this.a);
+            info.AddValue("wartosc", this.a);
             info.AddValue("KlasaC", this.classC);
            
+        }
+        public override string ToString()
+        {
+            return "Klasa B";
         }
     }
 }
