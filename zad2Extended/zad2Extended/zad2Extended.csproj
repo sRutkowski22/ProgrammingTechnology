@@ -45,7 +45,8 @@
     <Compile Include="ClassB.cs" />
     <Compile Include="ClassC.cs" />
     <Compile Include="DataContext.cs" />
-    <Compile Include="DuplicateExecutor.cs" />
+    <Compile Include="SetReferences.cs" />
+    <Compile Include="KnownTypesBinder.cs" />
     <Compile Include="WczytanieCSV.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZapisCSV.cs" />
