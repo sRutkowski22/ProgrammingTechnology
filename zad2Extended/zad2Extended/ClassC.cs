@@ -11,10 +11,10 @@ namespace zad2Extended
     {
         public String name { get; set; }
         public DateTime data { get; set; }
-        public int a { get; set; }
+        public float a { get; set; }
         public bool iftrue { get; set; }
         public ClassA classA { get; set; }
-        public ClassC(String name, int a, bool iftrue, DateTime data, ClassA classA)
+        public ClassC(String name, float a, bool iftrue, DateTime data, ClassA classA)
         {
             this.a = a;
             this.name = name;
@@ -31,8 +31,9 @@ namespace zad2Extended
 
             this.name = info.GetString("nazwa");
             this.iftrue = Boolean.Parse(info.GetString("iftrue"));
-            this.a = Int32.Parse(info.GetString("wartosc"));
+            this.a = Single.Parse(info.GetString("wartosc"));
             this.classA = null;
+          
 
         }
         public void GetObjectData(SerializationInfo info, StreamingContext context)

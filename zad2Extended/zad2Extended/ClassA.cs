@@ -10,11 +10,11 @@ namespace zad2Extended
     public class ClassA : ISerializable
     {
         public String name { get; set; }
-        public int a { get; set; }
+        public float a { get; set; }
         public bool iftrue { get; set; }
         public DateTime data { get; set; }
         public ClassB classB { get; set; }
-        public ClassA(String name, int a, bool iftrue, DateTime data, ClassB classB)
+        public ClassA(String name, float a, bool iftrue, DateTime data, ClassB classB)
         {
             this.a = a;
             this.name = name;
@@ -33,8 +33,9 @@ namespace zad2Extended
             
             this.name = info.GetString("nazwa");
             this.iftrue = Boolean.Parse(info.GetString("iftrue"));
-            this.a = Int32.Parse(info.GetString("wartosc"));
+            this.a = Single.Parse(info.GetString("wartosc"));
             this.classB = null;
+            
 
         }
 

@@ -14,9 +14,9 @@ namespace ConsoleApp1
             DataContext data = new DataContext();
             DataContext data2 = new DataContext();
 
-            ClassA ca1 = new ClassA("klasaAnazwa", 5, true, DateTime.Parse("2019.12.12"), null);
-            ClassB cb1 = new ClassB("klasaBnazwa", 6, true, DateTime.Parse("2019.12.11"), null);
-            ClassC cc1 = new ClassC("klasaCnazwa", 7, false, DateTime.Parse("2019.12.10"), ca1);
+            ClassA ca1 = new ClassA("klasaAnazwa", 5.2F, true, DateTime.Parse("2019.12.12"), null);
+            ClassB cb1 = new ClassB("klasaBnazwa", 6.5F, true, DateTime.Parse("2019.12.11"), null);
+            ClassC cc1 = new ClassC("klasaCnazwa", 7.35F, false, DateTime.Parse("2019.12.10"), ca1);
             ca1.classB = cb1;
             cb1.classC = cc1;
 
