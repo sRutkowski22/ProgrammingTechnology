@@ -11,7 +11,7 @@ namespace zad2Extended
     public class WczytanieCSV
     {
 
-        DataContext dataContext;
+     /*   DataContext dataContext;
 
         public WczytanieCSV(DataContext dataContext)
         {
@@ -84,5 +84,6 @@ namespace zad2Extended
             stream.Position = 0;
             return stream;
         }
+        */
     }
 }

@@ -10,17 +10,18 @@ using System.Reflection;
 
 namespace zad2Extended
 {
-    class FormatterCSV<T> : IFormatter where T : class
+    public class FormatterCSV : IFormatter 
     {
         public ISurrogateSelector SurrogateSelector { get; set; }
         public SerializationBinder Binder { get; set; }
         public StreamingContext Context { get; set; }
-
+        public ObjectIDGenerator objectIDGenerator { get; set; }
 
 
         public object Deserialize(Stream serializationStream)
         {
-            T returnObject = null;
+            
+            object returnObject = null;
             using (StreamReader stream = new StreamReader(serializationStream))
             {
                 String line = stream.ReadLine();
@@ -48,25 +49,109 @@ namespace zad2Extended
         }
         public void Serialize(Stream serializationStream, object graph)
         {
+
+           
+            using (StreamWriter stream = new StreamWriter(serializationStream))
+            {
+             
+            
+                stream.Write(SerializeToString(stream, graph));
+              
+                stream.Flush();
+
+            }
+
+
+        }
+        public StreamWriter SerializeToString(StreamWriter stream, object graph)
+        {
             ISerializable _data = (ISerializable)graph;
             SerializationInfo _info = new SerializationInfo(graph.GetType(), new FormatterConverter());
             StreamingContext _context = new StreamingContext(StreamingContextStates.File);
             _data.GetObjectData(_info, _context);
-
-            using (StreamWriter stream = new StreamWriter(serializationStream))
+            string assembly;
+            string typeName;
+            long objectID;
+            bool firstTime = false;
+            stream.AutoFlush = true;
+            objectID = objectIDGenerator.GetId(graph, out firstTime);
+            if (!firstTime)
             {
+                stream.Write("IDREF");
+                stream.Write(':');
+                stream.Write(objectID);
+                stream.Write(';');
+            }
+            else
+            {
+                stream.Write("ID");
+                stream.Write(':');
+                stream.Write(objectID);
+                stream.Write(';');
+
+                Binder.BindToName(graph.GetType(), out assembly, out typeName);
+                stream.Write("TypeName");
+                stream.Write(':');
+                stream.Write(typeName);
+                stream.Write(';');
+
+
+
+                //   Type type = Binder.BindToType(assembly, typeName);
+
                 foreach (SerializationEntry _item in _info)
                 {
-                    stream.Write(_item.Name);
-                    stream.Write(':');
-                    stream.Write(_item.Value);
-                    stream.Write(';');
+                   /* string typeName2;
+                    Type type = _item.Value.GetType();
+                    Binder.BindToName(type, out assembly, out typeName2);
+                    Binder.checkObjectType(_item.Value.GetType())*/
+                    if (checkObjectType(_item.Value.GetType()))
+                    {
+                        stream.Write('\n');
+                        stream.Write('{');
+                        stream.Write('\n');
+                        this.SerializeToString(stream, _item.Value);
+                        stream.Write('}');
+
+                    }
+                    else
+                    {
+                        stream.Write(_item.Name);
+                        stream.Write(':');
+                        stream.Write(_item.Value);
+                        stream.Write(';');
+
+                    }
                 }
-                stream.Write('\n');
-                stream.Flush();
             }
+            stream.Write('\n');
+            return stream;
+        }
+
+        public void Serialize(object graph)
+        {
+            String filename = "serialize.csv";
+            Stream stream = new FileStream(filename, FileMode.Append, FileAccess.Write);
+            this.Serialize(stream, graph);
+            stream = new FileStream(filename, FileMode.Append, FileAccess.Write);
+            stream.Close();
+            FormatterCSV.DeleteLastLine(filename);
+        }
+
+        private bool checkObjectType(Type typeT)
+        {
+            string type;
+            string asseblmy;
+            Binder.BindToName(typeT, out asseblmy, out type);
+            return type.Equals("ClassA") || type.Equals("ClassB") || type.Equals("ClassC");
+        }
+
+        public static void DeleteLastLine(string filepath)
+        {
+            List<string> lines = File.ReadAllLines(filepath).ToList();
+
+            File.WriteAllLines(filepath, lines.GetRange(0, lines.Count - 1).ToArray());
 
         }
-    
     }
 }

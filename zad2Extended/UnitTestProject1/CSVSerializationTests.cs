@@ -7,7 +7,7 @@ namespace UnitTestProject1
     [TestClass]
     public class CSVSerializationTests
     {
-        [TestMethod]
+      /*  [TestMethod]
         public void TestClassA()
         {
             DataContext data = new DataContext();
@@ -35,5 +35,6 @@ namespace UnitTestProject1
             Assert.AreEqual(data.classAList[0], data2.classAList[0]);
             Assert.AreEqual(data.classAList[1], data2.classAList[1]);
         }
+        */
     }
 }

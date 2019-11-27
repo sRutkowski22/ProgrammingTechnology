@@ -11,7 +11,7 @@ namespace zad2Extended
 {
     public class ZapisCSV
     {
-        DataContext data;
+      /*  DataContext data;
 
         public ZapisCSV(DataContext data)
         {
@@ -67,7 +67,7 @@ namespace zad2Extended
 
       
 
-
+    */
 
     }
 }

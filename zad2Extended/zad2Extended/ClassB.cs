@@ -29,8 +29,9 @@ namespace zad2Extended
         {
             info.AddValue("iftrue", this.iftrue);
             info.AddValue("nazwa", this.name);
-            info.AddValue("KlasaC", this.classC);
             info.AddValue("wartosc a", this.a);
+            info.AddValue("KlasaC", this.classC);
+           
         }
     }
 }
