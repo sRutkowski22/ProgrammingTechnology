@@ -67,9 +67,6 @@ namespace zad2Extended
             }
 
         }
-        private void SerializeKatalog()
-        {
-
-        }
+    
     }
 }

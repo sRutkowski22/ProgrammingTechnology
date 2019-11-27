@@ -20,6 +20,10 @@ namespace zad2Extended
             this.iftrue = iftrue;
             this.classC = classC;
         }
+        public ClassB()
+        {
+
+        }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {

@@ -28,7 +28,7 @@ namespace UnitTestProject1
 
             zapisCSV.SaveClassA(data.classAList,"ClassA.csv");
 
-            wczytanieCSV.ReadClassA("ClassA.csv");
+         //   wczytanieCSV.ReadClassA("ClassA.csv");
 
 
             Assert.AreEqual(data.classAList, data2.classAList);
