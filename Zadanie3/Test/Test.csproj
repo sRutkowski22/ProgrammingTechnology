@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KlasaNarzędziowaEtap3Tests.cs" />
+    <Compile Include="KlasaNarzędziowaEtap5Testscs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
