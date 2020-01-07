@@ -13,6 +13,14 @@ namespace Test
         {
 
             [TestMethod]
+            public void GetMyProductsByName()
+            {
+                int ilosc = KlasaNarzedziowaEtap5.GetMyProductsByName("Blade").Count;
+                Assert.AreEqual(1, ilosc);
+            }
+
+
+            [TestMethod]
             public void GetProductsByVendorName()
             {
                 List<MyProduct> products = KlasaNarzedziowaEtap5.GetProductsByVendorName("Allenson Cycles");
@@ -21,15 +29,6 @@ namespace Test
            
             }
 
-
-            [TestMethod]
-            public void GetMyProductsByName()
-            {
-                int ilosc = KlasaNarzedziowaEtap5.GetMyProductsByName("Blade").Count;
-                Assert.AreEqual(1, ilosc);
-            }
-
-          
 
             [TestMethod]
             public void GetMyProductsWithNRecentReviews()

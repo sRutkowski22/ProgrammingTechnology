@@ -11,9 +11,9 @@ namespace Biblioteka
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
             List<Product> products =
-                (from p in db.Products
-                 where SqlMethods.Like(p.Name, "%" + name + "%")
-                 select p).ToList();
+                (from product in db.Products
+                 where product.Name.Contains(name)
+                 select product).ToList();
 
             return products;
         }
@@ -25,8 +25,8 @@ namespace Biblioteka
             List<Product> products = (from p in db.Products
                                        join pv in db.ProductVendors on p.ProductID equals pv.ProductID
                                        join v in db.Vendors on pv.BusinessEntityID equals v.BusinessEntityID
-                                       where SqlMethods.Like(v.Name, vendorName)
-                                       select p).ToList();
+                                       where v.Name.Equals(vendorName)
+                                      select p).ToList();
             return products;
         }
 
@@ -37,8 +37,8 @@ namespace Biblioteka
             List<string> productNames = (from p in db.Products
                                       join pv in db.ProductVendors on p.ProductID equals pv.ProductID
                                       join v in db.Vendors on pv.BusinessEntityID equals v.BusinessEntityID
-                                      where SqlMethods.Like(v.Name, vendorName)
-                                      select p.Name).ToList();
+                                      where v.Name.Equals(vendorName)
+                                         select p.Name).ToList();
 
             return productNames;
         }
@@ -49,8 +49,8 @@ namespace Biblioteka
             var productVendor = (from p in db.Products
                              join pv in db.ProductVendors on p.ProductID equals pv.ProductID
                              join v in db.Vendors on pv.BusinessEntityID equals v.BusinessEntityID
-                             where SqlMethods.Like(p.Name, productName)
-                             select v.Name).FirstOrDefault();
+                             where p.Name.Contains(productName)
+                                 select v.Name).FirstOrDefault();
 
             return productVendor.ToString();
         }
