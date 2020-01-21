@@ -28,7 +28,12 @@
                 </GridView>
             </ListView.View>
         </ListView>
-       
-       
+        <StackPanel>
+            <Button Content="Dodaj"></Button>
+            <Button Command="{Binding Delete}">Usuń</Button>
+        </StackPanel>
+
+
+
     </Grid>
 </Window>
