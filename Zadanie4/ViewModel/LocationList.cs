@@ -16,14 +16,20 @@ namespace ViewModel
         private IDataRepository dataRepository;
         private ObservableCollection<LocationListModel> locations;
 
-        public LocationList()
+        public LocationList() : this(new DataRepository())
         {
-            this.dataRepository = new DataRepository();
-            LocationsInList = new ObservableCollection<LocationListModel>();
-            FillLocations();
+
         }
 
-        public ObservableCollection<LocationListModel> LocationsInList
+        public LocationList(IDataRepository dataRepository)
+        {
+            this.dataRepository = new DataRepository();
+            Locations = new ObservableCollection<LocationListModel>();
+            FillLocations();
+        }
+       
+
+        public ObservableCollection<LocationListModel> Locations
         {
             get => locations;
             set

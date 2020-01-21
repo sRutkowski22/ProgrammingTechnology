@@ -12,17 +12,23 @@
         <viewModel:LocationList/>
     </Window.DataContext>
 
-    <Grid>
-        <Button Content="Details"   Width="200"/>
-        <ListView x:Name="locationListView" ItemsSource="{Binding LocationInList}"  Grid.Column="0" Grid.ColumnSpan="2" Height="493" VerticalAlignment="Bottom" Grid.RowSpan="2">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Id}" Width="80"/>
-                        <TextBlock Text="{Binding Name}" Width="250"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+    <Grid  Margin="3,5,3,3">
+       
+        <StackPanel Margin="5,0,0,0" Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <TextBlock Text="ID" Width="80"/>
+            <TextBlock Text="Name" Width="250"/>
+        </StackPanel>
+        <ListView Name="lstdemo" ItemsSource="{Binding Locations}" SelectionChanged="Lstdemo_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
         </ListView>
+       
+       
     </Grid>
 </Window>

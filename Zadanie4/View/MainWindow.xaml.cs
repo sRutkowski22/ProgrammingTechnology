@@ -24,5 +24,10 @@ namespace View
         {
             InitializeComponent();
         }
+
+        private void Lstdemo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
