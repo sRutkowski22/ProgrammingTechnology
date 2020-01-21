@@ -4,9 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
+        xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <viewModel:LocationList/>
+    </Window.DataContext>
+
     <Grid>
-        
+        <Button Content="Details"   Width="200"/>
+        <ListView x:Name="locationListView" ItemsSource="{Binding LocationInList}"  Grid.Column="0" Grid.ColumnSpan="2" Height="493" VerticalAlignment="Bottom" Grid.RowSpan="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" Width="80"/>
+                        <TextBlock Text="{Binding Name}" Width="250"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>

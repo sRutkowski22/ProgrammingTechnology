@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer
 {
-    class LocationWrapper
+    public class LocationWrapper
     {
         private Location location;
 

@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer
 {
-    interface IDataRepository
+    public interface IDataRepository
     {
         //C.R.U.D ADD GET ALL GET UPDATE DELETE
 
         // ADD
         void AddLocation(LocationWrapper locationWrapper);
         // GET ALL
-        IQueryable<Location> GetAllLocations();
+        IEnumerable<LocationWrapper> GetAllLocations();
         // GET 
-        Location GetLocation(int id);
+        LocationWrapper GetLocation(int id);
         // UPDATE
         void UpdateLocation(int id, LocationWrapper location);
         // DELETE

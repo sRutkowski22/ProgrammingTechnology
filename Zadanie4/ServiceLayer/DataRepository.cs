@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer
 {
-    class DataRepository : IDataRepository
+    public class DataRepository : IDataRepository
     {
 
         private DataDataContext context;
@@ -28,19 +28,27 @@ namespace ServiceLayer
 
         public void DeleteLocation(int id)
         {    
-                context.Locations.DeleteOnSubmit(GetLocation(id));
+                context.Locations.DeleteOnSubmit(GetLocation(id).getLocation());
                 context.SubmitChanges(System.Data.Linq.ConflictMode.ContinueOnConflict);
         }
 
-        public IQueryable<Location> GetAllLocations()
+        public IEnumerable<LocationWrapper> GetAllLocations()
         {
-            return context.Locations;
+            List<LocationWrapper> list = new List<LocationWrapper>();
+            IQueryable<Location> locations = context.Locations;
+            foreach(Location location in locations)
+            {
+                list.Add(new LocationWrapper(location));
+            }
+            return list;
         }
 
-        public Location GetLocation(int id)
+        public LocationWrapper GetLocation(int id)
         {
-            return context.Locations.Where(l => l.LocationID == id).FirstOrDefault();
-           
+            Location location = context.Locations.Where(l => l.LocationID == id).FirstOrDefault();
+            return new LocationWrapper(location);
+
+
         }
 
         public void UpdateLocation(int id, LocationWrapper location)
