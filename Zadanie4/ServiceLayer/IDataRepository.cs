@@ -12,13 +12,13 @@ namespace ServiceLayer
         //C.R.U.D ADD GET ALL GET UPDATE DELETE
 
         // ADD
-        void AddLocation();
+        void AddLocation(LocationWrapper locationWrapper);
         // GET ALL
         IQueryable<Location> GetAllLocations();
         // GET 
         Location GetLocation(int id);
         // UPDATE
-        void UpdateLocation(int id);
+        void UpdateLocation(int id, LocationWrapper location);
         // DELETE
         void DeleteLocation(int id);
      
