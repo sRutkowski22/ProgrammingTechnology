@@ -12,7 +12,7 @@ namespace ViewModel
     public class LocationList : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public LocationListModel location;
+        public LocationListModel currentLocation;
        // public Command Error { get; private set; }
         private IDataRepository dataRepository;
         private ObservableCollection<LocationListModel> locations;
@@ -56,10 +56,9 @@ namespace ViewModel
 
         private void deleteLocation()
         {
-            IEnumerable<LocationWrapper> locations = dataRepository.GetAllLocations();
             try
             {
-                dataRepository.DeleteLocation(location.Id);
+                Locations.Remove(currentLocation);
             }
             catch (NullReferenceException)
             {
