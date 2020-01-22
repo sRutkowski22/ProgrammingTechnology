@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="AddLocationViewModel.cs" />
     <Compile Include="Binding.cs" />
+    <Compile Include="Interfaces\IOperationWindow.cs" />
+    <Compile Include="Interfaces\IViewModel.cs" />
+    <Compile Include="Interfaces\IWindowResolver.cs" />
     <Compile Include="LocationDetails.cs" />
     <Compile Include="LocationList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,5 +60,6 @@
       <Name>ServiceLayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

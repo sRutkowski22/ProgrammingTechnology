@@ -77,6 +77,10 @@
     <Compile Include="DetailsWindow.xaml.cs">
       <DependentUpon>DetailsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DI\LocationAddResolver.cs" />
+    <Compile Include="DI\LocationDetailsResolver.cs" />
+    <Compile Include="DI\LocationAddWindow.cs" />
+    <Compile Include="DI\LocationDetailsWindow.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,5 +118,6 @@
       <Name>ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

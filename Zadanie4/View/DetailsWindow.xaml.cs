@@ -8,10 +8,19 @@ namespace View
     /// </summary>
     public partial class DetailsWindow : Window
     {
-        public DetailsWindow(object selectedItem)
+        
+
+        public DetailsWindow()
         {
             InitializeComponent();
-            this.DataContext = new LocationDetails(selectedItem);
         }
+
+      
+
+        /* public DetailsWindow(object selectedItem)
+         {
+             InitializeComponent();
+             this.DataContext = new LocationDetails(selectedItem);
+         }*/
     }
 }

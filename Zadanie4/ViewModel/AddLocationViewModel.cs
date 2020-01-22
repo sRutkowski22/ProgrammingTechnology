@@ -6,22 +6,22 @@ using Model;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+using LogicLayer.Interfaces;
 
 namespace ViewModel
 {
-    public class AddLocationViewModel : INotifyPropertyChanged
+    public class AddLocationViewModel : INotifyPropertyChanged,  IViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public LocationListDetailModel currentLocation { get; set; }
-        private readonly IDataRepository dataRepository;
-       
+        private readonly IDataRepository dataRepository; 
         public Binding Add { get; private set; }
-       
+        public Action CloseWindow { get; set; }
 
-        public AddLocationViewModel(): this(new DataRepository())
-        {
-          
-        }
+          public AddLocationViewModel(): this(new DataRepository())
+          {
+
+          }
 
         public AddLocationViewModel(IDataRepository dataRepoistory)
         {

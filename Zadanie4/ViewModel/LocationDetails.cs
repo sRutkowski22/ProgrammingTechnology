@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using LogicLayer.Interfaces;
 using Model;
 using ServiceLayer;
 namespace ViewModel
 {
-    public class LocationDetails : INotifyPropertyChanged
+    public class LocationDetails : INotifyPropertyChanged,  IViewModel
     {
         
         public event PropertyChangedEventHandler PropertyChanged;
@@ -13,12 +14,15 @@ namespace ViewModel
         private IDataRepository dataRepository;
         public LocationListDetailModel currentLocation { get; set; }
         public Binding Edit { get; private set; }
+        public Action CloseWindow { get; set; }
 
-        public LocationDetails() : this(null,new DataRepository())
-        {
 
-        }
-       
+
+          public LocationDetails() : this(null,new DataRepository())
+          {
+
+          }
+
 
         public LocationDetails(Object selectedItem) : this(selectedItem, new DataRepository()) { }
         public LocationDetails(Object selectedItem, IDataRepository productService)
@@ -43,6 +47,9 @@ namespace ViewModel
                 NotifyPropertyChanged("LocationInList");
             }
         }
+
+       
+
         public void EditLocation()
         {
            

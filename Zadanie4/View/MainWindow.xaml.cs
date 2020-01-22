@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using View.DI;
+using ViewModel;
 
 namespace View
 {
@@ -13,25 +16,34 @@ namespace View
             InitializeComponent();
         }
 
-        
-       private void OpenDetailsWindow(object sender, RoutedEventArgs e)
+        protected override void OnInitialized(EventArgs e)
         {
-            if (this.lstdemo.SelectedItem != null)
+            base.OnInitialized(e);
+            LocationList mc = (LocationList)DataContext;
+            mc.WindowDetailResolver = new LocationDetailsResolver();
+            mc.WindowAddResolver = new LocationAddResolver();
+        }
+
+
+
+        /*   private void OpenDetailsWindow(object sender, RoutedEventArgs e)
             {
-                DetailsWindow details = new DetailsWindow(this.lstdemo.SelectedItem);
-                details.ShowDialog();
+                if (this.LocationInList.SelectedItem != null)
+                {
+                    DetailsWindow details = new DetailsWindow(this.LocationInList.SelectedItem);
+                    details.ShowDialog();
+                }
             }
-        }
 
-        private void OpenAddWindow(object sender, RoutedEventArgs e)
-        {
-            AddLocationWindow addingWindow = new AddLocationWindow();
-            addingWindow.ShowDialog();
-        }
+            private void OpenAddWindow(object sender, RoutedEventArgs e)
+            {
+                AddLocationWindow addingWindow = new AddLocationWindow();
+                addingWindow.ShowDialog();
+            }
 
-        private void Lstdemo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            private void Lstdemo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
 
-        }
+            }*/
     }
 }

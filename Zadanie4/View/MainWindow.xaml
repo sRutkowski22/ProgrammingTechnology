@@ -18,7 +18,7 @@
             <TextBlock Text="ID" Width="80"/>
             <TextBlock Text="Name" Width="800"/>
         </StackPanel>
-        <ListView Name="lstdemo" ItemsSource="{Binding Locations}" SelectedItem="{Binding currentLocation}" SelectionChanged="Lstdemo_SelectionChanged" Margin="0,0,450,0">
+        <ListView Name="LocationInList" ItemsSource="{Binding Locations}" SelectedItem="{Binding currentLocation}"  Margin="0,0,450,0">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -28,14 +28,14 @@
                 </GridView>
             </ListView.View>
         </ListView>
-       
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="550,-5,31,20">
-            <Button Content="Dodaj" Click="OpenAddWindow" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
-        </StackPanel>
+        
         <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="450,-5,31,20">
-            <Button Content="Szczegoly" Click="OpenDetailsWindow" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
+            <Button Content="Dodaj"  Command="{Binding DisplayAddWindow}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="350,-5,31,20">
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="550,-5,31,20">
+            <Button Content="Szczegoly" Command="{Binding DisplayDetails}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="650,-5,31,20">
             <Button  Content="Usun" Command="{Binding Delete}" InkCanvas.Bottom="100" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100"/>
         </StackPanel>
     </Grid>

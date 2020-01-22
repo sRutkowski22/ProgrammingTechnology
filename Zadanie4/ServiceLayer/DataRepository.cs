@@ -20,20 +20,26 @@ namespace ServiceLayer
         public void AddLocation(LocationWrapper locationWrapper)
         {
             Location locationToAdd = locationWrapper.getLocation();
-           
+            Task.Run(() =>
+            {
                 context.Locations.InsertOnSubmit(locationToAdd);
                 context.SubmitChanges();
+            });
 
         }
 
         public void DeleteLocation(int id)
-        {    
+        {
+            Task.Run(() =>
+            {
                 context.Locations.DeleteOnSubmit(GetLocation(id).getLocation());
                 context.SubmitChanges(System.Data.Linq.ConflictMode.ContinueOnConflict);
+            });
         }
 
         public IEnumerable<LocationWrapper> GetAllLocations()
         {
+            
             List<LocationWrapper> list = new List<LocationWrapper>();
             IQueryable<Location> locations = context.Locations;
             foreach(Location location in locations)
@@ -53,7 +59,9 @@ namespace ServiceLayer
 
         public void UpdateLocation(int id, LocationWrapper location)
         {
-            Location updatedLocation = context.Locations.Where(p => p.LocationID == location.LocationID).FirstOrDefault();
+            Task.Run(() =>
+            {
+                Location updatedLocation = context.Locations.Where(p => p.LocationID == location.LocationID).FirstOrDefault();
             foreach (System.Reflection.PropertyInfo property in updatedLocation.GetType().GetProperties())
             {
                 if (property.CanWrite)
@@ -62,6 +70,7 @@ namespace ServiceLayer
                 }
             }
             context.SubmitChanges();
+            });
         }
     }
 }
