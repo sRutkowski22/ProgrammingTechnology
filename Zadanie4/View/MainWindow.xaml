@@ -18,7 +18,7 @@
             <TextBlock Text="ID" Width="80"/>
             <TextBlock Text="Name" Width="800"/>
         </StackPanel>
-        <ListView Name="LocationInList" ItemsSource="{Binding Locations}" SelectedItem="{Binding currentLocation}"  Margin="0,0,450,0">
+        <ListView Name="LocationInList" ItemsSource="{Binding Locations}" SelectedItem="{Binding currentLocation}"   Margin="0,0,450,0">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
