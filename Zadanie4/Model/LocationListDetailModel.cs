@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class LocationListDetailModel
+    public class LocationListDetailModel
     {
         
         private int id;
@@ -25,7 +25,63 @@ namespace Model
             this.availability = availability;
             this.modifiedDate = modifiedDate;
         }
-
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+        public decimal CostRate
+        {
+            get
+            {
+                return costRate;
+            }
+            set
+            {
+                costRate = value;
+                OnPropertyChanged("CostRate");
+            }
+        }
+        public decimal Availability
+        {
+            get
+            {
+                return availability;
+            }
+            set
+            {
+                availability = value;
+                OnPropertyChanged("Availability");
+            }
+        }
+        public DateTime ModifiedDate
+        {
+            get
+            {
+                return modifiedDate;
+            }
+            set
+            {
+                modifiedDate = value;
+                OnPropertyChanged("ModifiedDate");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
