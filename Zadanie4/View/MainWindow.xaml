@@ -16,9 +16,9 @@
 
         <StackPanel Margin="5,0,0,0" Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
             <TextBlock Text="ID" Width="80"/>
-            <TextBlock Text="Name" Width="500"/>
+            <TextBlock Text="Name" Width="800"/>
         </StackPanel>
-        <ListView Name="lstdemo" ItemsSource="{Binding Locations}" SelectedItem="{Binding currentLocation}" SelectionChanged="Lstdemo_SelectionChanged" Margin="0,0,550,0">
+        <ListView Name="lstdemo" ItemsSource="{Binding Locations}" SelectedItem="{Binding currentLocation}" SelectionChanged="Lstdemo_SelectionChanged" Margin="0,0,450,0">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -28,17 +28,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Orientation="Vertical"  Margin="360,100,150,100">
-            <TextBox Grid.Row="0" Name="MyTextBox" Text="{Binding LocationId}"  Margin="1" Width="200"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical"  Margin="360,200,150,100">
-            <TextBox Grid.Row="0" Name="MyTextBox1" Margin="2" Width="200"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical"  Margin="360,300,150,100">
-            <TextBox Grid.Row="0" Name="MyTextBox2" Margin="2" Width="200"/>
-        </StackPanel>
+       
         <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="550,-5,31,20">
-            <Button Content="Dodaj" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
+            <Button Content="Dodaj" Click="OpenAddWindow" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="450,-5,31,20">
             <Button Content="Szczegoly" Click="OpenDetailsWindow" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>

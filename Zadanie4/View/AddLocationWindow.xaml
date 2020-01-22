@@ -1,0 +1,34 @@
+﻿<Window x:Class="View.AddLocationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
+        Title="AddLocationWindow" Height="550" Width="800">
+    <Window.DataContext>
+        
+        <viewModel:AddLocationViewModel/>
+        
+    </Window.DataContext>
+    <Grid Margin="3,5,3,3 ">
+        <StackPanel Orientation="Vertical"  Margin="-50,100,150,100">
+            <TextBox Grid.Row="0" Name="MyTextBox" Text="{Binding locationId}"  Margin="1" Width="150"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical"  Margin="-50,200,150,100">
+            <TextBox Grid.Row="0" Name="MyTextBox1" Text="{Binding name}" Margin="2" Width="150"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical"  Margin="-50,300,150,100">
+            <TextBox Grid.Row="0" Name="MyTextBox3" Text="{Binding  costRate}" Margin="2" Width="150"/>
+            <Button  Content="Zatwierdz" Command="{Binding Add}" VerticalAlignment="Bottom" Width="100" Margin="450,-5,0,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical"  Margin="400,100,150,100">
+            <TextBox Grid.Row="0" Name="MyTextBox4" Text="{Binding availability}"  Margin="1" Width="150"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical"  Margin="400,200,150,100">
+            <TextBox Grid.Row="0" Name="MyTextBox5" Text="{Binding modifiedDate}" Margin="2" Width="150"/>
+        </StackPanel>
+       
+    </Grid>
+</Window>

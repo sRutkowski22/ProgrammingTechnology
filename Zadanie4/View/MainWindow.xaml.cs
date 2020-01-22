@@ -23,6 +23,12 @@ namespace View
             }
         }
 
+        private void OpenAddWindow(object sender, RoutedEventArgs e)
+        {
+            AddLocationWindow addingWindow = new AddLocationWindow();
+            addingWindow.ShowDialog();
+        }
+
         private void Lstdemo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

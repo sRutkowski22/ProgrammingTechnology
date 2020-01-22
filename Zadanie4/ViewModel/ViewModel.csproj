@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddLocationViewModel.cs" />
     <Compile Include="Binding.cs" />
     <Compile Include="LocationDetails.cs" />
     <Compile Include="LocationList.cs" />
