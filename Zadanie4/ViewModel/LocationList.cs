@@ -68,6 +68,7 @@ namespace ViewModel
             foreach(LocationWrapper location in listFromService)
             {
                 locations.Add(new LocationListModel(location.LocationID, location.Name));
+                
             }
         }
         private void DeleteLocation()
