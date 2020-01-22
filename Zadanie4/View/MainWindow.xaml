@@ -40,6 +40,9 @@
         <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="550,-5,31,20">
             <Button Content="Dodaj" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="450,-5,31,20">
+            <Button Content="Szczegoly" Click="OpenDetailsWindow" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="350,-5,31,20">
             <Button  Content="Usun" Command="{Binding Delete}" InkCanvas.Bottom="100" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100"/>
         </StackPanel>

@@ -19,7 +19,7 @@ namespace View
     /// </summary>
     public partial class DetailsWindow : Window
     {
-        public DetailsWindow()
+        public DetailsWindow(object selectedItem)
         {
             InitializeComponent();
         }

@@ -13,6 +13,16 @@ namespace View
             InitializeComponent();
         }
 
+        
+       private void OpenDetailsWindow(object sender, RoutedEventArgs e)
+        {
+            if (this.lstdemo.SelectedItem != null)
+            {
+                DetailsWindow details = new DetailsWindow(this.lstdemo.SelectedItem);
+                details.ShowDialog();
+            }
+        }
+
         private void Lstdemo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
