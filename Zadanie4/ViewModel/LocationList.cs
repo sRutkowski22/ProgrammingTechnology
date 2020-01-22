@@ -73,17 +73,21 @@ namespace ViewModel
         }
         private void DeleteLocation()
         {
+            this.dataRepository.DeleteLocation(currentLocation.Id);
             Locations.Remove(currentLocation);
-            dataRepository.DeleteLocation(currentLocation.Id);
+           
         }
         
 
         private void ShowDetails()
         {
-            LocationDetails locationDetails = new LocationDetails(currentLocation, this.dataRepository);
-            IOperationWindow window = WindowDetailResolver.GetWindow();
-            window.BindViewModel(locationDetails);
-            window.Show();
+            if (currentLocation != null)
+            {
+                LocationDetails locationDetails = new LocationDetails(currentLocation, this.dataRepository);
+                IOperationWindow window = WindowDetailResolver.GetWindow();
+                window.BindViewModel(locationDetails);
+                window.Show();
+            }
         }
         private void ShowAdd()
         {

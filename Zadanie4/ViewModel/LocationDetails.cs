@@ -35,6 +35,7 @@ namespace ViewModel
                 int locationID = item.Id;
                 LocationWrapper location = dataRepository.GetLocation(locationID);
                 currentLocation = new LocationListDetailModel(location.LocationID, location.Name, location.CostRate, location.Availability, location.ModifiedDate);
+                
             }
         }
 
@@ -54,7 +55,7 @@ namespace ViewModel
         {
            
             this.dataRepository.UpdateLocation(currentLocation.Id, LocationParser.createNewLocationWrapper(currentLocation.Id, currentLocation.Name, currentLocation.CostRate, currentLocation.Availability));
-              
+            CloseWindow();
         }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

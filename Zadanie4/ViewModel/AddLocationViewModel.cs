@@ -43,6 +43,7 @@ namespace ViewModel
         {
             LocationWrapper locationWrapper = LocationParser.createNewLocationWrapper(currentLocation.Id, currentLocation.Name, currentLocation.CostRate, currentLocation.Availability);
             this.dataRepository.AddLocation(locationWrapper);
+            CloseWindow();
         }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
