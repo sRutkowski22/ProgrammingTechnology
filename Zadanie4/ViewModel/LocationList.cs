@@ -12,7 +12,7 @@ namespace ViewModel
     public class LocationList : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public LocationListModel currentLocation;
+        public LocationListModel currentLocation { get; set; }
         public Binding Error { get; private set; }
         public Binding Delete { get; private set; }
         public Binding OpenWind { get; private set; }
@@ -21,7 +21,7 @@ namespace ViewModel
 
         public LocationList() : this(new DataRepository())
         {
-
+            
         }
 
         public LocationList(IDataRepository dataRepository)
@@ -29,6 +29,7 @@ namespace ViewModel
             this.dataRepository = new DataRepository();
             Locations = new ObservableCollection<LocationListModel>();
             FillLocations();
+            this.Delete = new Binding(DeleteLocation);
         }
 
         public LocationList(IDataRepository dataRepository, Action error)
@@ -36,7 +37,7 @@ namespace ViewModel
             this.dataRepository = new DataRepository();
             Locations = new ObservableCollection<LocationListModel>();
             FillLocations();
-            this.Delete = new Binding(deleteLocation);
+            this.Delete = new Binding(DeleteLocation);
         }
 
         public ObservableCollection<LocationListModel> Locations
@@ -63,10 +64,10 @@ namespace ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void deleteLocation()
+        private void DeleteLocation()
         {
             this.dataRepository.DeleteLocation(currentLocation.Id);
-            locations.Remove(currentLocation);
+            Locations.Remove(currentLocation);
         }
     }
 }

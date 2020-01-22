@@ -29,7 +29,7 @@
             </ListView.View>
         </ListView>
         <StackPanel>
-            <Button Content="Dodaj"></Button>
+            <Button Content="Dodaj"/>
             <Button  Content="Usun" Command="{Binding Delete}"/>
         </StackPanel>
 
