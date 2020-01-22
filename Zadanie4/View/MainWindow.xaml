@@ -18,7 +18,7 @@
             <TextBlock Text="ID" Width="80"/>
             <TextBlock Text="Name" Width="250"/>
         </StackPanel>
-        <ListView Name="lstdemo" ItemsSource="{Binding Locations}" SelectionChanged="Lstdemo_SelectionChanged">
+        <ListView Name="lstdemo" ItemsSource="{Binding Locations}" SelectedItem="{Binding currentLocation}" SelectionChanged="Lstdemo_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -30,7 +30,7 @@
         </ListView>
         <StackPanel>
             <Button Content="Dodaj"></Button>
-            <Button Command="{Binding Delete}">Usuń</Button>
+            <Button  Content="Usun" Command="{Binding Delete}"/>
         </StackPanel>
 
 

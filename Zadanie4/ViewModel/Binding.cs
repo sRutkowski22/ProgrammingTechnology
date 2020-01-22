@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    public class bidding : System.Windows.Input.ICommand
+    public class Binding : System.Windows.Input.ICommand
     {
         private readonly Action action;
         public event EventHandler CanExecuteChanged;
 
-        public bidding(Action act)
+        public Binding(Action act)
         {
             this.action = act;
         }
