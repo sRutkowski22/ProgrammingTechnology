@@ -12,6 +12,7 @@ namespace ViewModel
 
         private IDataRepository dataRepository;
         public LocationListDetailModel currentLocation { get; set; }
+        public Binding Edit { get; private set; }
 
         public LocationDetails() : this(null,new DataRepository())
         {
@@ -25,6 +26,7 @@ namespace ViewModel
             dataRepository = productService;
             if (selectedItem != null)
             {
+                this.Edit = new Binding(EditLocation);
                 LocationListModel item = (LocationListModel)selectedItem;
                 int locationID = item.Id;
                 LocationWrapper location = dataRepository.GetLocation(locationID);
@@ -40,6 +42,12 @@ namespace ViewModel
                 currentLocation = value;
                 NotifyPropertyChanged("LocationInList");
             }
+        }
+        public void EditLocation()
+        {
+           
+            this.dataRepository.UpdateLocation(currentLocation.Id, LocationParser.createNewLocationWrapper(currentLocation.Id, currentLocation.Name, currentLocation.CostRate, currentLocation.Availability));
+              
         }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

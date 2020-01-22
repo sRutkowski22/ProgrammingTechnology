@@ -12,23 +12,29 @@
         <viewModel:AddLocationViewModel/>
         
     </Window.DataContext>
-    <Grid Margin="3,5,3,3 ">
-        <StackPanel Orientation="Vertical"  Margin="-50,100,150,100">
-            <TextBox Grid.Row="0" Name="MyTextBox" Text="{Binding locationId}"  Margin="1" Width="150"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical"  Margin="-50,200,150,100">
-            <TextBox Grid.Row="0" Name="MyTextBox1" Text="{Binding name}" Margin="2" Width="150"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical"  Margin="-50,300,150,100">
-            <TextBox Grid.Row="0" Name="MyTextBox3" Text="{Binding  costRate}" Margin="2" Width="150"/>
-            <Button  Content="Zatwierdz" Command="{Binding Add}" VerticalAlignment="Bottom" Width="100" Margin="450,-5,0,0"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical"  Margin="400,100,150,100">
-            <TextBox Grid.Row="0" Name="MyTextBox4" Text="{Binding availability}"  Margin="1" Width="150"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical"  Margin="400,200,150,100">
-            <TextBox Grid.Row="0" Name="MyTextBox5" Text="{Binding modifiedDate}" Margin="2" Width="150"/>
-        </StackPanel>
-       
-    </Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+           
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Location Id: "/>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding CurrentLocation.Id}" />
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Location Name: "/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding CurrentLocation.Name}" />
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Location CostRate: "/>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding CurrentLocation.CostRate}" />
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="Location Availability: "/>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding CurrentLocation.Availability}" />
+      
+
+        <Button Grid.Column="1" Grid.Row="4" Content="Dodaj" Command="{Binding Add}" InkCanvas.Bottom="100" Width="100"/>
+        </Grid>
 </Window>

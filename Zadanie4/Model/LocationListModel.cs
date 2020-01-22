@@ -10,16 +10,16 @@ namespace Model
 {
     public class LocationListModel : INotifyPropertyChanged
     {
-        private int id;
+        private short id;
         private string name;
 
-        public LocationListModel(int id, string name)
+        public LocationListModel(short id, string name)
         {
             this.id = id;
             this.name = name;
         }
 
-        public int Id
+        public short Id
         {
             get { return id; }
             set

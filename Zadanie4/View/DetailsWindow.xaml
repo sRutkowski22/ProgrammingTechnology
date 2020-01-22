@@ -23,18 +23,20 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+          
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" Text="Location Id: "/>
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding CurrentLocation.Id}" />
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CurrentLocation.Id}" />
         <TextBlock Grid.Column="0" Grid.Row="1" Text="Location Name: "/>
         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding CurrentLocation.Name}" />
         <TextBlock Grid.Column="0" Grid.Row="2" Text="Location CostRate: "/>
         <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding CurrentLocation.CostRate}" />
         <TextBlock Grid.Column="0" Grid.Row="3" Text="Location Availability: "/>
         <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding CurrentLocation.Availability}" />
-        <TextBlock Grid.Column="0" Grid.Row="4" Text="Location ModifiedDate: "/>
-        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding CurrentLocation.ModifiedDate}" />
-        
+       
+
+        <Button Grid.Column="1" Grid.Row="4" Content="Edytuj" Command="{Binding Edit}" InkCanvas.Bottom="100" Width="100"/>
+      
+
     </Grid>
 </Window>

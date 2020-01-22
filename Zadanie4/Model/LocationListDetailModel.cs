@@ -11,13 +11,15 @@ namespace Model
     public class LocationListDetailModel
     {
         
-        private int id;
+        private short id;
         private string name;
         private decimal costRate;
         private decimal availability;
         private DateTime modifiedDate;
 
-        public LocationListDetailModel(int locationId, string name, decimal costRate, decimal availability, DateTime modifiedDate)
+        public LocationListDetailModel() { }
+
+        public LocationListDetailModel(short locationId, string name, decimal costRate, decimal availability, DateTime modifiedDate)
         {
             this.id = locationId;
             this.name = name;
@@ -25,7 +27,7 @@ namespace Model
             this.availability = availability;
             this.modifiedDate = modifiedDate;
         }
-        public int Id
+        public short Id
         {
             get { return id; }
             set

@@ -20,5 +20,17 @@ namespace ServiceLayer
 
             return new LocationWrapper(addedLocation);
         }
+
+        public static LocationWrapper createNewLocationWrapper(short id, string name, decimal costRate, decimal availability)
+        {
+            Location addedLocation = new Location();
+            addedLocation.LocationID =id;
+            addedLocation.Name = name;
+            addedLocation.Availability = availability;
+            addedLocation.CostRate = costRate;
+            addedLocation.ModifiedDate = DateTime.Now;
+
+            return new LocationWrapper(addedLocation);
+        }
     }
 }
