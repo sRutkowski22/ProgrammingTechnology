@@ -66,7 +66,6 @@ namespace ViewModel
 
         private void DeleteLocation()
         {
-            this.dataRepository.DeleteLocation(currentLocation.Id);
             Locations.Remove(currentLocation);
         }
     }
