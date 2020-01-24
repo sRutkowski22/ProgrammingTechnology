@@ -12,7 +12,7 @@ namespace ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         private IDataRepository dataRepository;
-        public LocationListDetailModel currentLocation { get; set; }
+        private LocationListDetailModel currentLocation;
         public Binding Edit { get; private set; }
         public Action CloseWindow { get; set; }
 
@@ -53,7 +53,6 @@ namespace ViewModel
 
         public void EditLocation()
         {
-           
             this.dataRepository.UpdateLocation(currentLocation.Id, LocationParser.createNewLocationWrapper(currentLocation.Id, currentLocation.Name, currentLocation.CostRate, currentLocation.Availability));
             CloseWindow();
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class LocationListDetailModel
+    public class LocationListDetailModel : INotifyPropertyChanged
     {
         
         private short id;
