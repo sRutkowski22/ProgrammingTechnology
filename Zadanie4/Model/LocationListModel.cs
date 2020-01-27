@@ -25,7 +25,8 @@ namespace Model
             set
             {
                 id = value;
-                OnPropertyChanged("Id");
+            
+                NotifyPropertyChanged("Id");
             }
         }
         public string Name
@@ -37,13 +38,16 @@ namespace Model
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                NotifyPropertyChanged("Name");
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
+       
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

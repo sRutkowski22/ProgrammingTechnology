@@ -45,7 +45,8 @@ namespace ViewModel
             set
             {
                 currentLocation = value;
-                NotifyPropertyChanged("LocationInList");
+                NotifyPropertyChanged("Locations");
+              
             }
         }
 
@@ -54,6 +55,7 @@ namespace ViewModel
         public void EditLocation()
         {
             this.dataRepository.UpdateLocation(currentLocation.Id, LocationParser.createNewLocationWrapper(currentLocation.Id, currentLocation.Name, currentLocation.CostRate, currentLocation.Availability));
+         
             CloseWindow();
         }
 

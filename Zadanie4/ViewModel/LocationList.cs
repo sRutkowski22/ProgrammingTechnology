@@ -13,7 +13,7 @@ namespace ViewModel
     public class LocationList : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public LocationListModel currentLocation { get; set; }
+        private LocationListModel currentLocation { get; set; }
         public Binding Error { get; private set; }
         public Binding Delete { get; private set; }
         public Binding DisplayDetails { get; private set; }
@@ -29,6 +29,16 @@ namespace ViewModel
         public LocationList() : this(new DataRepository())
         {
             
+        }
+
+        public LocationList(ObservableCollection<LocationListModel> locations)
+        {
+          
+            Locations = locations;
+           
+            this.Delete = new Binding(DeleteLocation);
+            this.DisplayAddWindow = new Binding(ShowAdd);
+            this.DisplayDetails = new Binding(ShowDetails);
         }
 
         public LocationList(IDataRepository dataRepository)
@@ -56,11 +66,21 @@ namespace ViewModel
             set
             {
                 locations = value;
-                NotifyPropertyChanged("LocationInList");
+                NotifyPropertyChanged("Locations");
             }
         }
 
-       
+        public LocationListModel CurrentLocation
+        {
+            get => currentLocation;
+            set
+            {
+                currentLocation = value;
+                NotifyPropertyChanged("CurrentLocation");
+            }
+        }
+
+        
 
         private void FillLocations()
         {
@@ -83,13 +103,15 @@ namespace ViewModel
 
         private void ShowDetails()
         {
-            if (currentLocation != null)
-            {
-                LocationDetails locationDetails = new LocationDetails(currentLocation, this.dataRepository);
-                IOperationWindow window = WindowDetailResolver.GetWindow();
-                window.BindViewModel(locationDetails);
-                window.Show();
-            }
+           
+
+              if (currentLocation != null)
+              {
+                  LocationDetails locationDetails = new LocationDetails(currentLocation, this.dataRepository);
+                  IOperationWindow window = WindowDetailResolver.GetWindow();
+                  window.BindViewModel(locationDetails);
+                  window.Show();
+              }
         }
         private void ShowAdd()
         {

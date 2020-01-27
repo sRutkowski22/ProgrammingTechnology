@@ -33,7 +33,7 @@ namespace Model
             set
             {
                 id = value;
-                OnPropertyChanged("Id");
+                NotifyPropertyChanged("Id");
             }
         }
         public string Name
@@ -45,7 +45,7 @@ namespace Model
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                NotifyPropertyChanged("Name");
             }
         }
         public decimal CostRate
@@ -57,7 +57,7 @@ namespace Model
             set
             {
                 costRate = value;
-                OnPropertyChanged("CostRate");
+                NotifyPropertyChanged("CostRate");
             }
         }
         public decimal Availability
@@ -69,7 +69,7 @@ namespace Model
             set
             {
                 availability = value;
-                OnPropertyChanged("Availability");
+                NotifyPropertyChanged("Availability");
             }
         }
         public DateTime ModifiedDate
@@ -81,11 +81,14 @@ namespace Model
             set
             {
                 modifiedDate = value;
-                OnPropertyChanged("ModifiedDate");
+                NotifyPropertyChanged("ModifiedDate");
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
