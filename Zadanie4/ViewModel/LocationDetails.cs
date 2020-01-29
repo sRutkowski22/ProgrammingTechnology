@@ -45,7 +45,7 @@ namespace ViewModel
             set
             {
                 currentLocation = value;
-                NotifyPropertyChanged("Locations");
+                NotifyPropertyChanged("CurrentLocation");
               
             }
         }
